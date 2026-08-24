@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Client Growth SOP - We Forge Web</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            /* Colors extracted exactly from your logo image.png */
+            --bg-dark: #000000;
+            --brand-main: #03142f; /* Dominant logo navy */
+            --brand-light: #041530; /* Secondary logo navy */
+            --brand-accent: #3b82f6; /* Clean digital blue to complement the dark navy logo */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background-color: var(--brand-main);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-container img {
+            max-width: 180px;
+            max-height: 60px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            padding: 16px 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--brand-light);
+            color: var(--text-main);
+        }
+
+        .nav-btn.active {
+            background-color: var(--brand-accent);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 60px;
+            scroll-behavior: smooth;
+        }
+
+        .tab-pane {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Components */
+        h1 { font-size: 36px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        h2 { font-size: 24px; font-weight: 700; margin-bottom: 24px; color: var(--brand-accent); }
+        p { margin-bottom: 16px; font-size: 16px; color: #cbd5e1; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .info-card {
+            background-color: var(--brand-light);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .info-card h4 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+        .info-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .info-card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--brand-accent);
+            font-weight: bold;
+        }
+
+        /* Interactive Timeline (Flywheel) */
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: var(--brand-light);
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--brand-accent);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .timeline-item:hover {
+            transform: translateX(5px);
+        }
+        .timeline-num {
+            background: var(--brand-accent);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Script Boxes */
+        .script-box {
+            background: var(--brand-light);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .script-box.wrong { border-left: 4px solid #ef4444; }
+        .script-box.right { border-left: 4px solid #22c55e; }
+        .script-box p.quote {
+            font-style: italic;
+            font-size: 16px;
+            color: #fff;
+            margin: 12px 0;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+        }
+        .script-box .reason { font-size: 14px; color: var(--text-muted); }
+
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="image.png" alt="We Forge Web" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:white;\'>WE FORGE WEB</h2>';">
+        </div>
+        
+        <button class="nav-btn active" onclick="switchTab('tab-overview')">
+            <span>1</span> System Overview
+        </button>
+        <button class="nav-btn" onclick="switchTab('tab-roles')">
+            <span>2</span> Sino Gagawa? (Roles)
+        </button>
+        <button class="nav-btn" onclick="switchTab('tab-ops')">
+            <span>3</span> Operations Tips
+        </button>
+        <button class="nav-btn" onclick="switchTab('tab-flywheel')">
+            <span>4</span> Proof Flywheel
+        </button>
+        <button class="nav-btn" onclick="switchTab('tab-scripts')">
+            <span>5</span> Follow-Up Scripts
+        </button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- TAB 1 -->
+        <div id="tab-overview" class="tab-pane active">
+            <h1>The Shared Client Growth System</h1>
+            <p>Ito ang blueprint para tuloy-tuloy ang pasok ng inquiries at benta mo. Growth is a shared partnership. We do not leave you behind.</p>
+            
+            <div class="info-card" style="margin-top: 40px; border-left: 4px solid var(--brand-accent);">
+                <h4>Ang Sistema: KAYO ➔ KAMI ➔ KAYO</h4>
+                <p style="margin-bottom: 12px; font-size: 15px;"><strong>[KAYO]</strong> You provide the raw business value and service.</p>
+                <p style="margin-bottom: 12px; font-size: 15px;"><strong>[KAMI]</strong> We build the Trust & Proof engine so that getting seen turns into getting contacted.</p>
+                <p style="margin-bottom: 0; font-size: 15px;"><strong>[KAYO]</strong> You respond rapidly, provide estimates, and deliver quality work.</p>
+            </div>
+        </div>
+
+        <!-- TAB 2 -->
+        <div id="tab-roles" class="tab-pane">
+            <h1>Sino Ang Gagawa ng Ano?</h1>
+            <p>Walang magic button—ito ay isang shared system. Para maging successful ang marketing, kailangan mabilis at maayos ang ops/sales ninyo.</p>
+
+            <div class="card-grid">
+                <div class="info-card">
+                    <h4 style="color: var(--brand-accent);">KAMI (We Forge Web)</h4>
+                    <ul>
+                        <li><strong>Conversion LP:</strong> Build your Landing Page (sub-3s load speed, proof showcase).</li>
+                        <li><strong>Trust Setup:</strong> Optimize Google Business Profile with exact pins & radius.</li>
+                        <li><strong>Ads & Traffic:</strong> Launch hyper-local Proof-Based Facebook Ads.</li>
+                        <li><strong>Scaling:</strong> Track data and lower cost-per-inquiry.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h4>KAYO (Client Partner)</h4>
+                    <ul>
+                        <li><strong>Rapid Response (< 15 Mins):</strong> Bilis at malasakit ang kailangan kapag may nag-inquire.</li>
+                        <li><strong>Clear Estimates:</strong> Provide professional pricing and transparent deliverables.</li>
+                        <li><strong>Asset Capture:</strong> Kumuha ng Before/After photos sa bawat project.</li>
+                        <li><strong>Quality Delivery:</strong> Gawing masaya ang kliyente para mag-iwan ng 5-Star Review.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3 -->
+        <div id="tab-ops" class="tab-pane">
+            <h1>Mga Praktikal na Diskarte sa Operations</h1>
+            <p>Kahit gaano kaganda ang ads natin, nasa kamay ninyo ang closing. Heto ang mga simpleng "Ops Tips" para mas mapadali ang pagpapa-oo ng kliyente.</p>
+
+            <div class="card-grid">
+                <div class="info-card">
+                    <h4>⏱️ Tip 1: Bilis ang labanan</h4>
+                    <p style="font-size: 14px;">Kung busy sa site, mag-reply agad: <em>"Hi po! Nasa site lang po kami, pero babalikan ko po kayo within 1 hour para masagot ng maayos ang tanong ninyo."</em> Nagpapakita ito na professional kayo.</p>
+                </div>
+                <div class="info-card">
+                    <h4>🤝 Tip 2: Maging consultant sa Ocular</h4>
+                    <p style="font-size: 14px;">Huwag lang presyo ang ibigay. I-explain kung bakit ganun ang costing. Kapag naramdaman ng client na pinoprotektahan ninyo ang budget nila, mas magtitiwala sila sa inyo.</p>
+                </div>
+                <div class="info-card">
+                    <h4>📸 Tip 3: Punasan ang camera lens!</h4>
+                    <p style="font-size: 14px;">Bago kumuha ng "After" photos, punasan ang lens. Siguraduhin ding pareho ang anggulo (angle) ng Before at After photos para kitang-kita ang pagbabago.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Tip 4: Humingi ng review habang mainit pa</h4>
+                    <p style="font-size: 14px;">Pagkatapos na pagkatapos ng project, sabihin agad: <em>"Sir/Ma'am, kung masaya po kayo sa gawa namin, malaking tulong po kung makapag-iwan kayo ng review."</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4 -->
+        <div id="tab-flywheel" class="tab-pane">
+            <h1>The 5-Asset Proof Flywheel</h1>
+            <p>Ito ang "gasolina" para bumaba ang ad spend ninyo at dumami ang inquiries. Ipadala sa amin ang mga ito pagkatapos ng bawat project:</p>
+            
+            <div style="margin-top: 40px;">
+                <div class="timeline-item" onclick="alert('📸 Kunan ito bago mag-umpisa ang trabaho.')">
+                    <div class="timeline-num">1</div>
+                    <div>
+                        <h4 style="color:#fff; margin-bottom:5px;">Before & During Photos</h4>
+                        <p style="font-size:14px; margin:0;">Kuhanan ang lumang kalagayan bago simulan at habang ginagawa ang trabaho.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" onclick="alert('✨ Punasan ang lens bago kumuha ng litrato!')">
+                    <div class="timeline-num">2</div>
+                    <div>
+                        <h4 style="color:#fff; margin-bottom:5px;">High-Res After Transformation</h4>
+                        <p style="font-size:14px; margin:0;">Malinis, well-lit na kuha ng natapos na resulta mula sa iba't ibang anggulo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-num">3</div>
+                    <div>
+                        <h4 style="color:#fff; margin-bottom:5px;">Customer Video Soundbite</h4>
+                        <p style="font-size:14px; margin:0;">Maikling 15-30 segundong video clip ng natuwang kliyente.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-num">4</div>
+                    <div>
+                        <h4 style="color:#fff; margin-bottom:5px;">Project Story & Specs</h4>
+                        <p style="font-size:14px; margin:0;">Eksaktong problema na nalutas, materyales na ginamit, at lokasyon.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-num">5</div>
+                    <div>
+                        <h4 style="color:#fff; margin-bottom:5px;">5-Star Verified Google Review</h4>
+                        <p style="font-size:14px; margin:0;">Direktang feedback sa Google Profile para sa permanenteng trust.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5 -->
+        <div id="tab-scripts" class="tab-pane">
+            <h1>Follow-Up Scripts (Huwag Mangulit)</h1>
+            <p>Hindi lahat magbo-book agad. May nag-iipon o nag-cocompare. Magbigay ng halaga (value), huwag lang basta mangulit.</p>
+
+            <div class="script-box wrong" style="margin-top: 30px;">
+                <h4 style="color:#ef4444;">❌ Ang Maling Paraan (Puro Kulit)</h4>
+                <p class="quote">"Hi Ma'am/Sir, follow up lang po sa estimate ninyo kahapon. Kukunin nyo po ba? May discount po kami."</p>
+                <div class="reason"><strong>Bakit sablay:</strong> Nagbibigay ito ng pressure at mukhang desperado. I-seen o i-block ka lang ng client.</div>
+            </div>
+
+            <div class="script-box right">
+                <h4 style="color:#22c55e;">✅ Ang Tama (Value-First / Proof Nurture)</h4>
+                <p class="quote">"Hi [Name]! Naalala ko po yung napag-usapan nating [Specific Service] sa [Location]. Kakasimula lang po namin ng katulad na project kanina. I-share ko lang po itong photos kung paano namin inayos para may reference po kayo. Let me know po kung may questions kayo sa estimate natin!"</p>
+                <div class="reason"><strong>Bakit mabisa:</strong> Walang pressure, pero pinapaalala mo na expert kayo dahil may proof of work kayong pinakita.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SIMPLE JS FOR INTERACTIVITY -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-pane').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update sidebar buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Find the clicked button and make it active
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

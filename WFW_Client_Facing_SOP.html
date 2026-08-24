@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Forge Web - Client Growth SOP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --brand-dark: #03142f;
+            --brand-darker: #020c1d;
+            --brand-accent: #FF5A1F; /* Classic high-conversion orange/amber */
+            --brand-accent-light: rgba(255, 90, 31, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--brand-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .document-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--brand-darker);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-section {
+            padding: 60px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .page-section:last-child {
+            border-bottom: none;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--brand-accent);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+        }
+
+        .logo-placeholder {
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .logo-placeholder img {
+            max-height: 60px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        /* Philosophy Box */
+        .philosophy-box {
+            background: var(--brand-accent-light);
+            border-left: 4px solid var(--brand-accent);
+            padding: 32px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px 0;
+        }
+
+        .philosophy-box h3 {
+            color: #ffffff;
+            font-size: 22px;
+        }
+
+        .philosophy-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Responsibility Cards */
+        .role-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .role-card h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .role-card.kami h4 {
+            color: var(--brand-accent);
+        }
+
+        .role-list {
+            list-style: none;
+        }
+
+        .role-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .role-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--brand-accent);
+            font-weight: bold;
+        }
+
+        /* Ops Tips Cards */
+        .tip-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px dashed var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .tip-card .tip-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .tip-card h4 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .tip-card p {
+            font-size: 15px;
+            margin-bottom: 0;
+            color: #cbd5e1; /* Slightly brighter text for readability */
+        }
+
+        /* Pillar / Asset Items */
+        .asset-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .asset-num {
+            background: var(--brand-accent);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .asset-content h4 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .asset-content p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        /* Scripts */
+        .script-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .script-box.wrong {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .script-box.right {
+            border-left: 4px solid #22c55e;
+        }
+
+        .script-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .script-box p {
+            font-size: 15px;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+
+        .script-box .reason {
+            font-size: 13px;
+            font-style: normal;
+            color: var(--text-muted);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* Print optimization */
+        @media print {
+            body { background: #ffffff; color: #000000; padding: 0; }
+            .document-wrapper { box-shadow: none; border: none; max-width: 100%; border-radius: 0; background: #ffffff; }
+            .page-section { page-break-inside: avoid; border-bottom: 1px solid #e2e8f0; padding: 40px 0; }
+            h1, h2, .role-card h4, .asset-content h4, .tip-card h4 { color: #000000; }
+            h3, .role-card.kami h4, .asset-num, .role-list li::before { color: #03142f; }
+            .asset-num { background: #03142f; color: #ffffff; }
+            p, .role-list li, .script-box .reason, .tip-card p { color: #475569; }
+            .philosophy-box { background: #f8fafc; border-left-color: #03142f; }
+            .role-card, .script-box, .tip-card { background: #ffffff; border-color: #e2e8f0; }
+            .script-box p { color: #000000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        
+        <!-- SECTION 1: OVERVIEW & PHILOSOPHY -->
+        <div class="page-section">
+            <header>
+                <div class="logo-placeholder">
+                    <img src="image.png" alt="We Forge Web" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iNTAiPjx0ZXh0IHk9IjMwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iI2ZmZiI+V2UgRm9yZ2UgV2ViPC90ZXh0Pjwvc3ZnPg=='">
+                </div>
+                <h1>Client Growth SOP</h1>
+                <p>The exact Standard Operating Procedure for our partnership.<br>Ito ang blueprint para tuloy-tuloy ang pasok ng inquiries at benta mo.</p>
+            </header>
+
+            <div class="philosophy-box">
+                <h3>Our Core System: KAYO ➔ KAMI ➔ KAYO</h3>
+                <p>Growth is a shared partnership. We do not leave you behind.</p>
+                <p><strong>[KAYO]</strong> You provide the raw business value and service.<br>
+                <strong>[KAMI]</strong> We build the Trust & Proof engine so that getting seen turns into getting contacted.<br>
+                <strong>[KAYO]</strong> You respond rapidly, provide estimates, and deliver quality work.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2: EXECUTION ARCHITECTURE -->
+        <div class="page-section">
+            <h2>The Execution Architecture</h2>
+            <p>Sino ang gagawa ng ano? Walang magic button—ito ay isang shared system. Para maging successful ang marketing, kailangan mabilis at maayos ang ops/sales ninyo.</p>
+
+            <div class="grid-2" style="margin-top: 40px;">
+                <!-- KAMI -->
+                <div class="role-card kami">
+                    <h4>KAMI (We Forge Web)</h4>
+                    <ul class="role-list">
+                        <li><strong>Conversion Architecture:</strong> Build your high-converting Landing Page with sub-3s load speed, proof showcase, and 1-click calls.</li>
+                        <li><strong>Trust Setup:</strong> Optimize Google Business Profile with exact pins, verified radius, and categories.</li>
+                        <li><strong>Traffic & Ads:</strong> Launch hyper-local (5km-25km) Proof-Based Facebook Ads targeting the right audience.</li>
+                        <li><strong>Maintenance & Scaling:</strong> Track funnel data, fix issues, and optimize campaigns to lower cost-per-inquiry.</li>
+                    </ul>
+                </div>
+                
+                <!-- KAYO -->
+                <div class="role-card">
+                    <h4>KAYO (Client Partner)</h4>
+                    <ul class="role-list">
+                        <li><strong>Rapid Response (< 15 Mins):</strong> Kapag nag-message ang lead, tapos na ang marketing—bilis at malasakit ang kailangan ninyo.</li>
+                        <li><strong>Clear Estimates:</strong> Provide professional pricing, transparent deliverables, and answer their doubts clearly.</li>
+                        <li><strong>Asset Capture:</strong> Kumuha ng Before/After photos sa bawat natapos na trabaho.</li>
+                        <li><strong>Service Quality:</strong> Deliver excellent work so clients are happy to leave a 5-Star Google Review.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: OPERATIONS TIPS (NEW SECTION) -->
+        <div class="page-section">
+            <h2>Mga Praktikal na Diskarte sa Operations</h2>
+            <p>Kahit gaano kaganda ang ads natin, nasa kamay ninyo ang closing. Heto ang mga simpleng "Ops Tips" para mas mapadali ang pagpapa-oo ng kliyente.</p>
+
+            <div class="grid-2" style="margin-top: 32px;">
+                
+                <div class="tip-card">
+                    <div class="tip-icon">⏱️</div>
+                    <h4>Tip 1: Bilis ang labanan sa inquiry</h4>
+                    <p>Kapag may nag-chat, huwag paghintayin. Kung busy kayo sa site, mag-reply agad ng: <em>"Hi po! Nasa site lang po kami ngayon, pero babalikan ko po kayo within 1 hour para masagot ng maayos ang tanong ninyo."</em> Nagpapakita ito na professional at maasikaso kayo.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🤝</div>
+                    <h4>Tip 2: Maging consultant sa Ocular</h4>
+                    <p>Huwag lang presyo ang ibigay. I-explain ninyo kung bakit ganun ang costing (materials, quality, labor). Kapag naramdaman ng client na transparent kayo at pinoprotektahan ninyo ang budget nila, mas magtitiwala sila sa inyo kumpara sa mas murang competitor.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">📸</div>
+                    <h4>Tip 3: Punasan ang camera lens!</h4>
+                    <p>Bago kumuha ng "After" photos, punasan ang lens ng phone. Simpleng bagay pero malaking epekto. Siguraduhin ding pareho ang anggulo (angle) at pwesto ng Before at After photos ninyo para kitang-kita ang ganda ng pagbabago.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">⭐</div>
+                    <h4>Tip 4: Humingi ng review habang mainit pa</h4>
+                    <p>Huwag maghintay ng isang linggo bago humingi ng Google Review. Pagkatapos na pagkatapos ng project—habang nakangiti pa ang client at tuwang-tuwa sa resulta—sabihin agad: <em>"Sir/Ma'am, kung masaya po kayo sa gawa namin, malaking tulong po kung makapag-iwan kayo ng review."</em></p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 4: THE FLYWHEEL & FOLLOW-UPS -->
+        <div class="page-section">
+            <h2>The 5-Asset Proof Flywheel</h2>
+            <p>Huwag hayaang matapos ang isang proyekto nang walang nakukuhang patunay. Ito ang "gasolina" para bumaba ang ad spend ninyo at dumami ang inquiries. Ipadala sa amin ang mga ito:</p>
+
+            <div class="asset-item" style="margin-top: 30px;">
+                <div class="asset-num">1</div>
+                <div class="asset-content">
+                    <h4>Before & During Photos</h4>
+                    <p>Kuhanan ang lumang kalagayan bago simulan at habang ginagawa ang trabaho.</p>
+                </div>
+            </div>
+            
+            <div class="asset-item">
+                <div class="asset-num">2</div>
+                <div class="asset-content">
+                    <h4>High-Res After Transformation</h4>
+                    <p>Malinis, well-lit na kuha ng natapos na resulta mula sa iba't ibang magagandang anggulo.</p>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-num">3</div>
+                <div class="asset-content">
+                    <h4>Customer Video Soundbite</h4>
+                    <p>Maikling 15-30 segundong video clip ng natuwang homeowner o kliyente.</p>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-num">4</div>
+                <div class="asset-content">
+                    <h4>Project Story & Specs</h4>
+                    <p>Eksaktong problema na nalutas, materyales na ginamit, at lokasyon.</p>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-num">5</div>
+                <div class="asset-content">
+                    <h4>5-Star Verified Google Review</h4>
+                    <p>Direktang feedback sa Google Profile para sa permanenteng local SEO ranking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: SALES SCRIPTS -->
+        <div class="page-section">
+            <h2>Follow-Up Scripts (Huwag Mangulit)</h2>
+            <p>Hindi lahat magbo-book agad. May nag-iipon, nag-cocompare, o naghihintay ng schedule. <strong>Magbigay ng halaga (value), huwag lang basta mangulit.</strong></p>
+
+            <div class="grid-2" style="margin-top: 30px;">
+                <div class="script-box wrong">
+                    <h4>❌ Ang Maling Paraan</h4>
+                    <p>"Hi Ma'am/Sir, follow up lang po sa estimate ninyo kahapon. Kukunin nyo po ba? May discount po kami."</p>
+                    <div class="reason"><strong>Bakit sablay:</strong> Nagbibigay ito ng pressure at mukhang desperado. Kadalasan, i-seen o i-block ka lang ng client.</div>
+                </div>
+
+                <div class="script-box right">
+                    <h4>✅ Ang Tama (Value-First)</h4>
+                    <p>"Hi [Name]! Naalala ko po yung napag-usapan nating [Specific Service] sa [Location]. Kakasimula lang po namin ng katulad na project kanina. I-share ko lang po itong photos kung paano namin inayos para may reference po kayo. Let me know po kung may questions kayo sa estimate natin!"</p>
+                    <div class="reason"><strong>Bakit mabisa:</strong> Walang pressure, pero pinapaalala mo na expert kayo sa problema nila dahil may proof of work kayong pinakita.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
