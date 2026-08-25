@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ceb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simpleng SOP Para sa Kliyente — We Forge Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #071a35;
+      --navy-dark: #040e1e;
+      --navy-light: #0f2b54;
+      --blue: #0077b6;
+      --cyan: #00a6d6;
+      --orange: #ea580c;
+      --orange-bg: #fff7ed;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --yellow: #d97706;
+      --yellow-bg: #fffbeb;
+      --body: #1e293b;
+      --muted: #64748b;
+      --hair: #e2e8f0;
+      --tint: #f8fafc;
+      --display: 'Outfit', system-ui, sans-serif;
+      --bodyf: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--bodyf);
+      color: var(--body);
+      background: #f1f5f9;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    button, input, select { font: inherit; }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    /* HEADER BANNER */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 40px -10px rgba(7, 26, 53, 0.2);
+    }
+
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand-tag {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .hero h1 {
+      font: 900 clamp(28px, 4.5vw, 42px)/1.15 var(--display);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span { color: #38bdf8; }
+
+    .hero p {
+      font-size: 15px;
+      color: #cbd5e1;
+      max-width: 760px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      border: 0;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-main {
+      background: #38bdf8;
+      color: var(--navy-dark);
+    }
+    .btn-main:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+    .btn-sub {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-sub:hover { background: rgba(255, 255, 255, 0.2); }
+
+    /* STICKY NAV FILTER */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      background: #fff;
+      padding: 8px;
+      border-radius: 16px;
+      border: 1px solid var(--hair);
+      margin-bottom: 20px;
+      overflow-x: auto;
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .filter-btn {
+      border: 0;
+      background: transparent;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* MAIN GRID */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* CARD DESIGN */
+    .rule-card {
+      background: #fff;
+      border: 2px solid var(--hair);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
+    }
+
+    .rule-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .rule-card.done {
+      background: #fafcff;
+      border-color: #93c5fd;
+    }
+
+    .rule-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .rule-title-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .rule-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font: 900 16px var(--display);
+      flex-shrink: 0;
+    }
+
+    .rule-badge.orange { background: var(--orange); }
+    .rule-badge.green { background: var(--green); }
+
+    .rule-heading {
+      font: 800 17px/1.25 var(--display);
+      color: var(--navy);
+    }
+
+    /* 3-BOX BREAKDOWN: SAYOP, SAKTO, KOPYAHA */
+    .box-sayop {
+      background: var(--red-bg);
+      border-left: 5px solid var(--red);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #991b1b;
+      margin-bottom: 8px;
+    }
+
+    .box-sakto {
+      background: var(--green-bg);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+
+    .box-sayop strong, .box-sakto strong { font-weight: 800; display: block; margin-bottom: 2px; }
+
+    .copy-box {
+      background: var(--tint);
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: #0f172a;
+      margin-top: 8px;
+    }
+
+    .btn-copy {
+      background: var(--navy);
+      color: #fff;
+      border: 0;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .btn-copy:hover { background: var(--blue); }
+
+    /* CHECKBOX */
+    .chk-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid var(--hair);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--navy);
+      cursor: pointer;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .chk-label input { accent-color: var(--blue); width: 16px; height: 16px; }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 75px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card {
+      background: #fff;
+      border: 1px solid var(--hair);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .side-title {
+      font: 800 15px var(--display);
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* PROGRESS */
+    .prog-bar-wrap {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .prog-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #059669);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .prog-status {
+      padding: 8px;
+      border-radius: 10px;
+      background: var(--tint);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      color: var(--navy);
+      margin-top: 10px;
+    }
+
+    /* GENERATOR FORM */
+    .gen-field {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .gen-field label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .gen-input, .gen-select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--hair);
+      background: var(--tint);
+      font-size: 12.5px;
+    }
+
+    .gen-out {
+      background: var(--navy-dark);
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 10px;
+      white-space: pre-line;
+      max-height: 200px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* TOAST */
+    .toast-pop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.2s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .toast-pop.active { opacity: 1; transform: translateY(0); }
+
+    /* PRINT */
+    @media print {
+      body { background: #fff; color: #000; font-size: 10pt; }
+      .hero, .filter-bar, .sidebar, .chk-label, .btn-copy { display: none !important; }
+      .grid-container { grid-template-columns: 1fr; }
+      .rule-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    }
+
+    @media (max-width: 860px) {
+      .grid-container { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toast-pop" id="toast">📋 Na-kopya na!</div>
+
+  <div class="shell">
+
+    <!-- HERO HEADER -->
+    <header class="hero">
+      <div class="brand-bar">
+        <div style="font: 900 18px var(--display); letter-spacing: 0.5px;">
+          WE FORGE WEB <span style="color: #38bdf8;">• POST-CARE SOP</span>
+        </div>
+        <div class="brand-tag">⚡ Simpleng Giya (Walay Paligoy-ligoy)</div>
+      </div>
+      <h1>SOP sa Negosyo nga <span>Sayon Sabton</span></h1>
+      <p>Kini ang 15 ka direktang lagda para sa imong Facebook, pag-respeto sa oras sa kustomer, ug pagkuha og 5-Star Google Reviews. Basaha ang <strong>🚫 Sayop</strong> ug buhata ang <strong>✅ Sakto</strong>.</p>
+      
+      <div class="hero-buttons">
+        <button class="btn btn-main" onclick="document.querySelector('#rules-area').scrollIntoView({behavior: 'smooth'})">👇 Sugdi ang Pagbasa</button>
+        <button class="btn btn-sub" onclick="window.print()">🖨️ I-print / I-save as PDF</button>
+      </div>
+    </header>
+
+    <!-- FILTER BAR -->
+    <nav class="filter-bar">
+      <button class="filter-btn active" onclick="setFilter('all', this)">📋 Tanan (15 Rules)</button>
+      <button class="filter-btn" onclick="setFilter('fb', this)">📱 Facebook & Reels (1-12)</button>
+      <button class="filter-btn" onclick="setFilter('time', this)">⏰ Punctuality & Oras (Rule 13)</button>
+      <button class="filter-btn" onclick="setFilter('google', this)">⭐ Google 5-Star Reviews (14-15)</button>
+    </nav>
+
+    <!-- MAIN SECTION -->
+    <div class="grid-container" id="rules-area">
+
+      <!-- LEFT: 15 RULES -->
+      <main>
+
+        <!-- RULE 1 -->
+        <article class="rule-card" data-cat="fb" id="rule-1">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">1</div>
+              <h2 class="rule-heading">Mag-post 4 hangtod 5 ka beses kada semana.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-1', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Mag-post kausa sa usa ka bulan, unya maghilak nganong walay customer nga nag-chat. Abi sa mga tawo nanira na imong tindahan.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Mag-post matag Lunes, Martes, Huwebes, Biyernes, ug Sabado. Bisan 1 ka post o Reel kada adlaw aron makita nga buhi ug abli imong negosyo!
+          </div>
+        </article>
+
+        <!-- RULE 2 -->
+        <article class="rule-card" data-cat="fb" id="rule-2">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">2</div>
+              <h2 class="rule-heading">Mas daghang Reels/Videos kaysa puro pictures.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-2', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Puro flyer o picture nga gi-edit sa Canva ang gi-post. Gilubong na kini sa Facebook algorithm.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Pagkuha og video sa imong cellphone (Reel). Ang Facebook Reels maoy magpakita sa imong tindahan ngadto sa mga tawong <em>wala pa nag-follow</em> sa imong page.
+          </div>
+        </article>
+
+        <!-- RULE 3 -->
+        <article class="rule-card" data-cat="fb" id="rule-3">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">3</div>
+              <h2 class="rule-heading">Ipakita ang TINUOD nga trabaho (Before ug After).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-3', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Mag-download og pictures gikan sa Google o Pinterest. Dali ra mahibaw-an sa kustomer nga peke na.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Videohi ang imong aktwal nga kamot o gamit on-site. Ipakita ang hugaw o guba (Before), unya ipakita dayon ang sinaw o bag-o (After)!
+          </div>
+        </article>
+
+        <!-- RULE 4 -->
+        <article class="rule-card" data-cat="fb" id="rule-4">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">4</div>
+              <h2 class="rule-heading">Kusgi ang unang 3 SECONDS sa video (Ayaw pag-drama).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-4', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Magsugod ka sa <em>"Hi guys, ako diay si Pedro, welcome sa akong vlog..."</em>. I-swipe up ka dayon sa tawo sulod sa 2 segundos!
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Diretso ipakita ang problema o ang nindot nga resulta sa pagsugod palang!
+          </div>
+          <div class="copy-box">
+            <span>🗣️ Sampol nga Hook: "Abi nakog dili na maulian kining sakyanan, pero tan-awa unsay nahitabo human sa 3 ka oras..."</span>
+            <button class="btn-copy" onclick="copySnippet('Abi nakog dili na maulian kining sakyanan, pero tan-awa unsay nahitabo human sa 3 ka oras...')">Kopyaha</button>
+          </div>
+        </article>
+
+        <!-- RULE 5 -->
+        <article class="rule-card" data-cat="fb" id="rule-5">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">5</div>
+              <h2 class="rule-heading">Ibutang kanunay ang SERBISYO ug LUGAR sa caption.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-5', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Mag-post og walay caption o caption nga emoji ra (🔥💪). Walay makatultol asa imong shop!
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Ibutang permi kung unsay trabaho ug asa nga syudad (e.g., <em>"Deep Interior Cleaning dinhi sa Davao City"</em>) para kung naay mangita sa Facebook Search, ikaw ang mogawas.
+          </div>
+        </article>
+
+        <!-- RULE 6 -->
+        <article class="rule-card" data-cat="fb" id="rule-6">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">6</div>
+              <h2 class="rule-heading">Pangutan-a sila sa caption para modaghan ang comments.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-6', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Mahuman ang caption nga walay gidapit nga interaction. Hilom ang comment section.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Taposa ang caption sa simpleng pangutana. Kung modaghan ang mag-comment, mas i-promote sa Facebook ang imong post ngadto sa uban!
+          </div>
+          <div class="copy-box">
+            <span>🗣️ Sampol: "Nakasulay na ba ka ani sa imong gamit? Comment YES sa ubos!"</span>
+            <button class="btn-copy" onclick="copySnippet('Nakasulay na ba ka ani sa imong gamit? Comment YES sa ubos!')">Kopyaha</button>
+          </div>
+        </article>
+
+        <!-- RULE 7 -->
+        <article class="rule-card" data-cat="fb" id="rule-7">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">7</div>
+              <h2 class="rule-heading">Tubaga DAYON ang chat ug comments (Sulod sa 5-15 mins).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-7', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Nag-PM ang kustomer alas 9:00 sa buntag, gitubag nimo alas 6:00 sa gabii. Nakabayad na to sa imong kompetensya!
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Kung naay nag-inquire, tubaga dayon samtang init pa ang iyang kwarta ug interes. Ang paspas motubag maoy makakuha sa deal.
+          </div>
+        </article>
+
+        <!-- RULE 8 -->
+        <article class="rule-card" data-cat="fb" id="rule-8">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">8</div>
+              <h2 class="rule-heading">Kung unsa ang nag-viral, buhata pag-usab!</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-8', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Naay usa ka Reel nimo nga niabot og 20k views, pero wala na nimo gibuhat pag-usab kay nangita kag bag-ong pasikat.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Kung nagustohan sa mga tawo ang topic (pananglitan: <em>"Pila magasto sa pag-ilis og brake?"</em>), paghimo og part 2 o susama nga topic sunod semana!
+          </div>
+        </article>
+
+        <!-- RULE 9 -->
+        <article class="rule-card" data-cat="fb" id="rule-9">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">9</div>
+              <h2 class="rule-heading">Ayaw puro pamaligya — paghatag og libreng tips!</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-9', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Kada post nimo puro <em>"Avail now! Promo! Discount! Palita ni!"</em>. Mapul-an ang mga tawo ug i-unfollow ka.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Gamita ang 80/20 rule: 4 ka post nga nagtudlo og libreng tips o solusyon, unya 1 ka post ra ang direct nga pamaligya. Mosalig sila nimo kay kabalo sila nga expert ka.
+          </div>
+        </article>
+
+        <!-- RULE 10 -->
+        <article class="rule-card" data-cat="fb" id="rule-10">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">10</div>
+              <h2 class="rule-heading">I-share sa local Facebook Groups (Ayaw pag-spam).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-10', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> I-share nimo sa 50 ka groups sa usa ka minuto. I-ban ka sa Facebook ug i-block sa admin.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> I-share lang sa 3 hangtod 5 ka saktong grupo sa inyong lugar (pananglitan: Barangay group, buy & sell group sa inyong syudad).
+          </div>
+        </article>
+
+        <!-- RULE 11 -->
+        <article class="rule-card" data-cat="fb" id="rule-11">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">11</div>
+              <h2 class="rule-heading">Mag-post sa oras nga nagkupot og cellphone ang mga tawo.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-11', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Mag-post alas 3:00 sa kaadlawon o alas 10:00 sa buntag diin busy ang tanan sa trabaho.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Mag-post sa ting-paniudto (11:30 AM - 1:00 PM) o pag-abot sa balay inig gabii (6:30 PM - 8:30 PM).
+          </div>
+        </article>
+
+        <!-- RULE 12 -->
+        <article class="rule-card" data-cat="fb" id="rule-12">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">12</div>
+              <h2 class="rule-heading">Kada semana, tan-awa unsang post ang daghang views.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-12', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Nag-post lang ka nga nagpiyong ang mata, walay plano, ug wala kabalo kung unsay gitan-aw sa mga kustomer.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Kada Dominggo, ablihi imong Facebook Insights. Tan-awa ang top 3 posts. Himoa to ug balik sunod semana!
+          </div>
+        </article>
+
+        <!-- RULE 13 -->
+        <article class="rule-card" data-cat="time" id="rule-13" style="border-left: 6px solid var(--orange);">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge orange">13</div>
+              <h2 class="rule-heading">SAAD SA ORAS UG PRESYO: Tumanon 100% (No Excuses).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-13', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Nagsaad ka <em>"Ipadala nako ang presyo karong 5:00 PM"</em> pero alas 9:00 na sa gabii wala pa. Nahanaw na ang pagsalig sa kustomer.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Kung unsay imong gisaad nga oras, ihatag sa o sa wala pa ang deadline. Kung naay <strong>tinuod nga emerhensya</strong>, text daan sa kustomer bago pa moabot ang 5:00 PM!
+          </div>
+          <div class="copy-box">
+            <span>🗣️ Emergency Delay Text: "Ma'am/Sir, pahibalo lang ko nga tungod sa [rason], mapadala nako ang final quote sa 6:30 PM karong adlawa. Pasensya kaayo!"</span>
+            <button class="btn-copy" onclick="copySnippet('Ma'am/Sir, pahibalo lang ko nga tungod sa [rason], mapadala nako ang final quote sa 6:30 PM karong adlawa. Pasensya kaayo!')">Kopyaha</button>
+          </div>
+        </article>
+
+        <!-- RULE 14 -->
+        <article class="rule-card" data-cat="google" id="rule-14" style="border-left: 6px solid var(--green);">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge green">14</div>
+              <h2 class="rule-heading">GOOGLE REVIEW: Pangayo LAMANG kung 100% pulido ang trabaho.</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-14', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Nagdali-dali ka, hugaw pa ang site o naay reklamo ang kustomer, unya nangayo dayon kag 5-Star review. Tagaan nuon kag 1-Star!
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Siguroha una nga nakapahiyom ang kustomer, limpyo ang resulta, ug nahuman sa oras. Kung kontento na sila, ipadala dayon ang direct link sa Google Review!
+          </div>
+          <div class="copy-box">
+            <span>🗣️ Google Review Script: "Ma'am/Sir, salamat kaayo sa pagsalig! Kung kontento ka sa among serbisyo, dako kaayog tabang kung makahatag kag 1-minute 5-Star review dinhi: [Google Link]"</span>
+            <button class="btn-copy" onclick="copySnippet('Ma'am/Sir, salamat kaayo sa pagsalig! Kung kontento ka sa among serbisyo, dako kaayog tabang kung makahatag kag 1-minute 5-Star review dinhi: [Google Link]')">Kopyaha</button>
+          </div>
+        </article>
+
+        <!-- RULE 15 -->
+        <article class="rule-card" data-cat="google" id="rule-15">
+          <div class="rule-head">
+            <div class="rule-title-group">
+              <div class="rule-badge">15</div>
+              <h2 class="rule-heading">Kumustaha ang kustomer human sa 3 ka adlaw (Post-Care).</h2>
+            </div>
+            <label class="chk-label"><input type="checkbox" onchange="toggleDone('rule-15', this)"> Gihimo nako</label>
+          </div>
+          <div class="box-sayop">
+            <strong>🚫 ANG SAYOP:</strong> Pagkabayad sa kustomer, kalimtan na nimo sila hangtod sa kahangturan.
+          </div>
+          <div class="box-sakto">
+            <strong>✅ ANG SAKTO:</strong> Mag-text human sa 3 ka adlaw: <em>"Kumusta Ma'am, hapsay ra ba ang sakyanan/unit?"</em>. Mahingangha sila sa imong maayong serbisyo ug i-recommend ka nila sa ilang mga barkada!
+          </div>
+        </article>
+
+      </main>
+
+      <!-- RIGHT: HELPER TOOLS -->
+      <aside class="sidebar">
+
+        <!-- SCORE WIDGET -->
+        <div class="side-card">
+          <div class="side-title">📊 Imong Disiplina Score</div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar-inner" id="scoreBar"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--muted); margin-top: 4px;">
+            <span>Natuman: <b id="scoreCount" style="color: var(--navy);">0/15</b></span>
+            <span id="scorePct" style="color: var(--blue);">0%</span>
+          </div>
+          <div class="prog-status" id="scoreBadge">Pinduta ang mga checkbox sa wala! 🚀</div>
+        </div>
+
+        <!-- GENERATOR -->
+        <div class="side-card">
+          <div class="side-title">✍️ Fast Caption Generator</div>
+          <div class="gen-field">
+            <label>Serbisyo</label>
+            <input type="text" id="inService" class="gen-input" value="Car Detailing & Ceramic Coating">
+          </div>
+          <div class="gen-field">
+            <label>Lugar / Syudad</label>
+            <input type="text" id="inLocation" class="gen-input" value="Davao City">
+          </div>
+          <div class="gen-field">
+            <label>Matang sa Hook</label>
+            <select id="inHook" class="gen-select">
+              <option value="1">😱 Makapakugang nga Before/After</option>
+              <option value="2">⚠️ Sayop nga Makaguba</option>
+              <option value="3">💡 Tip & Solusyon</option>
+            </select>
+          </div>
+          <button class="btn btn-main" style="width: 100%; justify-content: center; font-size: 12px;" onclick="buildCaption()">⚡ Himoa ang Caption</button>
+          
+          <div class="gen-out" id="captionResult">I-click ang button sa ibabaw.</div>
+          <button class="btn-copy" style="width: 100%; margin-top: 8px; justify-content: center; display: block; text-align: center;" onclick="copyCaptionResult()">📋 Kopyaha ang Buong Caption</button>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+  <script>
+    const TOTAL = 15;
+
+    function init() {
+      const saved = JSON.parse(localStorage.getItem('wfw_simple_sop') || '{}');
+      let count = 0;
+      for (let i = 1; i <= TOTAL; i++) {
+        const card = document.getElementById('rule-' + i);
+        if (card) {
+          const chk = card.querySelector('input[type="checkbox"]');
+          if (saved['rule-' + i]) {
+            chk.checked = true;
+            card.classList.add('done');
+            count++;
+          } else {
+            chk.checked = false;
+            card.classList.remove('done');
+          }
+        }
+      }
+      updateScore(count);
+      buildCaption();
+    }
+
+    function toggleDone(id, chk) {
+      const card = document.getElementById(id);
+      const saved = JSON.parse(localStorage.getItem('wfw_simple_sop') || '{}');
+      if (chk.checked) {
+        card.classList.add('done');
+        saved[id] = true;
+      } else {
+        card.classList.remove('done');
+        delete saved[id];
+      }
+      localStorage.setItem('wfw_simple_sop', JSON.stringify(saved));
+      updateScore(Object.keys(saved).length);
+    }
+
+    function updateScore(count) {
+      const pct = Math.round((count / TOTAL) * 100);
+      document.getElementById('scoreCount').innerText = count + '/' + TOTAL;
+      document.getElementById('scorePct').innerText = pct + '%';
+      document.getElementById('scoreBar').style.width = pct + '%';
+
+      const b = document.getElementById('scoreBadge');
+      if (pct === 100) {
+        b.innerText = '🏆 HAWOD! 100% Ginasunod ang SOP!';
+        b.style.background = '#ecfdf5';
+        b.style.color = '#059669';
+      } else if (pct >= 50) {
+        b.innerText = '💪 Nindot! Padayona ang pagbuhat!';
+        b.style.background = '#eff6ff';
+        b.style.color = '#0077b6';
+      } else {
+        b.innerText = 'Pinduta ang mga checkbox sa wala! 🚀';
+        b.style.background = 'var(--tint)';
+        b.style.color = 'var(--navy)';
+      }
+    }
+
+    function setFilter(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.rule-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function buildCaption() {
+      const s = document.getElementById('inService').value.trim() || 'Serbisyo';
+      const l = document.getElementById('inLocation').value.trim() || 'Davao City';
+      const h = document.getElementById('inHook').value;
+
+      let hook = '';
+      if (h === '1') {
+        hook = `Abi nakog dili na mabalik sa kasinaw... pero tan-awa unsay nahitabo human sa trabaho! 😱👇`;
+      } else if (h === '2') {
+        hook = `⚠️ 3 ka sayop nga makaguba sa imong gamit kung pasagdan:`;
+      } else {
+        hook = `✨ Simpleng tip para magpabiling sinaw ug nindot ang imong ${s}!`;
+      }
+
+      const body = `Daghan sa atong mga suki dinhi sa ${l} ang nangita og kasaligan nga ${s}. Walay shortcut, puro pulido ug matinud-anong trabaho ang among gihatag!`;
+      const cta = `💬 Pangutana: Kinsa pay nakasinati ani? I-comment sa ubos o sendi mi og PM karon para matabangan ka namo! 📍 ${l}`;
+      const tags = `#${s.replace(/\s+/g, '')} #${l.replace(/\s+/g, '')} #QualityService #BeforeAndAfter`;
+
+      const out = `${hook}\n\n${body}\n\n${cta}\n\n${tags}`;
+      document.getElementById('captionResult').innerText = out;
+    }
+
+    function copyCaptionResult() {
+      const text = document.getElementById('captionResult').innerText;
+      copySnippet(text);
+    }
+
+    function copySnippet(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 Na-kopya na!');
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('📋 Na-kopya na!');
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('active');
+      setTimeout(() => t.classList.remove('active'), 2000);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

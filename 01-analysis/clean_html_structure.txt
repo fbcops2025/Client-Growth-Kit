@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>We Forge Web - Client Growth Kit Master Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     WFW CLIENT GROWTH KIT — STEP B DESIGN SYSTEM
+     Editorial, restrained, agency-grade. Navy-led brand.
+     ============================================================ */
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    /* palette */
+    --navy: #0A1F3F;
+    --ink: #0A1F3F;
+    --body: #334155;
+    --muted: #64748B;
+    --surface: #FFFFFF;
+    --tint: #F8FAFC;
+    --hair: #E2E8F0;
+    --blue: #0077B6;   /* trust / information */
+    --green: #059669;  /* positive / right */
+    --red: #DC2626;    /* risk / wrong */
+    --orange: #EA580C; /* warning / emphasis */
+
+    /* spacing scale (mm) */
+    --s1: 4mm; --s2: 8mm; --s3: 12mm; --s4: 16mm; --s5: 24mm; --s6: 32mm;
+
+    /* type */
+    --display: 'Outfit', sans-serif;
+    --bodyf: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: var(--bodyf);
+    color: var(--body);
+    background: #FFFFFF;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 10.5px;
+    line-height: 1.55;
+  }
+
+  /* ---------- Page frame ---------- */
+  .page {
+    width: 210mm; height: 297mm; max-height: 297mm;
+    position: relative; page-break-after: always; page-break-inside: avoid;
+    overflow: hidden; background: #FFFFFF;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .page-content {
+    flex: 1; padding: 14mm 16mm 10mm 16mm;
+    display: flex; flex-direction: column; gap: 7px;
+    overflow: hidden;
+  }
+
+  /* ---------- Header (restrained) ---------- */
+  .page-header {
+    height: 16mm; padding: 0 16mm;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--hair); background: #FFFFFF; flex-shrink: 0;
+  }
+  .header-brand-wrap { display: flex; align-items: center; gap: var(--s1); }
+  .header-logo { width: 7mm; height: 7mm; border-radius: 2mm; object-fit: contain; }
+  .header-brand-title {
+    font-family: var(--display); font-size: 13px; font-weight: 800;
+    letter-spacing: .3px; color: var(--navy); line-height: 1;
+  }
+  .header-brand-title span { color: var(--blue); }
+  .header-subtag {
+    font-size: 7.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .8px; color: var(--muted); margin-top: 2px;
+  }
+  /* section kicker replaces the old pill badge */
+  .header-section-badge {
+    font-size: 8px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .8px; color: #475569;
+  }
+
+  /* ---------- Footer (de-emphasized; no contact) ---------- */
+  .page-footer {
+    height: 10mm; padding: 0 16mm;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--hair); background: #FFFFFF;
+    font-size: 8px; color: var(--muted); flex-shrink: 0;
+  }
+  .footer-left { font-weight: 600; color: var(--muted); letter-spacing: .3px; }
+  .footer-page-num { font-weight: 700; color: var(--muted); letter-spacing: .4px; }
+
+  /* ---------- Typography ---------- */
+  h1, h2, h3, h4 { font-family: var(--display); color: var(--ink); line-height: 1.15; }
+  .caption {
+    font-size: 8px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .6px; color: var(--muted);
+  }
+
+  /* Section opener */
+  .sys-opener { margin-bottom: var(--s1); }
+  .sys-opener .kicker {
+    font-size: 8px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--blue);
+  }
+  .sys-opener .rule { width: 24mm; height: 2.5px; background: var(--blue); margin: 3mm 0; }
+  .sys-opener .title {
+    font-family: var(--display); font-size: 21px; font-weight: 800;
+    color: var(--navy); letter-spacing: -.3px; line-height: 1.12;
+  }
+
+  .page-title {
+    font-family: var(--display); font-size: 21px; font-weight: 800;
+    color: var(--navy); letter-spacing: -.3px;
+  }
+  .page-subtitle { font-size: 10px; color: var(--muted); font-weight: 400; line-height: 1.5; }
+
+  /* ---------- Grids ---------- */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+
+  /* ---------- Cards (two types only) ---------- */
+  .card {
+    background: #FFFFFF; border: 1px solid var(--hair);
+    border-radius: 4mm; padding: 9px 11px;
+  }
+  .card--accent { border-left: 3mm solid var(--hair); border-radius: 4mm; padding: 9px 11px; }
+  .card--accent.blue { border-left-color: var(--blue); }
+  .card--accent.green { border-left-color: var(--green); background: #F0FDF4; }
+  .card--accent.red { border-left-color: var(--red); background: #FEF2F2; }
+  .card--accent.orange { border-left-color: var(--orange); background: #FFF7ED; }
+  .card.navy { background: var(--navy); color: #FFFFFF; border-color: #1E3A8A; }
+
+  /* ---------- Step badge (square, not a pill) ---------- */
+  .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6mm; }
+  .step-badge {
+    width: 9mm; height: 9mm; border-radius: 2mm; background: var(--navy);
+    color: #FFFFFF; display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-weight: 800; font-size: 12px; flex-shrink: 0;
+  }
+  .step-badge.orange { background: var(--orange); }
+  .step-title-text {
+    font-family: var(--display); font-size: 13.5px; font-weight: 800;
+    color: var(--navy); line-height: 1.2;
+  }
+  .step-title-sub { font-size: 8.8px; color: var(--muted); line-height: 1.35; margin-top: 1mm; }
+
+  /* ---------- Lists & checks ---------- */
+  .clean-list { list-style: none; display: flex; flex-direction: column; gap: 4mm; }
+  .clean-list li { display: flex; align-items: flex-start; gap: 6px; font-size: 10.5px; color: var(--body); line-height: 1.5; }
+  .check-icon {
+    width: 14px; height: 14px; border-radius: 50%; background: #ECFDF5;
+    color: var(--green); display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 900; flex-shrink: 0; margin-top: 2px;
+  }
+  .check-icon.blue { background: #EFF6FF; color: var(--blue); }
+  .check-icon.orange { background: #FFF7ED; color: var(--orange); }
+
+  /* ---------- Comparison (wrong vs right) ---------- */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; align-items: start; }
+  .compare-col { border-radius: 4mm; padding: 9px 11px; border: 1px solid var(--hair); }
+  .compare-col.wrong { border-left: 3mm solid var(--red); background: #FEF2F2; }
+  .compare-col.right { border-left: 3mm solid var(--green); background: #F0FDF4; }
+  .compare-col .cmp-title { font-size: 10px; font-weight: 800; margin-bottom: 4mm; }
+  .compare-col.wrong .cmp-title { color: var(--red); }
+  .compare-col.right .cmp-title { color: var(--green); }
+  .compare-col .cmp-example {
+    background: #FFFFFF; border: 1px solid var(--hair); border-radius: 3mm;
+    padding: 5mm 6mm; font-size: 8px; margin-bottom: 4mm;
+  }
+  .compare-col.wrong .cmp-example { color: #7F1D1D; border-color: #FECACA; }
+  .compare-col.right .cmp-example { color: #064E3B; border-color: #BBF7D0; }
+  .compare-col .cmp-note { font-size: 8px; line-height: 1.4; }
+  .compare-col.wrong .cmp-note { color: #7F1D1D; }
+  .compare-col.right .cmp-note { color: #064E3B; }
+
+  /* ---------- Funnel (true narrowing) ---------- */
+  .funnel-container { display: flex; flex-direction: column; align-items: center; gap: 4mm; }
+  .funnel-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 10px; border-radius: 3mm; border: 1px solid var(--hair);
+    background: #FFFFFF; color: var(--ink);
+  }
+  .funnel-row .f-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin-right: 6px; }
+  .funnel-row .f-name { font-family: var(--display); font-weight: 700; font-size: 11px; color: var(--navy); }
+  .funnel-row .f-sub { font-size: 7.6px; color: var(--muted); font-weight: 400; }
+  .funnel-row .f-out { font-size: 8px; font-weight: 800; }
+  .funnel-row.s1 { width: 100%; border-left: 3mm solid var(--blue); }
+  .funnel-row.s2 { width: 88%; border-left: 3mm solid #0284C7; }
+  .funnel-row.s3 { width: 76%; border-left: 3mm solid #2563EB; }
+  .funnel-row.s4 { width: 64%; border-left: 3mm solid var(--orange); }
+  .funnel-row.s5 { width: 52%; border-left: 3mm solid var(--green); background: #F0FDF4; }
+  .funnel-row.s5 .f-out { color: var(--green); }
+
+  /* ---------- Stat blocks (pipeline numbers) ---------- */
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6mm; }
+  .stat { border-top: 1px solid var(--hair); padding-top: 4mm; }
+  .stat .num { font-family: var(--display); font-weight: 900; font-size: 22px; color: var(--navy); line-height: 1; }
+  .stat .lbl { font-size: 7.6px; color: var(--muted); margin-top: 2mm; line-height: 1.3; }
+
+  /* ---------- Callouts ---------- */
+  .quote-box {
+    background: var(--tint); border-left: 3mm solid var(--blue);
+    padding: 8mm 12mm; border-radius: 3mm;
+    font-size: 9.5px; color: var(--ink); font-style: italic; line-height: 1.5;
+  }
+  .callout-warn { background: #FFF7ED; border-left: 3mm solid var(--orange); padding: 8mm 12mm; border-radius: 3mm; }
+
+  /* ---------- CTA band (singular, page 7) ---------- */
+  .cta-band {
+    background: var(--navy); color: #FFFFFF; border-radius: 4mm;
+    padding: 16mm; display: flex; justify-content: space-between; align-items: center; gap: 12mm;
+  }
+  .cta-band .cta-kicker { font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #FF8A50; }
+  .cta-band .cta-title { font-family: var(--display); font-size: 15px; font-weight: 800; margin: 2mm 0; color: #FFFFFF; }
+  .cta-band .cta-body { font-size: 8.5px; color: #CBD5E1; line-height: 1.45; max-width: 120mm; }
+  .cta-band .cta-contact { text-align: right; border-left: 1px solid rgba(255,255,255,.18); padding-left: 12mm; }
+  .cta-band .cta-contact .lbl { font-size: 7px; color: #94A3B8; text-transform: uppercase; font-weight: 700; letter-spacing: .6px; }
+  .cta-band .cta-contact .num { font-size: 13px; font-weight: 800; color: #38BDF8; margin: 1mm 0; }
+  .cta-band .cta-contact .em { font-size: 8px; color: #FFFFFF; }
+  .cta-band .cta-contact .em2 { font-size: 8px; color: #38BDF8; font-weight: 700; margin-top: 1mm; }
+
+  /* ---------- Pillars (cover + section) ---------- */
+  .cover-pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8mm; }
+  .cover-pillar-card {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 3mm; padding: 10mm 9mm;
+  }
+  .cover-pillar-num { font-family: var(--display); font-size: 12px; font-weight: 900; color: #FF8A50; margin-bottom: 2mm; }
+  .cover-pillar-title { font-size: 9.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 2mm; }
+  .cover-pillar-desc { font-size: 7.8px; color: #94A3B8; line-height: 1.35; }
+
+  /* numbered editorial list (ad formats, assets) */
+  .num-list { list-style: none; display: flex; flex-direction: column; gap: 6mm; }
+  .num-list li { display: flex; gap: 8mm; align-items: flex-start; }
+  .num-list .n {
+    font-family: var(--display); font-weight: 900; font-size: 16px; color: var(--navy);
+    min-width: 14mm;
+  }
+  .num-list .nt { font-size: 10.5px; font-weight: 700; color: var(--navy); }
+  .num-list .nd { font-size: 9px; color: var(--body); line-height: 1.45; }
+
+  /* tag-label kept minimal (no filled pill) */
+  .tag-label {
+    display: inline-block; font-size: 7.5px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .5px; color: var(--muted); border: 1px solid var(--hair);
+    padding: 1.5mm 4mm; border-radius: 2mm;
+  }
+  .tag-label.blue { color: var(--blue); border-color: #BAE6FD; }
+  .tag-label.green { color: var(--green); border-color: #BBF7D0; }
+  .tag-label.orange { color: var(--orange); border-color: #FED7AA; }
+  .tag-label.cyan { color: var(--blue); border-color: #BAE6FD; }
+
+  /* ---------- COVER (restrained, editorial, spacious) ---------- */
+  .page-cover {
+    background: radial-gradient(circle at 82% 12%, #0F2D5C 0%, #061325 72%);
+    color: #FFFFFF; position: relative;
+    padding: 18mm 18mm 16mm 18mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cover-top { display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+  .cover-logo-wrapper { display: flex; align-items: center; gap: 8mm; }
+  .cover-logo-img { width: 11mm; height: 11mm; border-radius: 2.5mm; object-fit: contain; }
+  .cover-brand-title { font-family: var(--display); font-size: 18px; font-weight: 900; letter-spacing: .5px; color: #FFFFFF; line-height: 1; }
+  .cover-brand-title span { color: #38BDF8; }
+  .cover-brand-motto { font-size: 7px; font-weight: 700; letter-spacing: 1.5px; color: #94A3B8; margin-top: 2mm; text-transform: uppercase; }
+  .cover-edition-tag {
+    border: 1px solid rgba(255,255,255,.25); padding: 3mm 8mm; border-radius: 20mm;
+    font-size: 7px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #94A3B8;
+  }
+  .cover-hero { z-index: 2; display: flex; flex-direction: column; gap: 8mm; margin: auto 0; max-width: 150mm; }
+  .cover-main-title {
+    font-family: var(--display); font-size: 38px; font-weight: 900; line-height: 1.05;
+    letter-spacing: -.8px; color: #FFFFFF;
+  }
+  .cover-main-title span { color: #38BDF8; display: block; font-size: 18px; font-weight: 700; margin-top: 3mm; letter-spacing: 0; }
+  .cover-description { font-size: 10.5px; line-height: 1.6; color: #CBD5E1; max-width: 140mm; }
+  .cover-description strong { color: #FFFFFF; }
+  .cover-foot-line { font-size: 8px; color: #94A3B8; letter-spacing: .4px; }
+  /* ---------- BLUEPRINT: shared-responsibility system (Page 2 centerpiece) ---------- */
+  /* ownership colors: navy=KAMI (we build), amber=KAYO (client does), split=SHARED */
+  :root {
+    --kami: #0A1F3F; --kami-soft: #EAF1FB;
+    --kayo: #B45309; --kayo-soft: #FEF3E2;
+    --shared: #4C1D95; --shared-soft: #F3EEFD;
+  }
+  .own-tag {
+    display: inline-flex; align-items: center; gap: 1.5mm;
+    font-size: 7px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
+    padding: 1mm 4mm; border-radius: 2mm; line-height: 1; white-space: nowrap;
+  }
+  .own-tag::before { content:""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .own-tag.kami  { color: var(--kami);  background: var(--kami-soft); }
+  .own-tag.kayo  { color: var(--kayo);  background: var(--kayo-soft); }
+  .own-tag.shared{ color: var(--shared);background: var(--shared-soft); }
+
+  .bp-legend { display: flex; gap: 6mm; align-items: center; flex-wrap: wrap; }
+  .bp-legend .own-tag { font-size: 7px; }
+
+  /* 9-stage blueprint: SINGLE vertical stack (each row = number | body) */
+  .bp-wrap { display: flex; flex-direction: column; gap: 1.7mm; }
+  .bp-stage {
+    display: grid; grid-template-columns: 15mm 1fr; gap: 6mm;
+    border: 1px solid var(--hair); border-radius: 3.5mm; padding: 2.2mm 6mm; background: #FFFFFF;
+  }
+  .bp-stage .bp-num {
+    font-family: var(--display); font-weight: 900; font-size: 15px; color: var(--navy);
+    align-self: center; line-height: 1; text-align: center;
+  }
+  .bp-stage .bp-body { display: flex; flex-direction: column; gap: 0.8mm; }
+  .bp-stage .bp-head { display: flex; align-items: center; justify-content: space-between; gap: 6mm; }
+  .bp-stage .bp-title { font-family: var(--display); font-weight: 800; font-size: 9.2px; color: var(--navy); }
+  .bp-stage .bp-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 6mm; }
+  .bp-stage .bp-asset { font-size: 7px; font-weight: 700; color: var(--muted); }
+  .bp-stage.kami  { border-left: 3mm solid var(--navy); }
+  .bp-stage.kayo  { border-left: 3mm solid var(--kayo); }
+  .bp-stage.shared{ border-left: 3mm solid var(--shared); }
+
+  /* central customer journey spine */
+  .journey-spine {
+    display: flex; align-items: stretch; gap: 0; flex-wrap: wrap;
+    border: 1px solid var(--hair); border-radius: 3.5mm; padding: 1.8mm 5mm; background: var(--tint);
+    position: relative;
+  }
+  .journey-spine::before {
+    content: ""; position: absolute; left: 6mm; right: 6mm; top: 50%; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--kayo)); opacity: .35; z-index: 0;
+  }
+  .journey-spine .jsp {
+    flex: 1 1 0; min-width: 15mm; text-align: center; position: relative; z-index: 1;
+    font-family: var(--display); font-weight: 800; font-size: 7px; color: var(--navy);
+    padding: 0.6mm 1mm; line-height: 1.1; background: var(--tint);
+  }
+  .journey-spine .jsp::after {
+    content: "\2192"; position: absolute; right: -1.5mm; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-size: 8px; background: var(--tint); padding: 0 1mm;
+  }
+  .journey-spine .jsp:last-child::after { content: ""; }
+
+  /* proof feedback loop */
+  .loop-band {
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.5mm;
+    border: 1px solid var(--shared); border-radius: 3.5mm; padding: 2.4mm 6mm;
+    background: var(--shared-soft);
+  }
+  .loop-band .lcap {
+    width: 100%; text-align: center; font-family: var(--display); font-weight: 800;
+    font-size: 7.2px; color: var(--shared); margin-bottom: 0.6mm; letter-spacing: .2px;
+  }
+  .loop-band .lp {
+    font-family: var(--display); font-weight: 800; font-size: 7px; color: var(--shared);
+    background: #FFFFFF; border: 1px solid #DDD6FE; border-radius: 3mm; padding: 2mm 4mm; text-align: center; line-height: 1.25;
+  }
+  .loop-band .lp.arrow { background: transparent; border: none; color: var(--shared); font-size: 11px; font-weight: 900; padding: 0 1mm; }
+  .loop-band .lp.arrow.rev { transform: rotate(180deg); }
+
+  .partner-band {
+    border-left: 3mm solid var(--kayo); background: var(--kayo-soft);
+    border-radius: 3.5mm; padding: 5mm 9mm;
+  }
+  .partner-band .pb-title {
+    font-family: var(--display); font-weight: 900; font-size: 11.5px; color: var(--kayo); margin-bottom: 1.5mm;
+  }
+  .partner-band .pb-intro { font-size: 7.6px; color: #7C2D12; line-height: 1.35; margin-bottom: 2.5mm; }
+  .partner-band .pb-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 10mm; }
+  .partner-band .pb-list div { font-size: 7.4px; color: #7C2D12; line-height: 1.3; }
+
+  .expect-band {
+    border: 1px solid var(--hair); border-radius: 3.5mm; padding: 5mm 9mm; background: #FFFFFF;
+  }
+  .expect-band .eb-title { font-family: var(--display); font-weight: 800; font-size: 10px; color: var(--navy); margin-bottom: 2mm; }
+  .expect-band .eb-list { display: flex; flex-direction: column; gap: 1.4mm; }
+  .expect-band .eb-list div { font-size: 7.6px; color: var(--body); line-height: 1.3; }
+  .expect-band .eb-list div b { color: var(--navy); }
+
+</style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: MASTER COVER PAGE ================= -->
+  <div class="page page-cover">
+    <div class="cover-top">
+      <div class="cover-logo-wrapper">
+        <img class="cover-logo-img" src="[BASE64_IMAGE]" alt="We Forge Web Logo">
+        <div>
+          <div class="cover-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="cover-brand-motto">Built to Automate - Forged to Last</div>
+        </div>
+      </div>
+      <div class="cover-edition-tag">Universal Strategic Playbook</div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="cover-pill">Client Acquisition & Revenue Infrastructure</div>
+      <div class="cover-main-title">
+        CLIENT GROWTH KIT
+        <span>The Connected Acquisition System</span>
+      </div>
+      <div class="cover-description">
+        Isang komprehensibo at napatunayang <strong>SHARED CLIENT ACQUISITION SYSTEM</strong> ná ginagawá ng We Forge Web at ginagamit ng client. <strong>Kami</strong> ang bumubuo at pumapalakas ng infrastructure — Facebook Page, Landing Page, at Google Business Profile — para madaling <strong>makita, i-check, patunayan, pagkatiwalaan, at kontakin</strong> kayo ng potential customers. <strong>Kayo</strong> naman ang tumutugon, nag-e-estimate, nagfo-follow up, at nagde-deliver ng serbisyo. Hindi ito awtomatikong dadami ang customers — ito ay system ná pinapagana nang sabay.
+      </div>
+
+      <!-- Core Pillars Overview Box -->
+      <div class="cover-pillars-container">
+        <div class="cover-pillars-header">Ang sistemang itó ay SHARED RESPONSIBILITY (KAMI + KAYO):</div>
+        <div class="cover-pillars-grid">
+          <div class="cover-pillar-card">
+            <div class="cover-pillar-num">01. Foundation</div>
+            <div class="cover-pillar-title">Online Readiness</div>
+            <div class="cover-pillar-desc">Buo at kagalang-galang ná profile sa Facebook, Google, at Website bago mag-ads.</div>
+          </div>
+          <div class="cover-pillar-card">
+            <div class="cover-pillar-num">02. Attention</div>
+            <div class="cover-pillar-title">Proof-Based Ads</div>
+            <div class="cover-pillar-desc">Mabilis ná reach gamit ang totoóng resulta, trabaho, at before-and-after.</div>
+          </div>
+          <div class="cover-pillar-card">
+            <div class="cover-pillar-num">03. Trust Hub</div>
+            <div class="cover-pillar-title">Conversion Website</div>
+            <div class="cover-pillar-desc">Nasasagót ang 6 ná customer questions upáng makapag-desisyon silá kumontak.</div>
+          </div>
+          <div class="cover-pillar-card">
+            <div class="cover-pillar-num">04. Flywheel</div>
+            <div class="cover-pillar-title">Asset Machine</div>
+            <div class="cover-pillar-desc">Bawat natapos ná proyekto ay nagiging patunay pará sa súsunod ná kliyente.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- (Highlights / 3-step loop / commitments / assurance removed in Step B: cover stays restrained & spacious) -->
+
+    </div>
+
+    <div class="cover-footer">
+      <div class="cover-foot-line">WE FORGE WEB — CLIENT GROWTH KIT</div>
+      <div class="cover-foot-line">Direkta kang makakausap sa amin: +63 991 917 3652</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2: STRATEGIC PHILOSOPHY & ARCHITECTURE ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Client Growth Kit</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Client Acquisition Blueprint</div>
+    </div>
+
+    <div class="page-content">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:6mm;">
+        <div>
+          <div class="section-tag">Shared Client Acquisition System</div>
+          <div class="page-title">Ang Client Acquisition Blueprint</div>
+        </div>
+        <div class="bp-legend">
+          <span class="own-tag kami">KAMI · We Forge Web</span>
+          <span class="own-tag kayo">KAYO · Client</span>
+          <span class="own-tag shared">KAYO + KAMI</span>
+        </div>
+      </div>
+
+      <div class="bp-wrap">
+        <div class="bp-stage kayo">
+          <div class="bp-num">1</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">CREATE ATTENTION</span><span class="own-tag kayo">KAYO</span></div>
+            <div class="bp-meta"><span class="bp-asset">Facebook Boosting / Ads</span></div>
+            <div class="bp-desc">Hindi ito awtomatikong ginagawa ng WFW maliban kung part ng biniling service — kailangan ninyo itong patuloy na gawin.</div>
+          </div>
+        </div>
+        <div class="bp-stage kami">
+          <div class="bp-num">2</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">BUILD FIRST IMPRESSION</span><span class="own-tag kami">KAMI</span></div>
+            <div class="bp-meta"><span class="bp-asset">Facebook Page Creation / Optimization</span></div>
+            <div class="bp-desc">Isinaayos at pinalalakas namin ang FB Page para kapag chineck ng customer, professional, active, at organized ang impression.</div>
+          </div>
+        </div>
+        <div class="bp-stage kami">
+          <div class="bp-num">3</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">GIVE THEM PROOF</span><span class="own-tag kami">KAMI</span></div>
+            <div class="bp-meta"><span class="bp-asset">Professional Landing Page</span></div>
+            <div class="bp-desc">Isang malinaw ná lugar para sa services, projects, experience, areas, reviews, at contact — bawas ang searching bago mag-inquire.</div>
+          </div>
+        </div>
+        <div class="bp-stage kami">
+          <div class="bp-num">4</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">STRENGTHEN SEARCH + TRUST</span><span class="own-tag kami">KAMI</span></div>
+            <div class="bp-meta"><span class="bp-asset">Google Business Profile</span></div>
+            <div class="bp-desc">Ibang paraan para makuha at i-verify ang business sa Google — area, photos, website, info, genuine reviews, at contact.</div>
+          </div>
+        </div>
+        <div class="bp-stage kayo">
+          <div class="bp-num">5</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">RESPOND TO OPPORTUNITY</span><span class="own-tag kayo">KAYO</span></div>
+            <div class="bp-meta"><span class="bp-asset">Call / Message Response</span></div>
+            <div class="bp-desc">Kapag tumawag/nag-message, tapos na ang marketing. Kailangan ninyo: sagutin, mag-respond agad, intindihin ang need, i-move toward estimate.</div>
+          </div>
+        </div>
+        <div class="bp-stage kayo">
+          <div class="bp-num">6</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">GIVE THE ESTIMATE</span><span class="own-tag kayo">KAYO</span></div>
+            <div class="bp-meta"><span class="bp-asset">Estimate</span></div>
+            <div class="bp-desc">Kayo ang humahawak ng site visit, assessment, pricing, estimate, questions/objections, at next steps.</div>
+          </div>
+        </div>
+        <div class="bp-stage kayo">
+          <div class="bp-num">7</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">FOLLOW UP</span><span class="own-tag kayo">KAYO</span></div>
+            <div class="bp-meta"><span class="bp-asset">Follow-Up</span></div>
+            <div class="bp-desc">Hindi lahat ng inquiry ay agarang project. Mag-follow up, sagutin ang questions, manatiling responsive, bigyan ng clear next step.</div>
+          </div>
+        </div>
+        <div class="bp-stage kayo">
+          <div class="bp-num">8</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">DELIVER GOOD SERVICE</span><span class="own-tag kayo">KAYO</span></div>
+            <div class="bp-meta"><span class="bp-asset">Actual Project / Service</span></div>
+            <div class="bp-desc">Hindi kayang takpan ng marketing ang pangit ná service. Ang work ninyo ang sumusuporta sa reputation: quality, communication, reliability.</div>
+          </div>
+        </div>
+        <div class="bp-stage shared">
+          <div class="bp-num">9</div>
+          <div class="bp-body">
+            <div class="bp-head"><span class="bp-title">FEED THE SYSTEM WITH PROOF</span><span class="own-tag shared">KAYO + KAMI</span></div>
+            <div class="bp-meta"><span class="bp-asset">Project Photos + Genuine Reviews</span></div>
+            <div class="bp-desc">Napakahalagá: pagkatapos ng success ná project, gumawa ng bago ng proof — photos at genuine reviews — para lumakas ang FB, Landing Page, at Google.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-spine">
+        <div class="jsp">MAKITA KAYO</div>
+        <div class="jsp">MA-CHECK KAYO</div>
+        <div class="jsp">MAKAKITA NG PROOF</div>
+        <div class="jsp">MAGTIWALA</div>
+        <div class="jsp">MAG-INQUIRE</div>
+        <div class="jsp">MAKAKUHA NG ESTIMATE</div>
+        <div class="jsp">MAGING POTENTIAL PROJECT</div>
+      </div>
+
+      <div class="loop-band">
+        <div class="lcap">PROOF LOOP — lumalakas ang system sa bawat tapós ná project</div>
+        <div class="lp">GOOD PROJECT</div>
+        <div class="lp arrow">&#8594;</div>
+        <div class="lp">PROJECT PHOTOS +<br>GENUINE REVIEWS</div>
+        <div class="lp arrow">&#8594;</div>
+        <div class="lp">FACEBOOK + LANDING<br>PAGE + GOOGLE PROFILE</div>
+        <div class="lp arrow">&#8594;</div>
+        <div class="lp">STRONGER PROOF</div>
+        <div class="lp arrow">&#8594;</div>
+        <div class="lp">MORE TRUST FOR<br>NEXT CUSTOMER</div>
+        <div class="lp arrow rev">&#8592;</div>
+        <div class="lp">NEW INQUIRY<br>OPPORTUNITY</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 2 of 7</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 3: STEP 1 & STEP 2 ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Phase 1: Foundation & Demand</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Stages 1–2 · Client Ads + FB Page</div>
+    </div>
+
+    <div class="page-content">
+      <!-- SHARED RESPONSIBILITY: partnership + expectation (from blueprint) -->
+      <div class="partner-band">
+        <div class="pb-title">PARA GUMANA ANG SYSTEM, MAY PART DIN KAYO.</div>
+        <div class="pb-intro">Hindi kayang gawin ng We Forge Web ang lahat. Kami ang gagawa ng system at propesyonal ná online foundation ninyo — pero may trabaho rin kayo para mapakinabangan ito. Partnership ito, hindi labas-kamay.</div>
+        <div class="pb-list">
+          <div>Panatilihin ang boosting / ads activity kapag applicable</div>
+          <div>Sagutin ang inquiries</div>
+          <div>Mag-respond agad</div>
+          <div>Bigyan ng estimate</div>
+          <div>Mag-follow up</div>
+          <div>Mag-deliver ng quality work</div>
+          <div>Magbigay ng project photos</div>
+          <div>Hikayatin ang genuine reviews</div>
+          <div>Pananatiling tama ang business info</div>
+          <div>Bigyan kami ng materials para sa online proof</div>
+        </div>
+      </div>
+
+      <div class="expect-band">
+        <div class="eb-title">SHARED RESPONSIBILITY FOR GROWTH</div>
+        <div class="eb-list">
+          <div><b>Hindi guarantee</b> na bawat makakakita ay tatawag.</div>
+          <div><b>Hindi guarantee</b> na bawat inquiry ay magiging project.</div>
+          <div><b>Hindi automatic</b> na dahil may website, Facebook Page, at Google Business Profile ay dadami agad ang customers.</div>
+          <div>Ang system ay ginagawá ang journey nang mas madalí para sa TAMÁNG potential customer: <b>MAKITA KAYO &rarr; MA-CHECK KAYO &rarr; MAKAKITA NG PROOF &rarr; MAGTIWALA &rarr; MAG-INQUIRE &rarr; MAKAKUHA NG ESTIMATE &rarr; MAGING POTENTIAL PROJECT</b>. Pagkatapos, ang inyóng response, follow-up, pricing, sales process, at actual service pa rin ang mahalagá.</div>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge">1</div>
+          <div>
+            <div class="step-title-text">STEP 1: Ayusin Muna ang Online Foundation Bago Mag-Ads</div>
+            <div class="step-title-sub">Bago tayo magpalakas ng advertising, kailángang 100% handa at kagalang-galang ang business kapag may customer ná nag-check.</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card orange-accent">
+            <div style="font-size: 9.8px; font-weight: 800; color: #0A1F3F; margin-bottom: 3px;">ANG FOUNDATION AUDIT CHECKLIST:</div>
+            <ul class="clean-list">
+              <li><span class="check-icon orange"></span> <strong>Facebook Business Page:</strong> High-res logo, branded banner cover, updated business description, and active CTA buttons (Call/Message).</li>
+              <li><span class="check-icon orange"></span> <strong>Google Business Profile (GBP):</strong> Exact location pin, verified service radius, business hours, and phone connectivity.</li>
+              <li><span class="check-icon orange"></span> <strong>Conversion Landing Page:</strong> Mobile-friendly, sub-3-second load speed, clear service packages, and direct booking options.</li>
+              <li><span class="check-icon orange"></span> <strong>Unified Contact Channels:</strong> Clickable phone calls, WhatsApp/Viber direct links, and a simple inquiry form.</li>
+            </ul>
+          </div>
+
+          <div class="card cyan-accent">
+            <div style="font-size: 9.8px; font-weight: 800; color: #0077B6; margin-bottom: 3px;">BAKIT KRITIKAL ANG FOUNDATION?</div>
+            <div style="font-size: 8.5px; color: #334155; line-height: 1.36; margin-bottom: 4px;">
+              Kung mag-a-advertise tayo nang magulo ang Facebook page o waláng maayos ná website, <strong>masasayang lang ang bawat sentimong budget</strong>.
+            </div>
+            <div style="font-size: 8.5px; color: #334155; line-height: 1.36;">
+              Kapag may customer ná naging interesado sa inyóng ad, agad niláng súsuriin ang inyóng profile at credentials. Kapag kumpleto at malinis ang foundation, mabilis ná nabubuo ang tiwala at madali silá makakapag-inquire nang may kumpiyansa.
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Readiness Box -->
+        <div class="card" style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 7px 11px;">
+          <div style="font-size: 9px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;">TECHNICAL READINESS STANDARDS:</div>
+          <div class="grid-3" style="gap: 7px; font-size: 7.8px; color: #475569;">
+            <div>- <strong>Speed:</strong> Load time below 3.0 seconds on 4G mobile networks.</div>
+            <div>- <strong>Security:</strong> Full SSL encryption (HTTPS) & valid trust badges.</div>
+            <div>- <strong>Clarity:</strong> Sticky Click-to-Call & WhatsApp floating button.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge orange">2</div>
+          <div>
+            <div class="step-title-text">STEP 2: Gamitin ang Facebook Boosting & Ads Pará Mas Mabilis Má-Reach ang Customers</div>
+            <div class="step-title-sub">Huwag maghintay sa mabagal ná organic reach. Ilapit ang inyóng solusyón sa mgá aktibong naghahanap at homeowners sa target area.</div>
+          </div>
+        </div>
+
+        <div class="card" style="background: #F8FAFC;">
+          <div style="font-size: 9.5px; font-weight: 800; color: #0A1F3F; margin-bottom: 4px;">ANG 4 NÁ PINAKAEPEKTIBONG AD CREATIVE FORMATS:</div>
+          <div class="grid-4">
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <div class="tag-label orange" style="margin-bottom: 2px;">Format 1</div>
+              <div style="font-size: 8.2px; font-weight: 700; color: #0A1F3F;">Actual Works</div>
+              <div style="font-size: 7.4px; color: #64748B; margin-top: 1px;">High-res photos ng totoóng natapos ná trabaho at material specs.</div>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <div class="tag-label cyan" style="margin-bottom: 2px;">Format 2</div>
+              <div style="font-size: 8.2px; font-weight: 700; color: #0A1F3F;">Before & After</div>
+              <div style="font-size: 7.4px; color: #64748B; margin-top: 1px;">Visual transformation ná agarang nagpapatunay ng galing at resulta.</div>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <div class="tag-label blue" style="margin-bottom: 2px;">Format 3</div>
+              <div style="font-size: 8.2px; font-weight: 700; color: #0A1F3F;">Problem Solver</div>
+              <div style="font-size: 7.4px; color: #64748B; margin-top: 1px;">Direktang tugón sa karaniwang sakit ng ulo at pag-aalala ng client.</div>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <div class="tag-label green" style="margin-bottom: 2px;">Format 4</div>
+              <div style="font-size: 8.2px; font-weight: 700; color: #0A1F3F;">Local Spotlight</div>
+              <div style="font-size: 7.4px; color: #64748B; margin-top: 1px;">Targeted sa specific subdivisions, cities, o business districts.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card blue-accent">
+            <div style="font-size: 8.8px; font-weight: 800; color: #1D4ED8; margin-bottom: 2px;"> HYPER-LOCAL GEOTARGETING</div>
+            <div style="font-size: 7.8px; color: #334155; line-height: 1.3;">
+              Hindi natin sásayangin ang ads sa buong bansa. I-ko-concentrate natin ang budget sa inyóng eksaktong radius (5km - 25km) kung saán kayo pinakamabilís makakapag-ocular o makakapag-deliver ng serbisyo.
+            </div>
+          </div>
+          <div class="card green-accent">
+            <div style="font-size: 8.8px; font-weight: 800; color: #047857; margin-bottom: 2px;">CLEAR CALL-TO-ACTION (CTA)</div>
+            <div style="font-size: 7.8px; color: #334155; line-height: 1.3;">
+              Bawat ad post ay may malinaw ná "Next Step" pará sa customer: <em>"Send Message to Request a Free Estimate"</em> o <em>"Call Us Now for Same-Day Consultation."</em> Waláng kalituhan kung paano kumilos.
+            </div>
+          </div>
+        </div>
+
+        <!-- Ad Copy Formula Blueprint -->
+        <div class="card" style="background: #FFF7ED; border: 1px solid #FFEDD5;">
+          <div style="font-size: 8.8px; font-weight: 800; color: #C2410C; margin-bottom: 2px;"> ANG WINNING AD COPY ANATOMY:</div>
+          <div style="font-size: 7.8px; color: #7C2D12; line-height: 1.3;">
+            <strong>[Local Hook & Problem]</strong> ("Naghahanap ka bá ng maaasahang contractor sa QC?") -> <strong>[Visual Proof & Solution]</strong> ("Tingnan ang natapos naming renovation...") -> <strong>[Trust Credentials]</strong> ("Licensed, 5-Star, Transparent Pricing") -> <strong>[Direct CTA]</strong> ("Pindutin ang Send Message pará sa estimate").
+          </div>
+        </div>
+
+        <div class="card navy">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 9.8px; font-weight: 800; color: #38BDF8;">ANG TUNÁY NÁ LAYUNIN NG FACEBOOK ADS</div>
+              <div style="font-size: 7.8px; color: #CBD5E1; margin-top: 2px;">
+                Hindi lang paramihin ang views. Ang layunin natin: <strong>Mas maraming tamáng tao ang makakita -> Mas marami ang magka-interes -> Mas marami ang mag-check sa website/profile -> Mas marami ang mag-request ng estimate.</strong>
+              </div>
+            </div>
+            <div style="background: rgba(0, 180, 216, 0.2); border: 1px solid #00B4D8; color: #38BDF8; font-weight: 800; font-size: 7.5px; padding: 4.5px 8.5px; border-radius: 4px; white-space: nowrap; margin-left: 10px;">
+              HIGH INTENT REACH
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 3 of 7</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 4: STEP 3 & STEP 4 ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Phase 2: Trust & Search</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Stages 3–4 · Landing Page + Google</div>
+    </div>
+
+    <div class="page-content">
+      <!-- STEP 3 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge">3</div>
+          <div>
+            <div class="step-title-text">STEP 3: Website / Landing Page - Ang Tutulong sa Customer ná Magdesisyon</div>
+            <div class="step-title-sub">Pagkatapos makita ang inyóng ad o post, hindi agad tatawag ang customer. Magche-check muna silá upáng maalis ang duda.</div>
+          </div>
+        </div>
+
+        <div class="card orange-accent">
+          <div style="font-size: 9.8px; font-weight: 800; color: #0A1F3F; margin-bottom: 3.5px;">
+            ANG 6 NÁ TANONG NÁ DAPAT MASAGOT NG WEBSITE SA LOOB NG 30 SEGUNDO:
+          </div>
+          <div class="grid-3" style="gap: 6px;">
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #FF6B35; font-weight: 800;">1.</span> <strong>Ginagawâ bá nilá itó?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">Malinaw ná listahan ng serbisyo at deliverables.</span>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #FF6B35; font-weight: 800;">2.</span> <strong>Nasa area ko bá silá?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">Malinaw ná service areas, coverage, at lokasyon.</span>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #FF6B35; font-weight: 800;">3.</span> <strong>May experience bá silá?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">Track record, credentials, at mgá lisensya.</span>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #0077B6; font-weight: 800;">4.</span> <strong>May proof bá ng gawa?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">High-res project photos at before-and-after.</span>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #0077B6; font-weight: 800;">5.</span> <strong>May tiwala bá ang ibá?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">Tunáy ná customer reviews at ratings.</span>
+            </div>
+            <div style="background: #FFF; padding: 6px 7.5px; border-radius: 5px; border: 1px solid #E2E8F0;">
+              <span style="color: #0077B6; font-weight: 800;">6.</span> <strong>Paano magpa-estimate?</strong><br>
+              <span style="font-size: 7.4px; color: #64748B;">1-Click Direct Call, WhatsApp, o Form.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wireframe Anatomy Box -->
+        <div class="card" style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 6px 11px;">
+          <div style="font-size: 8.8px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;"> HIGH-CONVERTING LANDING PAGE WIREFRAME:</div>
+          <div class="grid-4" style="gap: 5px; font-size: 7.5px; color: #475569; text-align: center;">
+            <div style="background: #FFF; padding: 4.5px; border-radius: 4px; border: 1px solid #E2E8F0;">
+              <strong>Header / Hero</strong><br>Value Prop + CTA
+            </div>
+            <div style="background: #FFF; padding: 4.5px; border-radius: 4px; border: 1px solid #E2E8F0;">
+              <strong>Proof Portfolio</strong><br>Before/After Gallery
+            </div>
+            <div style="background: #FFF; padding: 4.5px; border-radius: 4px; border: 1px solid #E2E8F0;">
+              <strong>Client Reviews</strong><br>Google Verified Badges
+            </div>
+            <div style="background: #FFF; padding: 4.5px; border-radius: 4px; border: 1px solid #E2E8F0;">
+              <strong>Booking Form</strong><br>1-Click WhatsApp / Call
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          "Hindi natin hawak ang final decision ng customer, ngunit ginagawâ natin ang ating bahagi upáng gawín napakadali pará sa kanilá ná maintindihan, magtiwala, at kumontak nang waláng takot."
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge cyan">4</div>
+          <div>
+            <div class="step-title-text">STEP 4: Google Business Profile Pará sa Location, Search, at Local Trust</div>
+            <div class="step-title-sub">Hindi lahat ng customer ay galing sa Facebook. May mgá kliyenteng may agarang pangangailangan at diretso sa Google Search.</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card cyan-accent">
+            <div style="font-size: 9.2px; font-weight: 800; color: #0077B6; margin-bottom: 2px;"> HIGH-INTENT "READY-TO-BUY" SEARCHES</div>
+            <div style="font-size: 7.6px; color: #334155; margin-bottom: 3.5px;">
+              Kapag nag-type ang customer sa Google ng:
+            </div>
+            <div style="font-family: monospace; font-size: 7.6px; background: #FFF; padding: 4.5px 6px; border-radius: 5px; border: 1px solid #E2E8F0; margin-bottom: 3.5px; color: #0A1F3F;">
+              - "[Service Name] near me"<br>
+              - "Best [Contractor / Clinic / Specialist] in [City]"<br>
+              - "[Service Type] contact number & price estimate"
+            </div>
+            <div style="font-size: 7.6px; color: #334155; line-height: 1.3;">
+              Ang inyóng Google Business card ang magpapakita ng inyóng exact map location, phone number, direct reviews, at website link.
+            </div>
+          </div>
+
+          <div class="card green-accent">
+            <div style="font-size: 9.2px; font-weight: 800; color: #047857; margin-bottom: 2px;"> ANG REVIEW FLYWHEEL SA GOOGLE</div>
+            <div style="font-size: 7.6px; color: #334155; margin-bottom: 3.5px;">
+              Bago tumawag ang customer, tinitingnan nilá ang inyóng Google Rating:
+            </div>
+            <ul class="clean-list">
+              <li><span class="check-icon"></span> <strong>5-Star Proof:</strong> Ilang totoóng tao ná ang nagtiwala at natuwá sa serbisyo?</li>
+              <li><span class="check-icon"></span> <strong>Recent Velocity:</strong> Patuloy báng aktibo at consistent ang kalidad ng inyóng gawa?</li>
+              <li><span class="check-icon"></span> <strong>Local SEO Edge:</strong> Ang buong at aktibong Google profile ay nakakatulong ná makakuha ng mas maraming tawag sa Google Maps.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Google GBP Quick Wins -->
+        <div class="card" style="background: #F8FAFC; border: 1px solid #E2E8F0;">
+          <div style="font-size: 8.8px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;">GBP QUICK WINS & LOCAL 3-PACK STRATEGY:</div>
+          <div style="font-size: 7.8px; color: #475569; line-height: 1.34;">
+            Mag-upload ng 3-5 bagong geotagged photos linggu-linggó, sagutin ang bawat review sa loob ng 24 oras, i-update ang business hours, at i-embed ang Google Map sa inyóng website pará sa mataas ná ranking.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 4 of 7</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 5: STEP 5 & STEP 6 ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Phase 3: Assets & Boosting</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Stages 5–7 · Respond, Estimate, Follow-Up</div>
+    </div>
+
+    <div class="page-content">
+      <!-- STEP 5 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge">5</div>
+          <div>
+            <div class="step-title-text">STEP 5: Bawat Project Gawín Nating Bagong Marketing Asset</div>
+            <div class="step-title-sub">Huwag hayaang matapos ang isang proyekto nang waláng nakúkuhang patunay. Bawat project ay gasolina pará sa súsunod ná kliyente.</div>
+          </div>
+        </div>
+
+        <div class="card navy">
+          <div style="font-size: 9.8px; font-weight: 800; color: #38BDF8; margin-bottom: 4px;"> ANG 5-ASSET CAPTURE PROTOCOL SA BAWAT NATAPOS NÁ PROYEKTO:</div>
+          <div class="grid-3" style="gap: 6px;">
+            <div style="background: rgba(255,255,255,0.06); padding: 6px 8.5px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="color: #FF8A50; font-weight: 800; font-size: 8.2px;">1. Before & During Photos</div>
+              <div style="font-size: 7.4px; color: #CBD5E1; margin-top: 2px;">Kuhanan ang kalagayan bago simulan at habang ginagawâ ng inyóng team ang trabaho.</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.06); padding: 6px 8.5px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="color: #38BDF8; font-weight: 800; font-size: 8.2px;">2. High-Res After Photos</div>
+              <div style="font-size: 7.4px; color: #CBD5E1; margin-top: 2px;">Malinis at maayos ná kuha ng natapos ná resulta mula sa ibá't ibáng magagandang anggulo.</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.06); padding: 6px 8.5px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="color: #34D399; font-weight: 800; font-size: 8.2px;">3. Customer Review & Video</div>
+              <div style="font-size: 7.4px; color: #CBD5E1; margin-top: 2px;">Kunin ang maikling komento o genuine Google Review mula sa natuwáng customer.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 9.5px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;">Saán Natin I-re-distribute ang Bawat Bagong Asset?</div>
+        <div class="grid-4">
+          <div class="card" style="padding: 6px 7.5px; text-align: center;">
+            <div class="tag-label blue" style="margin-bottom: 2px;">Facebook Organic</div>
+            <div style="font-size: 7.4px; color: #475569;">Post ná may location tag at breakdown ng ginawa.</div>
+          </div>
+          <div class="card" style="padding: 6px 7.5px; text-align: center;">
+            <div class="tag-label orange" style="margin-bottom: 2px;">Facebook Ads</div>
+            <div style="font-size: 7.4px; color: #475569;">Naka-target sa mgá homeowners sa katabing subdivisions.</div>
+          </div>
+          <div class="card" style="padding: 6px 7.5px; text-align: center;">
+            <div class="tag-label green" style="margin-bottom: 2px;">Google Profile</div>
+            <div style="font-size: 7.4px; color: #475569;">Photo upload sa GBP pará sa local search visibility.</div>
+          </div>
+          <div class="card" style="padding: 6px 7.5px; text-align: center;">
+            <div class="tag-label cyan" style="margin-bottom: 2px;">Website Portfolio</div>
+            <div style="font-size: 7.4px; color: #475569;">Idinadagdag sa permanent case studies sa website.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge orange">6</div>
+          <div>
+            <div class="step-title-text">STEP 6: I-Boost Lamang ang mgá Content ná May Matibay ná Patunay</div>
+            <div class="step-title-sub">Hindi kailángang lahat ng post ay gastusan. Maglaan lamang ng budget sa mgá content ná may dahilan pará mag-inquire ang tao.</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card orange-accent">
+            <div style="font-size: 9.2px; font-weight: 800; color: #0A1F3F; margin-bottom: 3px;"> ANG WINNING CRITERIA PARÁ SA PAID BOOSTING (filter sa mgá ad formats sa Step 2):</div>
+            <ul class="clean-list">
+              <li><span class="check-icon orange"></span> <strong>Malinaw ná Before-and-After:</strong> Agad makikita ang halaga sa unáng tingin pá lang (3-second scroll stop).</li>
+              <li><span class="check-icon orange"></span> <strong>Specific Project Breakdown:</strong> May paliwanag kung paano nalutás ang problema ng customer.</li>
+              <li><span class="check-icon orange"></span> <strong>Location Relatability:</strong> May pagbanggit sa bayan o siyudad pará maging pamilyar sa target audience.</li>
+              <li><span class="check-icon orange"></span> <strong>Direct Action CTA:</strong> Malinaw ná call-to-action button: "Send Message for Free Estimate" o "Book a Consultation".</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background: #FFF7ED; border: 1px solid #FFEDD5;">
+            <div style="font-size: 9.2px; font-weight: 800; color: #C2410C; margin-bottom: 3px;"> HUWAG MAG-BOOST NG WALÁNG DAHILAN</div>
+            <div style="font-size: 7.8px; color: #475569; line-height: 1.34; margin-bottom: 4px;">
+              Ang paggastos sa mgá generic ná quotes, stock photos, o simpléng poster ná waláng patunay ay <strong>nagtatapon lamang ng pondo</strong>.
+            </div>
+            <div style="font-size: 7.8px; color: #475569; line-height: 1.34;">
+              Bawat pisóng ilalagay natin sa advertising ay dapat may dalawang layunin lamang: <strong>Ipakita ang inyóng tunáy ná kakayahan at bigyan ng kumpiyansa ang customer ná mag-inquire.</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Budget Allocation Rule -->
+        <div class="card cyan-accent">
+          <div style="font-size: 8.8px; font-weight: 800; color: #0077B6; margin-bottom: 2px;"> ANG 70/20/10 AD BUDGET ALLOCATION RULE:</div>
+          <div style="font-size: 7.8px; color: #334155; line-height: 1.34;">
+            <strong>70%</strong> sa Proof-First Top Performing Ads (Lead Gen) - <strong>20%</strong> sa Retargeting & Case Studies (Nurturing) - <strong>10%</strong> sa Bagong Creative Testing.
+          </div>
+        </div>
+
+        <!-- Retargeting Audience Matrix -->
+        <div class="card" style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 6px 11px;">
+          <div style="font-size: 8.5px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;">RETARGETING AUDIENCE BLUEPRINT:</div>
+          <div style="font-size: 7.6px; color: #475569; line-height: 1.3;">
+            I-target muli ang mgá taón nag-click sa inyóng website o nag-message sa Facebook sa nakalipás ná 30-60 áraw gamit ang bagong customer video testimonials at newly completed project case studies.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 5 of 7</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 6: STEP 7 & STEP 8 ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Phase 4: Nurturing & ROI</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Stages 8–9 · Service + Proof Loop</div>
+    </div>
+
+    <div class="page-content">
+      <!-- STEP 7 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge">7</div>
+          <div>
+            <div class="step-title-text">STEP 7: I-Follow Up ang mgá Interested Pero Hindi Pá Ready (Value Nurturing)</div>
+            <div class="step-title-sub">Hindi lahat magbo-book agad. May nagko-compare, nag-iipon ng budget, o naghihintay ng schedule. Huwag mangulit - magbigay ng halaga.</div>
+          </div>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-col wrong">
+            <div class="cmp-title">ANG MALING PARAAN (PURO KULIT)</div>
+            <div class="cmp-example">
+              "Hi Má'am/Sir, follow up lang po sa estimate inyóng kahapon. Kukunin nyo po bá?"
+            </div>
+            <div class="cmp-note">
+              Nagdudulot itó ng pressure sa customer at kadalasang nagiging dahilan pará i-seen o i-block ang inyóng mensahe.
+            </div>
+          </div>
+
+          <div class="compare-col right">
+            <div class="cmp-title">ANG TAMA AT VALUE-FIRST NÁ MENSAHE</div>
+            <div class="cmp-example">
+              "Hi [Name], may natapos po kaming katulad ná project sa area inyóng kahapon. Naalala ko po yung concern inyóng sa [Problem], baka makatulong po itóng video/photos kung paano namin itó naresolba."
+            </div>
+            <div class="cmp-note">
+              Nakatutulong itó sa customer ná makapag-desisyon nang may sapat ná impormasyon kapag handa ná silá.
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Follow Up Scripts Grid -->
+        <div class="grid-3">
+          <div class="card" style="padding: 6px 7.5px;">
+            <div class="tag-label blue" style="margin-bottom: 2px;">Template A: Case Study</div>
+            <div style="font-size: 7.4px; color: #475569; line-height: 1.3;">
+              Ibahagi ang recent similar project ná nagpapakita ng eksaktong solusyón sa kanilang issue.
+            </div>
+          </div>
+          <div class="card" style="padding: 6px 7.5px;">
+            <div class="tag-label green" style="margin-bottom: 2px;">Template B: Client Review</div>
+            <div style="font-size: 7.4px; color: #475569; line-height: 1.3;">
+              I-send ang screenshot ng feedback ng kliyenteng may parehong pag-aalinlangan nóon.
+            </div>
+          </div>
+          <div class="card" style="padding: 6px 7.5px;">
+            <div class="tag-label orange" style="margin-bottom: 2px;">Template C: Schedule Update</div>
+            <div style="font-size: 7.4px; color: #475569; line-height: 1.3;">
+              Magbigay ng magalang ná update ukol sa natitiráng available installation / service slots.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <div class="step-header">
+          <div class="step-badge orange">8</div>
+          <div>
+            <div class="step-title-text">STEP 8: I-Track Kung Saán Talagá Nanggagaling ang Magagandang Leads</div>
+            <div class="step-title-sub">Hindi lahat ng inquiry ay pareho ang kalidad. Subaybayan ang buong funnel mula sa unáng mensahe hanggang sa saradóng kontrata.</div>
+          </div>
+        </div>
+
+        <!-- 5 Stage Funnel Tracker -->
+        <div class="funnel-container">
+          <div class="funnel-row s1">
+            <div>
+              <span class="tag-label cyan">Stage 1</span> <strong>Total Inquiries Received</strong>
+              <span style="font-size: 7.4px; color: #64748B; margin-left: 6px;">(Facebook Ads, Google Search, Website Form, Direct Calls)</span>
+            </div>
+            <div style="font-size: 7.8px; font-weight: 800; color: #0077B6;">Lahat ng Nag-Inquire</div>
+          </div>
+
+          <div class="funnel-row s2">
+            <div>
+              <span class="tag-label blue">Stage 2</span> <strong>Qualified Leads</strong>
+              <span style="font-size: 7.4px; color: #64748B; margin-left: 6px;">(Nasa target service area, may budget, at may konkretong pangangailangan)</span>
+            </div>
+            <div style="font-size: 7.8px; font-weight: 800; color: #0284C7;">Ná-filter ná Kliyente</div>
+          </div>
+
+          <div class="funnel-row s3">
+            <div>
+              <span class="tag-label blue">Stage 3</span> <strong>Estimates / Proposals Sent</strong>
+              <span style="font-size: 7.4px; color: #64748B; margin-left: 6px;">(Formal quote, site ocular inspection, o detailed pitch)</span>
+            </div>
+            <div style="font-size: 7.8px; font-weight: 800; color: #1D4ED8;">Aktibong Opportunity</div>
+          </div>
+
+          <div class="funnel-row s4">
+            <div>
+              <span class="tag-label orange">Stage 4</span> <strong>Booked & Closed Projects</strong>
+              <span style="font-size: 7.4px; color: #64748B; margin-left: 6px;">(Pirma ng kontrata, downpayment received, schedule confirmed)</span>
+            </div>
+            <div style="font-size: 7.8px; font-weight: 800; color: #D97706;">Saradóng Kliyente</div>
+          </div>
+
+          <div class="funnel-row s5">
+            <div>
+              <span class="tag-label green">Stage 5</span> <strong>Actual Revenue & Net Marketing ROI</strong>
+            </div>
+            <div style="font-size: 8.5px; font-weight: 800; color: #059669;">PROFITABLE GROWTH </div>
+          </div>
+        </div>
+
+        <div class="card cyan-accent">
+          <div style="font-size: 8.8px; font-weight: 800; color: #0077B6; margin-bottom: 2px;">
+            ANG DATA-DRIVEN STRATEGY DECISION:
+          </div>
+          <div style="font-size: 7.8px; color: #334155; line-height: 1.34;">
+            Halimbawa, kung mapansin natin pagkatapos ng ilang linggó ná ang Google Search ay nagbibigay ng mataas ná closing rate sa high-ticket services, o ang Facebook Before-and-After Video Ads ang nagdadala ng pinakamababà cost-per-lead - <strong>doón natin ibubuhos ang mas malaking pondo upáng má-maximize ang inyóng kita.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 6 of 7</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 7: JOURNEY, ROADMAP & KICKOFF ================= -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-brand-wrap">
+        <img class="header-logo" src="[BASE64_IMAGE]" alt="Logo">
+        <div>
+          <div class="header-brand-title">WE FORGE <span>WEB</span></div>
+          <div class="header-subtag">Execution & Rollout</div>
+        </div>
+      </div>
+      <div class="header-section-badge">Journey & 30-60-90 Rollout</div>
+    </div>
+
+    <div class="page-content">
+      <div>
+        <div class="section-tag">Complete System Integration</div>
+        <div class="page-title">Ang Buong Journey at 30-60-90 Day Action Plan</div>
+        <div class="page-subtitle">Pagsamahin natin ang buong lead cycle, application sa inyóng industriya, at kongkretong rollout steps.</div>
+      </div>
+
+      <!-- Full Customer Journey Flowchart -->
+      <div class="card navy" style="padding: 9px 11px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="text-align: center; width: 18%;">
+            <div style="background: #FF6B35; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; margin: 0 auto 2px auto;">1</div>
+            <div style="font-size: 8.5px; font-weight: 700; color: #FFF;">Facebook / Ads</div>
+            <div style="font-size: 7.2px; color: #94A3B8;">Mabilis ná Reach</div>
+          </div>
+          <div style="color: #00B4D8; font-weight: 800; font-size: 11px;">-></div>
+
+          <div style="text-align: center; width: 18%;">
+            <div style="background: #00B4D8; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; margin: 0 auto 2px auto;">2</div>
+            <div style="font-size: 8.5px; font-weight: 700; color: #FFF;">Website & GBP</div>
+            <div style="font-size: 7.2px; color: #94A3B8;">Proof & Deciding</div>
+          </div>
+          <div style="color: #00B4D8; font-weight: 800; font-size: 11px;">-></div>
+
+          <div style="text-align: center; width: 18%;">
+            <div style="background: #3B82F6; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; margin: 0 auto 2px auto;">3</div>
+            <div style="font-size: 8.5px; font-weight: 700; color: #FFF;">Direct Call / DM</div>
+            <div style="font-size: 7.2px; color: #94A3B8;">Informed Inquiry</div>
+          </div>
+          <div style="color: #00B4D8; font-weight: 800; font-size: 11px;">-></div>
+
+          <div style="text-align: center; width: 18%;">
+            <div style="background: #F59E0B; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; margin: 0 auto 2px auto;">4</div>
+            <div style="font-size: 8.5px; font-weight: 700; color: #FFF;">Estimate / Quote</div>
+            <div style="font-size: 7.2px; color: #94A3B8;">Closed Deal</div>
+          </div>
+          <div style="color: #00B4D8; font-weight: 800; font-size: 11px;">-></div>
+
+          <div style="text-align: center; width: 18%;">
+            <div style="background: #10B981; color: #FFF; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; margin: 0 auto 2px auto;">5</div>
+            <div style="font-size: 8.5px; font-weight: 700; color: #FFF;">New Proof Asset</div>
+            <div style="font-size: 7.2px; color: #94A3B8;">Review Flywheel</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 30-60-90 Roadmap Grid -->
+      <div class="grid-3">
+        <div class="card" style="border-top: 4px solid #00B4D8;">
+          <div style="font-size: 9.5px; font-weight: 800; color: #0077B6; margin-bottom: 2px;">PHASE 1: DAYS 1 - 15</div>
+          <div style="font-size: 10px; font-weight: 800; color: #0A1F3F; margin-bottom: 3px;">Foundation & Setup</div>
+          <ul class="clean-list" style="font-size: 7.6px;">
+            <li><span class="check-icon blue"></span> Ayusin ang Conversion Website & Landing Page.</li>
+            <li><span class="check-icon blue"></span> I-optimize at i-verify ang Google Business Profile.</li>
+            <li><span class="check-icon blue"></span> I-update ang Facebook branding & call buttons.</li>
+            <li><span class="check-icon blue"></span> I-organisa ang initial batch ng past project proof.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #FF6B35;">
+          <div style="font-size: 9.5px; font-weight: 800; color: #EA580C; margin-bottom: 2px;">PHASE 2: DAYS 16 - 30</div>
+          <div style="font-size: 10px; font-weight: 800; color: #0A1F3F; margin-bottom: 3px;">Reach & Ad Launch</div>
+          <ul class="clean-list" style="font-size: 7.6px;">
+            <li><span class="check-icon orange"></span> I-launch ang Proof-Based Facebook Ad campaigns.</li>
+            <li><span class="check-icon orange"></span> Hyper-local geotargeting sa exact service areas.</li>
+            <li><span class="check-icon orange"></span> Seamless routing sa WhatsApp, Viber, at Phone.</li>
+            <li><span class="check-icon orange"></span> Daily tracking ng leads at cost-per-estimate.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #10B981;">
+          <div style="font-size: 9.5px; font-weight: 800; color: #059669; margin-bottom: 2px;">PHASE 3: DAYS 31 - 90+</div>
+          <div style="font-size: 10px; font-weight: 800; color: #0A1F3F; margin-bottom: 3px;">Flywheel & Scale</div>
+          <ul class="clean-list" style="font-size: 7.6px;">
+            <li><span class="check-icon"></span> 5-Asset capture sa bawat bagong project.</li>
+            <li><span class="check-icon"></span> Value-driven follow-ups sa previous inquiries.</li>
+            <li><span class="check-icon"></span> I-scale ang budget sa highest-ROI ad campaigns.</li>
+            <li><span class="check-icon"></span> Tuluy-tulóy ná Google reviews collection.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Universal Cross-Industry Coverage -->
+      <div class="card" style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 7px 11px;">
+        <div style="font-size: 9.2px; font-weight: 800; color: #0A1F3F; margin-bottom: 2px;">INDUSTRY COMPATIBILITY MATRIX:</div>
+        <div class="grid-3" style="gap: 6px; font-size: 7.8px; color: #334155;">
+          <div>- <strong>Contractors / Trades:</strong> Before/after transformations, ocular quote booking.</div>
+          <div>- <strong>Clinics / Health:</strong> Doctor credentials, direct consultation slot reservation.</div>
+          <div>- <strong>Professional B2B / Law:</strong> Case studies, 1-on-1 discovery call bookings.</div>
+        </div>
+      </div>
+
+      <!-- Official Partnership & Kickoff Banner -->
+      <div class="card navy" style="padding: 11px 15px; position: relative;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="max-width: 125mm;">
+            <div style="font-size: 8.2px; font-weight: 800; color: #FF8A50; letter-spacing: 0.8px; text-transform: uppercase;">Handa Ka Ná Báng Simulan ang Sistema Mo?</div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #FFFFFF; margin: 2px 0;">
+              WE FORGE WEB - YOUR CLIENT GROWTH PARTNER
+            </div>
+            <div style="font-size: 8.2px; color: #CBD5E1; line-height: 1.36;">
+              Huwag nang ubusín ang oras at pondo sa trial-and-error. Buuin natin ang inyóng automated website, Google Business setup, at proof-first advertising system — pará maging mas madalí para sa TAMÁNG customer na makita, i-check, at pagkatiwalaan kayo. Ang pag-convert niyá sa actual na client ay depende pa rin sa inyóng response, follow-up, at serbisyo.
+            </div>
+          </div>
+          <div style="text-align: right; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 15px; flex-shrink: 0;">
+            <div style="font-size: 7.5px; color: #94A3B8; text-transform: uppercase; font-weight: 700;">Direct Consultation</div>
+            <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin: 1px 0;">+63 991 917 3652</div>
+            <div style="font-size: 8.2px; color: #FFFFFF;">hello@weforgeweb.com</div>
+            <div style="font-size: 8.2px; color: #38BDF8; font-weight: 700; margin-top: 2px;">weforgeweb.com</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motto -->
+      <div style="text-align: center; margin-top: 2px; font-size: 7.8px; color: #64748B;">
+        <em>"Build the foundation. Palakasin ang reach. Ipakita ang proof. Generate inquiries. Track what works. Then scale."</em>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-left">We Forge Web · Client Growth Kit</div>
+      <div class="footer-page-num">Page 7 of 7</div>
+    </div>
+  </div>
+
+</body>
+</html>

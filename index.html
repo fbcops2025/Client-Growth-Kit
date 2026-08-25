@@ -1,0 +1,4690 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="taglish">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Forge Web — Interactive Client Growth Kit &amp; Strategy Playbook</title>
+  
+  <!-- Meta & Social Sharing -->
+  <meta name="description" content="Interactive Client Growth Kit & Strategy Playbook by We Forge Web. Discover the connected client acquisition engine engineered for high-ticket service businesses.">
+  <meta name="theme-color" content="#040D1A">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS CUSTOM PROPERTIES
+       ========================================================================== */
+    :root {
+      /* Brand Core Palette */
+      --navy-950: #030812;
+      --navy-900: #061122;
+      --navy-850: #08162d;
+      --navy-800: #0A1F3F;
+      --navy-700: #0e2952;
+      --navy-600: #15396d;
+      
+      --cyan-500: #00B4D8;
+      --cyan-400: #38BDF8;
+      --cyan-300: #7DD3FC;
+      --cyan-glow: rgba(0, 180, 216, 0.32);
+      
+      --orange-500: #FF6B35;
+      --orange-400: #FF8A50;
+      --orange-600: #EA580C;
+      --orange-glow: rgba(255, 107, 53, 0.32);
+
+      --green-500: #10B981;
+      --green-400: #34D399;
+      --green-glow: rgba(16, 185, 129, 0.28);
+
+      --purple-500: #8B5CF6;
+      --purple-400: #A78BFA;
+      --purple-glow: rgba(139, 92, 246, 0.28);
+
+      --red-500: #EF4444;
+      --red-glow: rgba(239, 68, 68, 0.28);
+      
+      /* Dark Theme (Default) */
+      --bg-primary: #040D1A;
+      --bg-secondary: #081B35;
+      --bg-card: rgba(8, 27, 53, 0.75);
+      --bg-card-hover: rgba(14, 41, 82, 0.88);
+      --bg-glass: rgba(4, 13, 26, 0.86);
+      --bg-pill: rgba(255, 255, 255, 0.05);
+      --bg-tint: rgba(0, 180, 216, 0.07);
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-card: rgba(0, 180, 216, 0.16);
+      --border-hover: rgba(56, 189, 248, 0.45);
+
+      --text-main: #FFFFFF;
+      --text-body: #CBD5E1;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+
+      --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+      --shadow-cyan: 0 0 35px rgba(0, 180, 216, 0.22);
+      --shadow-orange: 0 0 35px rgba(255, 107, 53, 0.22);
+      --shadow-green: 0 0 35px rgba(16, 185, 129, 0.22);
+
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 30px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Light Theme Override */
+    [data-theme="light"] {
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #FFFFFF;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-hover: #FFFFFF;
+      --bg-glass: rgba(255, 255, 255, 0.92);
+      --bg-pill: rgba(10, 31, 63, 0.05);
+      --bg-tint: #F0F9FF;
+
+      --border-subtle: #E2E8F0;
+      --border-card: #CBD5E1;
+      --border-hover: #00B4D8;
+
+      --text-main: #0A1F3F;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-dim: #94A3B8;
+
+      --shadow-sm: 0 2px 10px rgba(10, 31, 63, 0.06);
+      --shadow-md: 0 12px 32px rgba(10, 31, 63, 0.09);
+      --shadow-lg: 0 24px 60px rgba(10, 31, 63, 0.12);
+      --shadow-cyan: 0 8px 28px rgba(0, 180, 216, 0.15);
+      --shadow-orange: 0 8px 28px rgba(255, 107, 53, 0.15);
+      --shadow-green: 0 8px 28px rgba(16, 185, 129, 0.15);
+    }
+
+    /* Base Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      position: relative;
+    }
+
+    /* Ambient Background Glows & Grid Pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 12%, rgba(0, 180, 216, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 10% 45%, rgba(255, 107, 53, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: -1;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 85%);
+    }
+
+    [data-theme="light"] body::after {
+      background-image: 
+        linear-gradient(to right, rgba(10, 31, 63, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10, 31, 63, 0.03) 1px, transparent 1px);
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan-400), var(--orange-400), var(--green-400));
+      z-index: 9999;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px var(--cyan-glow);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      color: var(--text-main);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    p { margin-bottom: 0.85rem; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--cyan-400); text-decoration: none; transition: var(--transition-fast); }
+    a:hover { color: var(--cyan-300); }
+    img { max-width: 100%; height: auto; display: block; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Utility Cards & Glow Surfaces */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+      position: relative;
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    /* Button System */
+    .btn-primary-orange {
+      background: linear-gradient(135deg, var(--orange-500) 0%, #E0531D 100%);
+      color: #FFFFFF !important;
+      border: none;
+      padding: 11px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--orange-glow);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-orange::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: rotate(30deg) translateY(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .btn-primary-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+    }
+
+    .btn-primary-orange:hover::after {
+      transform: rotate(30deg) translateY(100%);
+    }
+
+    .btn-primary-cyan {
+      background: linear-gradient(135deg, var(--cyan-500) 0%, #0077B6 100%);
+      color: #FFFFFF !important;
+      border: none;
+      padding: 11px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--cyan-glow);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary-cyan:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 180, 216, 0.5);
+    }
+
+    .btn-control-glass {
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 9px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: var(--transition-fast);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-control-glass:hover {
+      background: rgba(0, 180, 216, 0.12);
+      color: #FFFFFF;
+      border-color: var(--cyan-400);
+      transform: translateY(-1px);
+    }
+
+    /* Section Structure */
+    .section-wrap {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 52px;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      color: var(--cyan-400);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-pill);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-card);
+    }
+
+    .section-kicker.orange { color: var(--orange-400); border-color: rgba(255, 107, 53, 0.25); }
+    .section-kicker.green { color: var(--green-400); border-color: rgba(16, 185, 129, 0.25); }
+    .section-kicker.purple { color: var(--purple-400); border-color: rgba(139, 92, 246, 0.25); }
+
+    .section-title {
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      margin-bottom: 18px;
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background-color var(--transition-normal), border-color var(--transition-normal);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-logo-frame {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0A1F3F, #00B4D8);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+      flex-shrink: 0;
+      position: relative;
+      transition: transform var(--transition-fast);
+    }
+
+    .brand-wrap:hover .brand-logo-frame {
+      transform: scale(1.05);
+    }
+
+    .brand-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .brand-text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .brand-title span {
+      color: var(--cyan-400);
+    }
+
+    .brand-tagline {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
+      background: var(--bg-pill);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 13px;
+      right: 13px;
+      height: 2px;
+      background: var(--cyan-400);
+      border-radius: 2px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Mobile Hamburger */
+    .mobile-menu-btn {
+      display: none;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mobile-drawer.active {
+      display: flex;
+      animation: drawerSlide 0.3s ease;
+    }
+
+    @keyframes drawerSlide {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-list a {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--bg-pill);
+      display: block;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 72px 0 54px;
+      position: relative;
+    }
+
+    .hero-banner-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 180, 216, 0.08);
+      border: 1px solid var(--border-card);
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--cyan-400);
+      margin-bottom: 22px;
+      box-shadow: 0 0 16px rgba(0, 180, 216, 0.15);
+    }
+
+    .hero-badge .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cyan-400);
+      box-shadow: 0 0 0 4px var(--cyan-glow);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.8); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+    }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, 5.2vw, 4.3rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
+      line-height: 1.08;
+    }
+
+    .hero-headline .headline-lead {
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--cyan-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .hero-headline .headline-sub {
+      color: var(--orange-400);
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+      display: block;
+      margin-top: 6px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-lead-text {
+      font-size: 1.14rem;
+      line-height: 1.72;
+      color: var(--text-body);
+      margin-bottom: 32px;
+      max-width: 640px;
+    }
+
+    .hero-lead-text strong {
+      color: var(--text-main);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    /* Live Strategy KPI Ticker */
+    .kpi-ticker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .kpi-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kpi-number {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--cyan-400);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-top: 5px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero Connected Pillars Card */
+    .hero-visual-card {
+      padding: 36px;
+      background: linear-gradient(145deg, rgba(10, 31, 63, 0.85), rgba(4, 13, 26, 0.96));
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .hero-visual-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .visual-card-title {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .visual-card-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .engine-pillars-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pillar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .pillar-row:hover {
+      background: rgba(0, 180, 216, 0.1);
+      border-color: var(--cyan-400);
+      transform: translateX(5px);
+    }
+
+    .pillar-row-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pillar-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .pillar-icon-box.blue { background: rgba(0, 180, 216, 0.18); color: var(--cyan-400); border: 1px solid rgba(0, 180, 216, 0.3); }
+    .pillar-icon-box.orange { background: rgba(255, 107, 53, 0.18); color: var(--orange-400); border: 1px solid rgba(255, 107, 53, 0.3); }
+    .pillar-icon-box.purple { background: rgba(139, 92, 246, 0.18); color: var(--purple-400); border: 1px solid rgba(139, 92, 246, 0.3); }
+    .pillar-icon-box.green { background: rgba(16, 185, 129, 0.18); color: var(--green-400); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .pillar-info h4 {
+      font-size: 0.98rem;
+      margin-bottom: 2px;
+    }
+
+    .pillar-info span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pillar-badge {
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .pillar-badge.blue { background: rgba(0, 180, 216, 0.2); color: var(--cyan-400); }
+    .pillar-badge.orange { background: rgba(255, 107, 53, 0.2); color: var(--orange-400); }
+    .pillar-badge.purple { background: rgba(139, 92, 246, 0.2); color: var(--purple-400); }
+    .pillar-badge.green { background: rgba(16, 185, 129, 0.2); color: var(--green-400); }
+
+    /* ==========================================================================
+       SECTION 1: SHARED RESPONSIBILITY SYSTEM (KAMI VS KAYO)
+       ========================================================================== */
+    .responsibility-card {
+      padding: 38px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      position: relative;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .responsibility-card.kami-card {
+      border-top: 5px solid var(--cyan-400);
+    }
+
+    .responsibility-card.kayo-card {
+      border-top: 5px solid var(--orange-400);
+    }
+
+    .responsibility-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .resp-header-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 28px;
+    }
+
+    .resp-badge-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .resp-badge-main .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    .resp-badge-main.kami .dot { background: var(--cyan-400); box-shadow: 0 0 14px var(--cyan-glow); }
+    .resp-badge-main.kayo .dot { background: var(--orange-400); box-shadow: 0 0 14px var(--orange-glow); }
+
+    .resp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .resp-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .resp-check {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .resp-check.kami { background: rgba(0, 180, 216, 0.18); color: var(--cyan-400); border: 1px solid rgba(0, 180, 216, 0.3); }
+    .resp-check.kayo { background: rgba(255, 107, 53, 0.18); color: var(--orange-400); border: 1px solid rgba(255, 107, 53, 0.3); }
+
+    .resp-text strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 1.02rem;
+      margin-bottom: 3px;
+    }
+
+    .resp-text span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Expectation Callout Banner */
+    .expectation-banner {
+      margin-top: 36px;
+      padding: 26px 36px;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.09), rgba(10, 31, 63, 0.65));
+      border: 1px solid rgba(255, 107, 53, 0.32);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: var(--shadow-orange);
+    }
+
+    .expectation-icon {
+      font-size: 2.6rem;
+      color: var(--orange-400);
+      flex-shrink: 0;
+    }
+
+    .expectation-content h4 {
+      font-size: 1.18rem;
+      color: var(--orange-400);
+      margin-bottom: 6px;
+    }
+
+    .expectation-content p {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION 2: 9-STAGE BLUEPRINT
+       ========================================================================== */
+    .filter-pills-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .filter-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-pill:hover {
+      color: var(--text-main);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .filter-pill.active {
+      background: var(--navy-800);
+      color: #FFFFFF;
+      border-color: var(--cyan-400);
+      box-shadow: 0 0 20px var(--cyan-glow);
+    }
+
+    [data-theme="light"] .filter-pill.active {
+      background: #0A1F3F;
+      color: #FFFFFF;
+    }
+
+    .stages-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stage-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .stage-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .stage-card.kami-border { border-left: 6px solid var(--cyan-500); }
+    .stage-card.kayo-border { border-left: 6px solid var(--orange-500); }
+    .stage-card.shared-border { border-left: 6px solid var(--purple-500); }
+
+    .stage-card-header {
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 18px;
+      user-select: none;
+    }
+
+    .stage-header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .stage-number-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--navy-800);
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--cyan-400);
+      flex-shrink: 0;
+    }
+
+    .stage-card.kayo-border .stage-number-badge { color: var(--orange-400); }
+    .stage-card.shared-border .stage-number-badge { color: var(--purple-400); }
+
+    .stage-title-block h4 {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stage-title-block .stage-asset-type {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .stage-header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .stage-owner-tag {
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+    }
+
+    .stage-owner-tag.kami { background: rgba(0, 180, 216, 0.18); color: var(--cyan-400); border: 1px solid rgba(0, 180, 216, 0.35); }
+    .stage-owner-tag.kayo { background: rgba(255, 107, 53, 0.18); color: var(--orange-400); border: 1px solid rgba(255, 107, 53, 0.35); }
+    .stage-owner-tag.shared { background: rgba(139, 92, 246, 0.18); color: var(--purple-400); border: 1px solid rgba(139, 92, 246, 0.35); }
+
+    .stage-expand-icon {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      transition: transform var(--transition-normal);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage-card.expanded .stage-expand-icon {
+      transform: rotate(180deg);
+      color: var(--cyan-400);
+    }
+
+    .stage-card-body {
+      padding: 0 28px 26px 96px;
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+    }
+
+    .stage-card.expanded .stage-card-body {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stage-body-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+    }
+
+    .stage-desc-text {
+      font-size: 0.98rem;
+      line-height: 1.68;
+      color: var(--text-body);
+      margin-bottom: 16px;
+    }
+
+    .stage-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stage-checklist li {
+      font-size: 0.88rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-body);
+    }
+
+    .stage-checklist li::before {
+      content: '✓';
+      color: var(--green-400);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .phase-deliverable-box {
+      background: var(--bg-pill);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.84rem;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .phase-deliverable-box strong {
+      color: var(--text-main);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .phase-deliverable-box span {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Customer Journey Mental Spine */
+    .journey-spine-wrap {
+      margin-top: 56px;
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-md);
+    }
+
+    .spine-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .spine-header h4 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+    }
+
+    .spine-flow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      align-items: center;
+      position: relative;
+    }
+
+    .spine-node {
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 12px;
+      text-align: center;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .spine-node:hover {
+      background: rgba(0, 180, 216, 0.12);
+      border-color: var(--cyan-400);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px var(--cyan-glow);
+    }
+
+    .spine-node-step {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--cyan-400);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+    }
+
+    .spine-node-title {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    /* ==========================================================================
+       SECTION 3: PROOF FLYWHEEL & ASSET MACHINE
+       ========================================================================== */
+    .flywheel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .protocol-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+    }
+
+    .protocol-card-title {
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .protocol-card-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+    }
+
+    .assets-5-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .asset-item-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 15px 18px;
+      border-radius: var(--radius-md);
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition-fast);
+    }
+
+    .asset-item-box:hover {
+      border-color: var(--cyan-400);
+      background: rgba(0, 180, 216, 0.07);
+      transform: translateX(4px);
+    }
+
+    .asset-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan-500), #0077B6);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+
+    .asset-details h5 {
+      font-size: 1rem;
+      margin-bottom: 3px;
+      color: var(--text-main);
+    }
+
+    .asset-details p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .flywheel-interactive-box {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(10, 31, 63, 0.88), rgba(4, 13, 26, 0.96));
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .flywheel-cycle-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .cycle-node {
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.92rem;
+      text-align: center;
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .cycle-node.c1 { background: rgba(0, 180, 216, 0.16); color: var(--cyan-400); border-color: var(--cyan-500); }
+    .cycle-node.c2 { background: rgba(255, 107, 53, 0.16); color: var(--orange-400); border-color: var(--orange-500); }
+    .cycle-node.c3 { background: rgba(139, 92, 246, 0.16); color: var(--purple-400); border-color: var(--purple-500); }
+    .cycle-node.c4 { background: rgba(16, 185, 129, 0.16); color: var(--green-400); border-color: var(--green-500); }
+
+    .cycle-arrow {
+      font-size: 1.2rem;
+      color: var(--cyan-400);
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* 70/20/10 Rule */
+    .budget-rule-strip {
+      margin-top: 36px;
+      padding: 28px 36px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+    }
+
+    .budget-rule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .budget-card {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: var(--bg-pill);
+      border-top: 4px solid var(--cyan-500);
+      transition: var(--transition-fast);
+    }
+
+    .budget-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .budget-card.b20 { border-top-color: var(--purple-500); }
+    .budget-card.b10 { border-top-color: var(--orange-500); }
+
+    .budget-percent {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .budget-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .budget-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       SECTION 4: REVENUE & FUNNEL ROI SIMULATOR
+       ========================================================================== */
+    .simulator-container {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .calc-controls-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .control-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .control-value-display {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cyan-400);
+      background: var(--bg-pill);
+      padding: 4px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      cursor: pointer;
+    }
+
+    [data-theme="light"] input[type="range"] {
+      background: #CBD5E1;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--cyan-400);
+      box-shadow: 0 0 14px var(--cyan-glow);
+      cursor: pointer;
+      transition: transform var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      background: #FFFFFF;
+    }
+
+    .industry-select-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .ind-btn {
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 11px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition-fast);
+    }
+
+    .ind-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-hover);
+    }
+
+    .ind-btn.active {
+      background: rgba(0, 180, 216, 0.22);
+      border-color: var(--cyan-400);
+      color: var(--cyan-400);
+      box-shadow: 0 0 16px var(--cyan-glow);
+    }
+
+    /* Calculator Results & Funnel Display */
+    .calc-results-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(10, 31, 63, 0.92), rgba(4, 13, 26, 0.98));
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .funnel-visual-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .funnel-row-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      margin: 0 auto;
+      transition: width var(--transition-normal), background-color var(--transition-fast);
+    }
+
+    .funnel-row-box.s1 { width: 100%; border-left: 5px solid var(--cyan-500); }
+    .funnel-row-box.s2 { width: 88%; border-left: 5px solid #0284C7; }
+    .funnel-row-box.s3 { width: 76%; border-left: 5px solid #2563EB; }
+    .funnel-row-box.s4 { width: 64%; border-left: 5px solid var(--orange-500); }
+    .funnel-row-box.s5 { width: 52%; border-left: 5px solid var(--green-500); background: rgba(16, 185, 129, 0.14); }
+
+    .funnel-row-left {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .funnel-row-left .f-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .funnel-row-left .f-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .funnel-row-val {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .funnel-row-box.s5 .funnel-row-val {
+      color: var(--green-400);
+    }
+
+    .roi-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .roi-stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 14px;
+      text-align: center;
+      transition: transform var(--transition-fast);
+    }
+
+    .roi-stat-box:hover {
+      transform: translateY(-2px);
+    }
+
+    .roi-stat-box.highlight {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 20px var(--green-glow);
+    }
+
+    .roi-stat-label {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .roi-stat-number {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1;
+    }
+
+    .roi-stat-box.highlight .roi-stat-number {
+      color: var(--green-400);
+    }
+
+    /* ==========================================================================
+       SECTION 5: 10-POINT AUDIT
+       ========================================================================== */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .audit-checklist-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+    }
+
+    .audit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .audit-checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition-fast);
+    }
+
+    .audit-checkbox-label:hover {
+      background: rgba(0, 180, 216, 0.08);
+      border-color: var(--cyan-400);
+      transform: translateX(3px);
+    }
+
+    .audit-checkbox-label.checked {
+      background: rgba(16, 185, 129, 0.09);
+      border-color: rgba(16, 185, 129, 0.45);
+    }
+
+    .custom-checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      border: 2px solid var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: transparent;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: var(--transition-fast);
+    }
+
+    .audit-checkbox-label.checked .custom-checkbox {
+      background: var(--green-500);
+      border-color: var(--green-500);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px var(--green-glow);
+    }
+
+    .audit-item-text strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .audit-item-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .audit-verdict-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(10, 31, 63, 0.88), rgba(4, 13, 26, 0.96));
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .gauge-circle-wrap {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .gauge-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 13;
+    }
+
+    .gauge-fill {
+      fill: none;
+      stroke: var(--cyan-400);
+      stroke-width: 13;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 264;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s ease;
+    }
+
+    .gauge-text-center {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gauge-score {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1;
+    }
+
+    .gauge-score-label {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .verdict-tier-badge {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .verdict-tier-badge.red { background: rgba(239, 68, 68, 0.18); color: var(--red-500); border: 1px solid var(--red-500); box-shadow: 0 0 16px var(--red-glow); }
+    .verdict-tier-badge.yellow { background: rgba(255, 107, 53, 0.18); color: var(--orange-400); border: 1px solid var(--orange-500); box-shadow: 0 0 16px var(--orange-glow); }
+    .verdict-tier-badge.green { background: rgba(16, 185, 129, 0.18); color: var(--green-400); border: 1px solid var(--green-500); box-shadow: 0 0 16px var(--green-glow); }
+
+    .verdict-feedback-text {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    /* ==========================================================================
+       SECTION 6: 30-SECOND WEBSITE TEST
+       ========================================================================== */
+    .web-test-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .questions-list-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+    }
+
+    .questions-6-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .q-card {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .q-card:hover, .q-card.active {
+      border-color: var(--cyan-400);
+      background: rgba(0, 180, 216, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px var(--cyan-glow);
+    }
+
+    .q-num {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--orange-400);
+      margin-bottom: 4px;
+    }
+
+    .q-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .q-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .wireframe-inspector-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(10, 31, 63, 0.88), rgba(4, 13, 26, 0.96));
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .wireframe-browser-frame {
+      background: #020813;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .browser-top-bar {
+      height: 32px;
+      background: #061325;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .browser-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .browser-dot:nth-child(1) { background: #EF4444; }
+    .browser-dot:nth-child(2) { background: #F59E0B; }
+    .browser-dot:nth-child(3) { background: #10B981; }
+
+    .wireframe-page-content {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .wf-block {
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed var(--border-subtle);
+      text-align: center;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .wf-block:hover, .wf-block.highlight {
+      background: rgba(0, 180, 216, 0.18);
+      border-color: var(--cyan-400);
+      color: #FFFFFF;
+      box-shadow: 0 0 16px var(--cyan-glow);
+    }
+
+    .wf-sticky-cta {
+      background: linear-gradient(135deg, var(--green-500), #059669);
+      color: #FFFFFF;
+      font-weight: 800;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      text-align: center;
+      box-shadow: 0 0 16px var(--green-glow);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       SECTION 7: SCRIPT SIMULATOR
+       ========================================================================== */
+    .scripts-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .compare-side-card {
+      padding: 36px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+    }
+
+    .compare-side-card.wrong {
+      border-left: 6px solid var(--red-500);
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.06), var(--bg-card));
+    }
+
+    .compare-side-card.right {
+      border-left: 6px solid var(--green-500);
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.06), var(--bg-card));
+    }
+
+    .compare-badge-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .compare-side-card.wrong .compare-badge-title { color: var(--red-500); }
+    .compare-side-card.right .compare-badge-title { color: var(--green-400); }
+
+    .chat-bubble-sample {
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .chat-bubble-sample.wrong {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+    }
+
+    .chat-bubble-sample.right {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #A7F3D0;
+    }
+
+    .chat-note-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .templates-deck-wrap {
+      margin-top: 40px;
+    }
+
+    .templates-tabs-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .template-tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 11px 20px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .template-tab-btn.active {
+      background: var(--navy-800);
+      color: var(--cyan-400);
+      border-color: var(--cyan-400);
+      box-shadow: 0 0 16px var(--cyan-glow);
+    }
+
+    [data-theme="light"] .template-tab-btn.active {
+      background: #FFFFFF;
+      color: #0A1F3F;
+    }
+
+    .template-viewer-card {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      position: relative;
+    }
+
+    .template-text-content {
+      font-family: var(--font-body);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text-main);
+      background: var(--bg-pill);
+      padding: 22px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       SECTION 8: ROADMAP
+       ========================================================================== */
+    .roadmap-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .roadmap-phase-card {
+      padding: 36px 30px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-top: 6px solid var(--cyan-500);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-normal);
+      box-shadow: var(--shadow-md);
+    }
+
+    .roadmap-phase-card.p2 { border-top-color: var(--orange-500); }
+    .roadmap-phase-card.p3 { border-top-color: var(--green-500); }
+
+    .roadmap-phase-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .phase-badge-top {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--cyan-400);
+      margin-bottom: 8px;
+    }
+
+    .roadmap-phase-card.p2 .phase-badge-top { color: var(--orange-400); }
+    .roadmap-phase-card.p3 .phase-badge-top { color: var(--green-400); }
+
+    .phase-title-main {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .phase-tasks-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .phase-tasks-list li {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    .phase-tasks-list li .task-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-400);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .roadmap-phase-card.p2 .task-dot { background: var(--orange-400); }
+    .roadmap-phase-card.p3 .task-dot { background: var(--green-400); }
+
+    /* ==========================================================================
+       SECTION 9: INDUSTRY MATRIX
+       ========================================================================== */
+    .industry-tabs-deck {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .ind-side-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ind-nav-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 18px 22px;
+      border-radius: var(--radius-lg);
+      font-weight: 800;
+      font-size: 0.98rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition-fast);
+    }
+
+    .ind-nav-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-main);
+      transform: translateX(5px);
+    }
+
+    .ind-nav-btn.active {
+      background: var(--navy-800);
+      color: #FFFFFF;
+      border-color: var(--cyan-400);
+      box-shadow: 0 0 20px var(--cyan-glow);
+    }
+
+    [data-theme="light"] .ind-nav-btn.active {
+      background: #0A1F3F;
+      color: #FFFFFF;
+    }
+
+    .ind-content-panel {
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ind-hero-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .ind-title-block h3 {
+      font-size: 1.65rem;
+      margin-bottom: 4px;
+    }
+
+    .ind-title-block span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .ind-metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .ind-metric-card {
+      background: var(--bg-pill);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ind-metric-card small {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .ind-metric-card strong {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--cyan-400);
+    }
+
+    .ind-deep-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .ind-box-block {
+      background: var(--bg-pill);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ind-box-block h5 {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .ind-box-block p {
+      font-size: 0.86rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       SECTION 10: MASTER STRATEGY CONSULTATION BUILDER
+       ========================================================================== */
+    .cta-banner-master {
+      padding: 54px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 90% 10%, rgba(0, 180, 216, 0.28), transparent 60%), linear-gradient(135deg, #0A1F3F, #040D1A);
+      border: 1px solid var(--cyan-400);
+      box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 180, 216, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .cta-banner-master {
+      background: radial-gradient(circle at 90% 10%, rgba(0, 180, 216, 0.22), transparent 60%), linear-gradient(135deg, #0A1F3F, #061325);
+      color: #FFFFFF;
+    }
+
+    .cta-master-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .cta-left-copy h2 {
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
+      margin-bottom: 18px;
+      color: #FFFFFF;
+    }
+
+    .cta-left-copy p {
+      font-size: 1.08rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .cta-contact-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-line-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #FFFFFF;
+      font-size: 0.98rem;
+    }
+
+    .contact-icon-frame {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(0, 180, 216, 0.22);
+      color: var(--cyan-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .builder-form-card {
+      background: rgba(6, 19, 37, 0.88);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .builder-form-card h4 {
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .form-input:focus {
+      border-color: var(--cyan-400);
+      background: rgba(255, 255, 255, 0.14);
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+
+    .form-select {
+      width: 100%;
+      background: #0A1F3F;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       MODAL & TOAST
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 13, 26, 0.88);
+      backdrop-filter: blur(14px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+      animation: modalFade 0.25s ease;
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-window {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--red-500);
+      color: #FFFFFF;
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--navy-800);
+      color: #FFFFFF;
+      border: 1px solid var(--green-500);
+      padding: 14px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.92rem;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-lg), 0 0 25px var(--green-glow);
+      z-index: 3000;
+    }
+
+    .toast-popup.active {
+      display: flex;
+      animation: toastIn 0.3s ease;
+    }
+
+    @keyframes toastIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Floating Dock */
+    .floating-action-dock {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1200;
+    }
+
+    .dock-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-fast);
+    }
+
+    .dock-btn:hover {
+      transform: translateY(-3px) scale(1.08);
+      border-color: var(--cyan-400);
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+    }
+
+    .dock-btn.whatsapp-dock {
+      background: linear-gradient(135deg, var(--green-500), #059669);
+      color: #FFFFFF;
+      border: none;
+      box-shadow: 0 4px 20px var(--green-glow);
+    }
+
+    /* Presentation Deck Mode */
+    body.pitch-deck-mode {
+      overflow-y: auto;
+    }
+
+    body.pitch-deck-mode .section-wrap {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pitch-deck-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy-800);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-full);
+      padding: 10px 22px;
+      display: none;
+      align-items: center;
+      gap: 16px;
+      z-index: 1500;
+      box-shadow: var(--shadow-lg), var(--shadow-cyan);
+      backdrop-filter: blur(20px);
+    }
+
+    body.pitch-deck-mode .pitch-deck-bar {
+      display: flex;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 56px 0 36px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-glass);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-copy strong {
+      color: var(--text-main);
+    }
+
+    .footer-motto {
+      font-style: italic;
+      color: var(--cyan-400);
+      font-size: 0.88rem;
+    }
+
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .hero-banner-grid, .grid-2, .flywheel-grid,
+      .simulator-container, .audit-grid, .web-test-grid,
+      .scripts-container, .cta-master-grid, .industry-tabs-deck {
+        grid-template-columns: 1fr;
+      }
+
+      .spine-flow {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .roadmap-timeline-grid, .budget-rule-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .kpi-ticker { grid-template-columns: repeat(2, 1fr); }
+      .grid-3, .grid-4, .questions-6-grid, .ind-deep-details, .roi-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .spine-flow { grid-template-columns: 1fr 1fr; }
+      .stage-body-grid { grid-template-columns: 1fr; }
+      .stage-card-body { padding-left: 28px; }
+      .cta-banner-master { padding: 32px 24px; }
+      .industry-select-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- ==========================================================================
+       SITE HEADER
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand-wrap">
+        <div class="brand-logo-frame">
+          <img src="assets/logo.png" alt="We Forge Web Logo" onerror="this.style.display='none'">
+        </div>
+        <div class="brand-text-block">
+          <div class="brand-title">WE FORGE <span>WEB</span></div>
+          <div class="brand-tagline" data-i18n="brand_tagline">Client Growth Kit</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#overview" data-i18n="nav_overview">Overview</a></li>
+          <li><a href="#blueprint" data-i18n="nav_blueprint">Blueprint</a></li>
+          <li><a href="#flywheel" data-i18n="nav_flywheel">Flywheel</a></li>
+          <li><a href="#simulator" data-i18n="nav_simulator">ROI Funnel</a></li>
+          <li><a href="#audit" data-i18n="nav_audit">10-Point Audit</a></li>
+          <li><a href="#webtest" data-i18n="nav_webtest">30s Test</a></li>
+          <li><a href="#scripts" data-i18n="nav_scripts">Scripts</a></li>
+          <li><a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a></li>
+          <li><a href="#industries" data-i18n="nav_industries">Industries</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-controls">
+        <!-- Language Switcher -->
+        <button class="btn-control-glass" id="langToggleBtn" title="Switch Language">
+          <span id="langFlag">🇵🇭</span> <span id="langText">Taglish</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button class="btn-control-glass" id="themeToggleBtn" title="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+
+        <!-- Presentation Mode -->
+        <button class="btn-control-glass" id="pitchModeBtn" title="Pitch Deck Fullscreen Mode">
+          <span>🖥️</span> <span data-i18n="pitch_mode">Pitch Mode</span>
+        </button>
+
+        <!-- Primary Action -->
+        <button class="btn-primary-orange" id="openConsultModalBtn">
+          <span>💬</span> <span data-i18n="btn_consult">Request Growth Plan</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" id="mobileMenuToggleBtn" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#overview" onclick="toggleMobileMenu()" data-i18n="nav_overview">Overview</a></li>
+        <li><a href="#blueprint" onclick="toggleMobileMenu()" data-i18n="nav_blueprint">Blueprint (9 Stages)</a></li>
+        <li><a href="#flywheel" onclick="toggleMobileMenu()" data-i18n="nav_flywheel">Proof Flywheel</a></li>
+        <li><a href="#simulator" onclick="toggleMobileMenu()" data-i18n="nav_simulator">ROI Funnel Simulator</a></li>
+        <li><a href="#audit" onclick="toggleMobileMenu()" data-i18n="nav_audit">10-Point Audit</a></li>
+        <li><a href="#webtest" onclick="toggleMobileMenu()" data-i18n="nav_webtest">30s Website Test</a></li>
+        <li><a href="#scripts" onclick="toggleMobileMenu()" data-i18n="nav_scripts">Follow-up Scripts</a></li>
+        <li><a href="#roadmap" onclick="toggleMobileMenu()" data-i18n="nav_roadmap">90-Day Roadmap</a></li>
+        <li><a href="#industries" onclick="toggleMobileMenu()" data-i18n="nav_industries">Industry Matrix</a></li>
+        <li><a href="#consultation" onclick="toggleMobileMenu()" data-i18n="btn_consult">Request Growth Plan</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION: STRATEGY OVERVIEW
+         ========================================================================== -->
+    <section class="hero-section section-wrap" id="hero">
+      <div class="container hero-banner-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span data-i18n="hero_badge">Connected Client Acquisition System</span>
+          </div>
+
+          <h1 class="hero-headline">
+            <span class="headline-lead" data-i18n="hero_title_1">From Seen to Chosen.</span>
+            <span class="headline-sub" data-i18n="hero_title_2">Isang Buo at Napatunayang Lead Engine.</span>
+          </h1>
+
+          <p class="hero-lead-text" data-i18n="hero_desc">
+            Isang komprehensibong <strong>SHARED CLIENT ACQUISITION SYSTEM</strong> na binuo ng We Forge Web para sa inyong negosyo. 
+            <strong>Kami</strong> ang nagtatayo ng matibay na infrastructure — High-Converting Landing Page, Facebook Proof Ads, at Google Business Profile. 
+            <strong>Kayo</strong> naman ang sumasagot, nag-e-estimate, nagfo-follow up, at nagde-deliver ng serbisyo.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#blueprint" class="btn-primary-cyan">
+              <span>🗺️</span> <span data-i18n="hero_cta_blueprint">Explore 9-Stage Blueprint</span>
+            </a>
+            <a href="#simulator" class="btn-control-glass" style="padding: 11px 20px; font-size: 0.9rem;">
+              <span>🧮</span> <span data-i18n="hero_cta_simulator">Simulate Your ROI</span>
+            </a>
+            <a href="#audit" class="btn-control-glass" style="padding: 11px 20px; font-size: 0.9rem;">
+              <span>📋</span> <span data-i18n="hero_cta_audit">Take 10-Point Audit</span>
+            </a>
+          </div>
+
+          <!-- Live KPI Ticker -->
+          <div class="kpi-ticker">
+            <div class="kpi-item">
+              <div class="kpi-number">4</div>
+              <div class="kpi-label" data-i18n="kpi_pillars">Connected Pillars</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-number">9</div>
+              <div class="kpi-label" data-i18n="kpi_stages">Shared Stages</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-number">5-Asset</div>
+              <div class="kpi-label" data-i18n="kpi_assets">Proof Flywheel</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-number">30-Sec</div>
+              <div class="kpi-label" data-i18n="kpi_decision">Decision Engine</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Strategic Pillar Card -->
+        <div class="hero-visual-card">
+          <h3 class="visual-card-title">
+            <span>⚡</span> <span data-i18n="card_pillars_title">Ang 4 na Haligi ng Connected System</span>
+          </h3>
+          <p class="visual-card-subtitle" data-i18n="card_pillars_sub">
+            Hindi sapat ang isang channel. Lahat ay nagtutulungan para mabilis ang tiwala ng customer:
+          </p>
+
+          <div class="engine-pillars-stack">
+            <div class="pillar-row" onclick="scrollToSection('blueprint')">
+              <div class="pillar-row-left">
+                <div class="pillar-icon-box blue">01</div>
+                <div class="pillar-info">
+                  <h4 data-i18n="pillar_1_title">Online Readiness</h4>
+                  <span data-i18n="pillar_1_desc">Buo at kagalang-galang na FB, GBP, at Website</span>
+                </div>
+              </div>
+              <span class="pillar-badge blue">Foundation</span>
+            </div>
+
+            <div class="pillar-row" onclick="scrollToSection('blueprint')">
+              <div class="pillar-row-left">
+                <div class="pillar-icon-box orange">02</div>
+                <div class="pillar-info">
+                  <h4 data-i18n="pillar_2_title">Proof-Based Ads</h4>
+                  <span data-i18n="pillar_2_desc">Mabilis na reach gamit ang totoong resulta</span>
+                </div>
+              </div>
+              <span class="pillar-badge orange">Attention</span>
+            </div>
+
+            <div class="pillar-row" onclick="scrollToSection('webtest')">
+              <div class="pillar-row-left">
+                <div class="pillar-icon-box purple">03</div>
+                <div class="pillar-info">
+                  <h4 data-i18n="pillar_3_title">Conversion Landing Page</h4>
+                  <span data-i18n="pillar_3_desc">Nasasagot ang 6 na customer questions sa 30s</span>
+                </div>
+              </div>
+              <span class="pillar-badge purple">Trust Hub</span>
+            </div>
+
+            <div class="pillar-row" onclick="scrollToSection('flywheel')">
+              <div class="pillar-row-left">
+                <div class="pillar-icon-box green">04</div>
+                <div class="pillar-info">
+                  <h4 data-i18n="pillar_4_title">Asset Machine Flywheel</h4>
+                  <span data-i18n="pillar_4_desc">Bawat natapos na project = panggatong sa bago</span>
+                </div>
+              </div>
+              <span class="pillar-badge green">Flywheel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 1: SHARED RESPONSIBILITY PARTNERSHIP
+         ========================================================================== -->
+    <section class="section-wrap" id="overview">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="resp_kicker">Partnership Philosophy</span>
+          <h2 class="section-title" data-i18n="resp_title">Para Gumana ang System, May Part Din Kayo.</h2>
+          <p class="section-subtitle" data-i18n="resp_sub">
+            Hindi kayang gawin ng We Forge Web ang lahat. Kami ang gagawa ng system at propesyonal na online foundation ninyo — pero may trabaho rin kayo para mapakinabangan ito. Partnership ito, hindi labas-kamay.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <!-- KAMI (We Forge Web) -->
+          <div class="responsibility-card kami-card">
+            <div class="resp-header-banner">
+              <div class="resp-badge-main kami">
+                <span class="dot"></span>
+                <span>KAMI · We Forge Web</span>
+              </div>
+              <span class="stage-owner-tag kami">System &amp; Infrastructure</span>
+            </div>
+
+            <ul class="resp-list">
+              <li class="resp-item">
+                <div class="resp-check kami">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kami_1_title">Conversion Landing Page Architecture</strong>
+                  <span data-i18n="kami_1_desc">Sub-3s load speed, clear packages, mobile click-to-call, at proof showcase.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kami">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kami_2_title">Google Business Profile (GBP) Local SEO</strong>
+                  <span data-i18n="kami_2_desc">Exact pin, verified radius, categories, map embedding, at review trust capture.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kami">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kami_3_title">Proof-Based Facebook Ads &amp; Geotargeting</strong>
+                  <span data-i18n="kami_3_desc">Hyperlocal 5km-25km targeting, high-converting ad copy, at before/after creatives.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kami">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kami_4_title">Funnel Tracking &amp; Data Optimization</strong>
+                  <span data-i18n="kami_4_desc">Pag-aaral sa tunay na closing cost para i-scale ang pinaka-profitable campaigns.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- KAYO (Client Partner) -->
+          <div class="responsibility-card kayo-card">
+            <div class="resp-header-banner">
+              <div class="resp-badge-main kayo">
+                <span class="dot"></span>
+                <span>KAYO · Client Partner</span>
+              </div>
+              <span class="stage-owner-tag kayo">Sales &amp; Service Delivery</span>
+            </div>
+
+            <ul class="resp-list">
+              <li class="resp-item">
+                <div class="resp-check kayo">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kayo_1_title">Mabilis na Tugon sa Inquiries (&lt; 15 Mins)</strong>
+                  <span data-i18n="kayo_1_desc">Kapag tumawag o nag-message ang lead, tapos na ang marketing — bilis at malasakit ang kailangan.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kayo">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kayo_2_title">Malinaw na Ocular Assessment &amp; Estimate</strong>
+                  <span data-i18n="kayo_2_desc">Propesyonal na pricing, pagsagot sa agam-agam, at transparent na deliverables.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kayo">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kayo_3_title">Value-First Follow-Up (Hindi Puro Kulit)</strong>
+                  <span data-i18n="kayo_3_desc">Pagbibigay ng similar case studies at reviews sa mga nag-iipon pa ng budget.</span>
+                </div>
+              </li>
+              <li class="resp-item">
+                <div class="resp-check kayo">✓</div>
+                <div class="resp-text">
+                  <strong data-i18n="kayo_4_title">Asset Capture &amp; Genuine Review Collection</strong>
+                  <span data-i18n="kayo_4_desc">Pagkuha ng before/after photos sa bawat natapos na trabaho para sa proof loop.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Realistic Expectation Callout -->
+        <div class="expectation-banner">
+          <div class="expectation-icon">🛡️</div>
+          <div class="expectation-content">
+            <h4 data-i18n="exp_title">SHARED RESPONSIBILITY FOR GROWTH (Walang False Promises)</h4>
+            <p data-i18n="exp_desc">
+              <strong>Hindi ito magic button.</strong> Hindi guarantee na bawat makakakita ay tatawag, o bawat inquiry ay magiging project. 
+              Ang ginagawa ng We Forge Web ay gawing napakadali para sa <strong>TAMANG CUSTOMER</strong> na makita kayo, ma-check kayo, magtiwala sa proof, at mag-inquire nang may kumpiyansa. Ang pag-convert sa kanila ay nakasalalay pa rin sa inyong response, pricing, at serbisyo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2: INTERACTIVE 9-STAGE BLUEPRINT
+         ========================================================================== -->
+    <section class="section-wrap" id="blueprint">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="bp_kicker">Execution Architecture</span>
+          <h2 class="section-title" data-i18n="bp_title">Ang Client Acquisition Blueprint</h2>
+          <p class="section-subtitle" data-i18n="bp_sub">
+            I-click ang bawat stage para makita ang eksaktong trabaho, deliverables, checklists, at kung sino ang may hawak nito.
+          </p>
+        </div>
+
+        <!-- Ownership Filter -->
+        <div class="filter-pills-bar">
+          <button class="filter-pill active" onclick="filterStages('all')">
+            <span>⚡</span> <span data-i18n="filter_all">All 9 Stages</span>
+          </button>
+          <button class="filter-pill" onclick="filterStages('kami')">
+            <span style="color: var(--cyan-400);">●</span> <span data-i18n="filter_kami">KAMI (We Forge Web)</span>
+          </button>
+          <button class="filter-pill" onclick="filterStages('kayo')">
+            <span style="color: var(--orange-400);">●</span> <span data-i18n="filter_kayo">KAYO (Client Work)</span>
+          </button>
+          <button class="filter-pill" onclick="filterStages('shared')">
+            <span style="color: var(--purple-400);">●</span> <span data-i18n="filter_shared">SHARED (Kayo + Kami)</span>
+          </button>
+        </div>
+
+        <!-- 9 Stages Stack -->
+        <div class="stages-stack" id="stagesContainer">
+          <!-- Stage 1 -->
+          <div class="stage-card kayo-border expanded" data-owner="kayo">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">01</div>
+                <div class="stage-title-block">
+                  <h4>CREATE ATTENTION</h4>
+                  <span class="stage-asset-type">Facebook Boosting / Proof Ads</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kayo">KAYO</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Hindi ito awtomatikong ginagawa ng WFW maliban kung part ng biniling service package — kailangan ninyo itong patuloy na gawin gamit ang proof-first creatives para patuloy na makakita ang mga active homeowners sa target radius.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>I-boost lamang ang winning posts na may malinaw na Before/After.</li>
+                    <li>Hyper-local radius targeting (5km - 25km radius).</li>
+                    <li>Direct CTA: "Send Message to Request a Free Estimate".</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Continuous stream of targeted local prospects seeing authentic work proof instead of generic quotes.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="stage-card kami-border" data-owner="kami">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">02</div>
+                <div class="stage-title-block">
+                  <h4>BUILD FIRST IMPRESSION</h4>
+                  <span class="stage-asset-type">Facebook Page Creation / Optimization</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kami">KAMI</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Isinasaayos at pinalalakas namin ang FB Page para kapag chineck ng customer pagkatapos makita ang ad, professional, active, at organized ang impression na sumasalubong sa kanila.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>High-resolution branding, branded cover banner, at unified credentials.</li>
+                    <li>Customized Send Message at Click-to-Call action buttons.</li>
+                    <li>Pinned proof portfolio post na sumasagot sa customer doubts.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Eliminates visitor suspicion. 100% credible brand foundation.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="stage-card kami-border" data-owner="kami">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">03</div>
+                <div class="stage-title-block">
+                  <h4>GIVE THEM PROOF</h4>
+                  <span class="stage-asset-type">High-Converting Landing Page</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kami">KAMI</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Isang malinaw at mabilis na website para sa services, projects, experience, areas, reviews, at contact — bawas ang pag-aalinlangan bago mag-inquire ang prospect.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Mobile speed loading under 3.0 seconds on 4G networks.</li>
+                    <li>Direct Click-to-Call, WhatsApp, at inquiry form integration.</li>
+                    <li>Before/After photo galleries na naka-categorize ayon sa service.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Answers all 6 crucial customer questions in under 30 seconds.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="stage-card kami-border" data-owner="kami">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">04</div>
+                <div class="stage-title-block">
+                  <h4>STRENGTHEN SEARCH + TRUST</h4>
+                  <span class="stage-asset-type">Google Business Profile (GBP)</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kami">KAMI</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Ibang paraan para makuha at i-verify ang business sa Google Search at Maps — exact area, geotagged photos, business hours, genuine reviews, at instant calling.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Optimized Google Local 3-Pack placement for "near me" searches.</li>
+                    <li>Direct review generation link na madaling i-send sa customer.</li>
+                    <li>Integrated map embedding sa conversion website.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Captures high-intent customers actively searching to hire today.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="stage-card kayo-border" data-owner="kayo">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">05</div>
+                <div class="stage-title-block">
+                  <h4>RESPOND TO OPPORTUNITY</h4>
+                  <span class="stage-asset-type">Call / Message Handling</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kayo">KAYO</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Kapag tumawag o nag-message ang customer, tapos na ang marketing. Kayo ang kailangang sumagot nang mabilis, intindihin ang pangangailangan, at i-move agad toward ocular/estimate.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Sub-15 minute response time sa social media messages.</li>
+                    <li>Friendly, professional, at consultative tone.</li>
+                    <li>Mag-set agad ng konkretong oras para sa site visit o quote.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Converts warm curiosity into confirmed estimate appointments.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 6 -->
+          <div class="stage-card kayo-border" data-owner="kayo">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">06</div>
+                <div class="stage-title-block">
+                  <h4>GIVE THE ESTIMATE</h4>
+                  <span class="stage-asset-type">Ocular &amp; Proposal Presentation</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kayo">KAYO</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Kayo ang humahawak ng site ocular visit, technical assessment, pricing calculation, proposal presentation, at pagsagot sa customer objections o payment terms.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Itemized, transparent cost breakdown na walang hidden charges.</li>
+                    <li>Ipaliwanag ang kalidad ng materyales at safety guarantee.</li>
+                    <li>Magbigay ng malinaw na validity date para sa estimate.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>High estimate-to-close conversion rate through professional pricing.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 7 -->
+          <div class="stage-card kayo-border" data-owner="kayo">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">07</div>
+                <div class="stage-title-block">
+                  <h4>VALUE-FIRST FOLLOW-UP</h4>
+                  <span class="stage-asset-type">Nurturing Unclosed Leads</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kayo">KAYO</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Hindi lahat ng inquiry ay agarang deal. Mag-follow up nang may halaga (case studies, tips, schedule updates) nang hindi nagmumukhang makulit o desperado.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Gamitin ang Template A, B, at C follow-up scripts (tingnan sa Section 7).</li>
+                    <li>I-share ang pinakabagong project na katulad ng kanilang sitwasyon.</li>
+                    <li>Mag-update kapag may available schedule slot sa kanilang area.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Recovers 20-35% of lost deals who were comparing competitors.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 8 -->
+          <div class="stage-card kayo-border" data-owner="kayo">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">08</div>
+                <div class="stage-title-block">
+                  <h4>DELIVER EXCELLENT SERVICE</h4>
+                  <span class="stage-asset-type">Actual Project Execution</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag kayo">KAYO</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Hindi kayang takpan ng pinakamagaling na marketing ang pangit na serbisyo. Ang mismong kalidad ng gawa ninyo ang nagpapatibay sa inyong reputasyon sa merkado.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>On-time completion at malinis na site turnover.</li>
+                    <li>Transparent communication sa buong tagal ng proyekto.</li>
+                    <li>Siguraduhing 100% satisfied ang kliyente bago ang final billing.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Builds organic word-of-mouth and raving client advocates.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 9 -->
+          <div class="stage-card shared-border" data-owner="shared">
+            <div class="stage-card-header" onclick="toggleStage(this)">
+              <div class="stage-header-left">
+                <div class="stage-number-badge">09</div>
+                <div class="stage-title-block">
+                  <h4>FEED THE SYSTEM WITH PROOF</h4>
+                  <span class="stage-asset-type">Proof Flywheel Loop</span>
+                </div>
+              </div>
+              <div class="stage-header-right">
+                <span class="stage-owner-tag shared">SHARED</span>
+                <span class="stage-expand-icon">▼</span>
+              </div>
+            </div>
+            <div class="stage-card-body">
+              <div class="stage-body-grid">
+                <div>
+                  <p class="stage-desc-text">
+                    Napakahalaga: Pagkatapos ng bawat successful project, kunin ang 5-asset protocol (photos, short video, Google review) para i-update ang Landing Page, Google Profile, at Facebook Ads.
+                  </p>
+                  <ul class="stage-checklist">
+                    <li>Ipadala sa WFW ang photos para mai-layout sa portfolio at ads.</li>
+                    <li>I-send ang direct Google Review link sa natuwang kliyente.</li>
+                    <li>I-launch ang bagong case study ad sa parehong subdivision/area.</li>
+                  </ul>
+                </div>
+                <div class="phase-deliverable-box">
+                  <strong><span>🎯</span> Expected Outcome:</strong>
+                  <span>Every completed job automatically reduces the cost of the next client.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Journey Mental Spine -->
+        <div class="journey-spine-wrap">
+          <div class="spine-header">
+            <h4>🧠 Ang Psychological Journey ng Customer</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
+              Ganito nag-iisip ang isang customer mula sa pagka-estranghero hanggang sa pagpirma ng kontrata:
+            </p>
+          </div>
+
+          <div class="spine-flow">
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 1</div>
+              <div class="spine-node-title">MAKITA KAYO</div>
+            </div>
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 2</div>
+              <div class="spine-node-title">MA-CHECK KAYO</div>
+            </div>
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 3</div>
+              <div class="spine-node-title">MAKAKITA NG PROOF</div>
+            </div>
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 4</div>
+              <div class="spine-node-title">MAGTIWALA</div>
+            </div>
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 5</div>
+              <div class="spine-node-title">MAG-INQUIRE</div>
+            </div>
+            <div class="spine-node">
+              <div class="spine-node-step">Stage 6</div>
+              <div class="spine-node-title">MAKAKUHA NG ESTIMATE</div>
+            </div>
+            <div class="spine-node" style="border-color: var(--green-500); background: rgba(16, 185, 129, 0.12); box-shadow: 0 0 16px var(--green-glow);">
+              <div class="spine-node-step" style="color: var(--green-400);">Stage 7</div>
+              <div class="spine-node-title" style="color: var(--green-400);">MAGING CLIENT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: PROOF FLYWHEEL & ASSET MACHINE
+         ========================================================================== -->
+    <section class="section-wrap" id="flywheel">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker green" data-i18n="fly_kicker">Compounding Growth</span>
+          <h2 class="section-title" data-i18n="fly_title">Bawat Project = Gasolina sa Susunod na Kliyente</h2>
+          <p class="section-subtitle" data-i18n="fly_sub">
+            Huwag hayaang matapos ang isang proyekto nang walang nakukuhang patunay. Ang Proof Flywheel ang dahilan kung bakit bumababa ang ad spend at tumataas ang tiwala habang tumatagal.
+          </p>
+        </div>
+
+        <div class="flywheel-grid">
+          <!-- 5-Asset Protocol -->
+          <div class="protocol-card">
+            <h3 class="protocol-card-title">
+              <span>📸</span> <span data-i18n="asset_protocol_title">Ang 5-Asset Capture Protocol</span>
+            </h3>
+            <p class="protocol-card-sub" data-i18n="asset_protocol_sub">
+              Bawat natapos na trabaho ay dapat may ganitong kumpletong marketing deliverables:
+            </p>
+
+            <div class="assets-5-list">
+              <div class="asset-item-box">
+                <div class="asset-num">1</div>
+                <div class="asset-details">
+                  <h5 data-i18n="a1_title">Before &amp; During Photos</h5>
+                  <p data-i18n="a1_desc">Kuhanan ang lumang kalagayan bago simulan at habang ginagawa ang trabaho.</p>
+                </div>
+              </div>
+
+              <div class="asset-item-box">
+                <div class="asset-num">2</div>
+                <div class="asset-details">
+                  <h5 data-i18n="a2_title">High-Res After Transformation</h5>
+                  <p data-i18n="a2_desc">Malinis, well-lit na kuha ng natapos na resulta mula sa iba't ibang magagandang anggulo.</p>
+                </div>
+              </div>
+
+              <div class="asset-item-box">
+                <div class="asset-num">3</div>
+                <div class="asset-details">
+                  <h5 data-i18n="a3_title">Customer Video Soundbite</h5>
+                  <p data-i18n="a3_desc">Maikling 15-30 segundong video clip ng natuwang homeowner o kliyente.</p>
+                </div>
+              </div>
+
+              <div class="asset-item-box">
+                <div class="asset-num">4</div>
+                <div class="asset-details">
+                  <h5 data-i18n="a4_title">Project Story &amp; Specifications</h5>
+                  <p data-i18n="a4_desc">Eksaktong problema na nalutas, materyales na ginamit, at lokasyon ng subdivision.</p>
+                </div>
+              </div>
+
+              <div class="asset-item-box">
+                <div class="asset-num">5</div>
+                <div class="asset-details">
+                  <h5 data-i18n="a5_title">5-Star Verified Google Review</h5>
+                  <p data-i18n="a5_desc">Direktang feedback sa Google Profile para sa permanenteng local SEO ranking.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Flywheel Simulator -->
+          <div class="flywheel-interactive-box">
+            <div>
+              <h3 class="protocol-card-title">
+                <span>🔄</span> <span>Interactive Proof Compounding Engine</span>
+              </h3>
+              <p class="protocol-card-sub">
+                Panoorin kung paano lumalakas ang system sa bawat nadadagdag na completed project:
+              </p>
+
+              <div class="flywheel-cycle-visual">
+                <div class="cycle-node c1"><span>✅</span> GOOD COMPLETED PROJECT</div>
+                <div class="cycle-arrow">▼</div>
+                <div class="cycle-node c2"><span>📸</span> 5-ASSET PROOF CAPTURE</div>
+                <div class="cycle-arrow">▼</div>
+                <div class="cycle-node c3"><span>🌐</span> REDISTRIBUTE (ADS + GBP + WEB)</div>
+                <div class="cycle-arrow">▼</div>
+                <div class="cycle-node c4"><span>🚀</span> MORE TRUST ➔ MORE HIGH-TICKET INQUIRIES</div>
+              </div>
+            </div>
+
+            <!-- Interactive Click Trigger -->
+            <div style="text-align: center; padding-top: 18px; border-top: 1px solid var(--border-subtle);">
+              <button class="btn-primary-cyan" id="addProjectFlywheelBtn" style="width: 100%; justify-content: center;">
+                <span>➕</span> <span>Simulate Completing 1 Project</span>
+              </button>
+              <div style="margin-top: 14px; font-size: 0.9rem; color: var(--text-muted);">
+                Proof Assets in System: <strong id="flywheelAssetCount" style="color: var(--cyan-400);">15</strong> Assets | Trust Multiplier: <strong id="flywheelMultiplier" style="color: var(--green-400);">1.5x</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 70/20/10 Budget Rule Strip -->
+        <div class="budget-rule-strip">
+          <h4 style="font-size: 1.25rem; margin-bottom: 4px;">🎯 Ang 70/20/10 Ad Budget Allocation Rule</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Huwag mag-boost nang walang dahilan. Ganito i-distribute ang pondo para sa pinakamataas na ROI:
+          </p>
+
+          <div class="budget-rule-grid">
+            <div class="budget-card">
+              <div class="budget-percent">70%</div>
+              <div class="budget-name">Top Proof Lead Gen Ads</div>
+              <div class="budget-desc">Nakalagak sa pinakamagagandang Before/After ads na may pinakamababang cost-per-inquiry.</div>
+            </div>
+            <div class="budget-card b20">
+              <div class="budget-percent" style="color: var(--purple-400);">20%</div>
+              <div class="budget-name">Retargeting &amp; Case Studies</div>
+              <div class="budget-desc">Naka-target sa mga nag-click sa website o nag-message noong nakalipas na 30-60 araw.</div>
+            </div>
+            <div class="budget-card b10">
+              <div class="budget-percent" style="color: var(--orange-400);">10%</div>
+              <div class="budget-name">Bagong Creative Testing</div>
+              <div class="budget-desc">Pang-subok ng bagong ad copy, video angles, at bagong subdivision locations.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4: REVENUE & FUNNEL ROI SIMULATOR
+         ========================================================================== -->
+    <section class="section-wrap" id="simulator">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="sim_kicker">Interactive Projections</span>
+          <h2 class="section-title" data-i18n="sim_title">Revenue &amp; Funnel ROI Calculator</h2>
+          <p class="section-subtitle" data-i18n="sim_sub">
+            Subukan ang inyong mga numero. I-adjust ang monthly ad spend, average project value, at closing rate para makita ang projected stage-by-stage pipeline at return on investment (ROAS).
+          </p>
+        </div>
+
+        <div class="simulator-container">
+          <!-- Controls Panel -->
+          <div class="calc-controls-card">
+            <h3 style="font-size: 1.3rem;">⚙️ Growth Parameters</h3>
+
+            <!-- Industry Selector -->
+            <div class="control-group">
+              <label class="control-label-row">
+                <span>Industry Preset</span>
+              </label>
+              <div class="industry-select-bar">
+                <button class="ind-btn active" onclick="setIndustryPreset('contractor')">🏗️ Contractor</button>
+                <button class="ind-btn" onclick="setIndustryPreset('clinic')">🏥 Clinic / Health</button>
+                <button class="ind-btn" onclick="setIndustryPreset('b2b')">⚖️ Professional / B2B</button>
+              </div>
+            </div>
+
+            <!-- Monthly Ad Spend Slider -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <span>Monthly Ad Spend</span>
+                <span class="control-value-display" id="dispAdSpend">₱25,000</span>
+              </div>
+              <input type="range" id="inputAdSpend" min="10000" max="150000" step="5000" value="25000" oninput="calculateROI()">
+            </div>
+
+            <!-- Average Project Value Slider -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <span>Average Project / Deal Value</span>
+                <span class="control-value-display" id="dispDealValue">₱75,000</span>
+              </div>
+              <input type="range" id="inputDealValue" min="15000" max="500000" step="5000" value="75000" oninput="calculateROI()">
+            </div>
+
+            <!-- Qualification Rate Slider -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <span>Lead Qualification Rate</span>
+                <span class="control-value-display" id="dispQualRate">40%</span>
+              </div>
+              <input type="range" id="inputQualRate" min="20" max="70" step="5" value="40" oninput="calculateROI()">
+            </div>
+
+            <!-- Close Rate from Estimates Slider -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <span>Closing Rate from Estimates</span>
+                <span class="control-value-display" id="dispCloseRate">35%</span>
+              </div>
+              <input type="range" id="inputCloseRate" min="15" max="65" step="5" value="35" oninput="calculateROI()">
+            </div>
+          </div>
+
+          <!-- Live Funnel & ROI Results Card -->
+          <div class="calc-results-card">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-size: 1.3rem;">📊 5-Stage Funnel Breakdown</h3>
+                <span style="font-size: 0.8rem; font-weight: 800; color: var(--cyan-400); text-transform: uppercase; background: var(--bg-pill); padding: 4px 12px; border-radius: var(--radius-full);">Real-time Model</span>
+              </div>
+
+              <!-- Animated Narrowing Funnel Visual -->
+              <div class="funnel-visual-stack">
+                <div class="funnel-row-box s1">
+                  <div class="funnel-row-left">
+                    <span class="f-tag">Stage 1</span>
+                    <span class="f-name">Total Inquiries</span>
+                  </div>
+                  <span class="funnel-row-val" id="resInquiries">83</span>
+                </div>
+
+                <div class="funnel-row-box s2">
+                  <div class="funnel-row-left">
+                    <span class="f-tag">Stage 2</span>
+                    <span class="f-name">Qualified Prospects</span>
+                  </div>
+                  <span class="funnel-row-val" id="resQualified">33</span>
+                </div>
+
+                <div class="funnel-row-box s3">
+                  <div class="funnel-row-left">
+                    <span class="f-tag">Stage 3</span>
+                    <span class="f-name">Estimates / Oculars</span>
+                  </div>
+                  <span class="funnel-row-val" id="resEstimates">17</span>
+                </div>
+
+                <div class="funnel-row-box s4">
+                  <div class="funnel-row-left">
+                    <span class="f-tag">Stage 4</span>
+                    <span class="f-name">Closed Projects</span>
+                  </div>
+                  <span class="funnel-row-val" id="resClosed" style="color: var(--orange-400);">6</span>
+                </div>
+
+                <div class="funnel-row-box s5">
+                  <div class="funnel-row-left">
+                    <span class="f-tag">Stage 5</span>
+                    <span class="f-name">Projected Revenue</span>
+                  </div>
+                  <span class="funnel-row-val" id="resRevenue">₱450,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Metric Highlights -->
+            <div class="roi-metrics-grid">
+              <div class="roi-stat-box">
+                <div class="roi-stat-label">Estimated Bookings</div>
+                <div class="roi-stat-number" id="resDealsCount">6 Deals</div>
+              </div>
+              <div class="roi-stat-box">
+                <div class="roi-stat-label">Gross Revenue</div>
+                <div class="roi-stat-number" id="resGrossRev">₱450K</div>
+              </div>
+              <div class="roi-stat-box highlight">
+                <div class="roi-stat-label">Projected ROAS</div>
+                <div class="roi-stat-number" id="resRoas">18.0x</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: 10-POINT READINESS AUDIT
+         ========================================================================== -->
+    <section class="section-wrap" id="audit">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker orange" data-i18n="audit_kicker">Diagnostic Assessment</span>
+          <h2 class="section-title" data-i18n="audit_title">10-Point Client Readiness Audit</h2>
+          <p class="section-subtitle" data-i18n="audit_sub">
+            Suriin ang inyong kasalukuyang online foundation. I-click ang mga items na meron kayo ngayon para makita ang inyong live Readiness Score at personalized gap analysis.
+          </p>
+        </div>
+
+        <div class="audit-grid">
+          <!-- Checklist -->
+          <div class="audit-checklist-card">
+            <h3 style="font-size: 1.3rem; margin-bottom: 20px;">📋 Foundation &amp; Lead Engine Checkpoints</h3>
+
+            <div class="audit-list">
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none" checked>
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>1. High-Res Logo &amp; Branded FB Cover Banner</strong>
+                  <span>May kumpletong business info, address, at aktibong "Send Message" CTA.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none" checked>
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>2. Verified Google Business Profile (GBP)</strong>
+                  <span>May tamang map location pin, operating hours, service area, at phone number.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>3. Dedicated Fast Conversion Landing Page</strong>
+                  <span>Sub-3 second load speed sa mobile phone na may malinaw na listahan ng serbisyo.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>4. 1-Click Sticky Contact Options (WhatsApp / Call)</strong>
+                  <span>Hindi na kailangan mag-copy-paste ng number ang customer para makipag-usap.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none" checked>
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>5. Before &amp; After Project Photo Portfolio</strong>
+                  <span>May gallery ng totoong natapos na trabaho na nagpapatunay ng galing ng team.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>6. 10+ Genuine 5-Star Google Reviews</strong>
+                  <span>May active velocity ng customer reviews na may sagot mula sa business owner.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none" checked>
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>7. Sub-15 Minute Inquiry Response Protocol</strong>
+                  <span>May nakatalagang tao na sumasagot agad sa bawat bagong message o tawag.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>8. Structured &amp; Transparent Estimate Template</strong>
+                  <span>May malinaw na breakdown ng scope, timeline, materials, at terms.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>9. Value-First Follow-Up System</strong>
+                  <span>May follow-up sequence na nagbibigay ng case studies sa hindi pa handang bumili.</span>
+                </div>
+              </label>
+
+              <label class="audit-checkbox-label" onclick="updateAuditScore()">
+                <input type="checkbox" style="display:none">
+                <div class="custom-checkbox">✓</div>
+                <div class="audit-item-text">
+                  <strong>10. Repeatable 5-Asset Capture Protocol</strong>
+                  <span>Lahat ng bagong natapos na project ay awtomatikong kinukuhanan ng proof materials.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Live Score Gauge -->
+          <div class="audit-verdict-card">
+            <div>
+              <h3 style="font-size: 1.3rem;">📈 Live Readiness Score</h3>
+              
+              <!-- Circular SVG Gauge -->
+              <div class="gauge-circle-wrap">
+                <svg class="gauge-svg" viewBox="0 0 160 160">
+                  <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                  <circle class="gauge-fill" id="auditGaugeFill" cx="80" cy="80" r="70"></circle>
+                </svg>
+                <div class="gauge-text-center">
+                  <div class="gauge-score" id="auditScoreText">40%</div>
+                  <div class="gauge-score-label">Readiness</div>
+                </div>
+              </div>
+
+              <!-- Verdict Tier -->
+              <div class="verdict-tier-badge yellow" id="auditVerdictBadge">
+                Moderate Leakage Risk
+              </div>
+
+              <p class="verdict-feedback-text" id="auditFeedbackText">
+                Maganda ang inyong response time at actual works, ngunit <strong>nagtatapon kayo ng pondo</strong> kapag nag-ads nang walang fast conversion landing page at verified reviews. Madaling mawalan ng tiwala ang customer sa gitna ng funnel.
+              </p>
+            </div>
+
+            <button class="btn-primary-orange" onclick="openConsultModalWithAudit()" style="width: 100%; justify-content: center;">
+              <span>🚀</span> <span>Ayusin Natin ang Leaks (Request Plan)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6: 30-SECOND WEBSITE TEST
+         ========================================================================== -->
+    <section class="section-wrap" id="webtest">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="web_kicker">Conversion Engine</span>
+          <h2 class="section-title" data-i18n="web_title">Ang 6 na Tanong na Dapat Masagot ng Website sa 30 Segundo</h2>
+          <p class="section-subtitle" data-i18n="web_sub">
+            Bago tumawag ang customer pagkatapos makita ang inyong ad, magche-check muna sila. Kung hindi ito masasagot agad, aalis sila at lilipat sa kakumpitensya.
+          </p>
+        </div>
+
+        <div class="web-test-grid">
+          <!-- 6 Questions Grid -->
+          <div class="questions-list-card">
+            <h3 style="font-size: 1.3rem; margin-bottom: 20px;">❓ The 6 Critical Decision Questions</h3>
+
+            <div class="questions-6-grid">
+              <div class="q-card active" onclick="highlightWireframe('hero')">
+                <div class="q-num">1.</div>
+                <div class="q-title">Ginagawa ba nila ito?</div>
+                <div class="q-desc">Malinaw na headline at listahan ng serbisyo agad sa unahan.</div>
+              </div>
+
+              <div class="q-card" onclick="highlightWireframe('hero')">
+                <div class="q-num">2.</div>
+                <div class="q-title">Nasa area ko ba sila?</div>
+                <div class="q-desc">Malinaw na service coverage at city locations.</div>
+              </div>
+
+              <div class="q-card" onclick="highlightWireframe('trust')">
+                <div class="q-num">3.</div>
+                <div class="q-title">May experience ba sila?</div>
+                <div class="q-desc">Track record, credentials, at mga lisensya.</div>
+              </div>
+
+              <div class="q-card" onclick="highlightWireframe('proof')">
+                <div class="q-num">4.</div>
+                <div class="q-title">May proof ba ng gawa?</div>
+                <div class="q-desc">High-res gallery ng bago at dating natapos na trabaho.</div>
+              </div>
+
+              <div class="q-card" onclick="highlightWireframe('reviews')">
+                <div class="q-num">5.</div>
+                <div class="q-title">May tiwala ba ang iba?</div>
+                <div class="q-desc">Google verified customer feedback at ratings.</div>
+              </div>
+
+              <div class="q-card" onclick="highlightWireframe('cta')">
+                <div class="q-num">6.</div>
+                <div class="q-title">Paano magpa-estimate?</div>
+                <div class="q-desc">1-Click direct WhatsApp, Viber, o Call action.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Wireframe -->
+          <div class="wireframe-inspector-card">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="font-size: 1.3rem;">📱 High-Converting Page Anatomy</h3>
+                <span style="font-size: 0.78rem; color: var(--cyan-400); font-weight: 800; background: var(--bg-pill); padding: 4px 10px; border-radius: var(--radius-full);">LIVE WIREFRAME</span>
+              </div>
+
+              <div class="wireframe-browser-frame">
+                <div class="browser-top-bar">
+                  <div class="browser-dot"></div>
+                  <div class="browser-dot"></div>
+                  <div class="browser-dot"></div>
+                  <span style="font-size: 0.72rem; color: #64748B; margin-left: 8px;">https://yourbrand.com/estimate</span>
+                </div>
+
+                <div class="wireframe-page-content">
+                  <div class="wf-block highlight" id="wfHero" onclick="selectQuestion(1)">
+                    <strong>[1 &amp; 2] Hero Section</strong><br>
+                    <span style="font-size: 0.74rem;">Headline + Specific Service Area + 1-Click Call</span>
+                  </div>
+
+                  <div class="wf-block" id="wfProof" onclick="selectQuestion(4)">
+                    <strong>[4] Proof Portfolio Gallery</strong><br>
+                    <span style="font-size: 0.74rem;">Before &amp; After Transformations + Specs</span>
+                  </div>
+
+                  <div class="wf-block" id="wfTrust" onclick="selectQuestion(3)">
+                    <strong>[3] Credentials &amp; Guarantees</strong><br>
+                    <span style="font-size: 0.74rem;">Licensed Specialists + 100% Quality Warranty</span>
+                  </div>
+
+                  <div class="wf-block" id="wfReviews" onclick="selectQuestion(5)">
+                    <strong>[5] Google Verified Reviews Carousel</strong><br>
+                    <span style="font-size: 0.74rem;">5-Star Real Client Feedback &amp; Map Embed</span>
+                  </div>
+
+                  <div class="wf-sticky-cta" id="wfCta" onclick="selectQuestion(6)">
+                    [6] 🟢 1-Click WhatsApp / Call Floating Button
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 16px;">
+              I-click ang kahit anong block sa wireframe para makita ang katumbas nitong tanong.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       SECTION 7: SCRIPT SIMULATOR
+       ========================================================================== -->
+    <section class="section-wrap" id="scripts">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="script_kicker">Sales Nurturing</span>
+          <h2 class="section-title" data-i18n="script_title">Maling Paraan vs. Tamang Value-First na Mensahe</h2>
+          <p class="section-subtitle" data-i18n="script_sub">
+            Hindi lahat magbo-book agad. May nagko-compare, nag-iipon ng budget, o naghihintay ng schedule. Huwag mangulit nang walang dahilan — magbigay ng halaga gamit ang mga templates na ito.
+          </p>
+        </div>
+
+        <div class="scripts-container">
+          <!-- The Wrong Way -->
+          <div class="compare-side-card wrong">
+            <div class="compare-badge-title">
+              <span>❌</span> <span>ANG MALING PARAAN (Puro Kulit)</span>
+            </div>
+            <div class="chat-bubble-sample wrong">
+              "Hi Ma'am/Sir, follow up lang po sa estimate ninyo kahapon. Kukunin nyo po ba? May discount po kami kung ngayon niyo kukunin."
+            </div>
+            <p class="chat-note-text">
+              <strong>Bakit hindi gumagana:</strong> Nagdudulot ito ng pressure sa customer at kadalasang nagiging dahilan para i-seen o i-block ang inyong mensahe dahil halatang desperado.
+            </p>
+          </div>
+
+          <!-- The Right Way -->
+          <div class="compare-side-card right">
+            <div class="compare-badge-title">
+              <span>✅</span> <span>ANG TAMA AT VALUE-FIRST (Proof Nurture)</span>
+            </div>
+            <div class="chat-bubble-sample right">
+              "Hi [Name], may natapos po kaming katulad na project sa area ninyo kahapon. Naalala ko po yung concern ninyo sa [Problem], baka makatulong po itong case study photos kung paano namin ito naresolba."
+            </div>
+            <p class="chat-note-text">
+              <strong>Bakit mabisa:</strong> Nakatutulong ito sa customer na makapag-desisyon nang may sapat na kumpiyansa at impormasyon kapag handa na ang kanilang budget.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3 Copy-Paste Scripts -->
+        <div class="templates-deck-wrap">
+          <div class="templates-tabs-bar">
+            <button class="template-tab-btn active" onclick="switchScript(1)">Template A: Local Case Study</button>
+            <button class="template-tab-btn" onclick="switchScript(2)">Template B: Client Review Proof</button>
+            <button class="template-tab-btn" onclick="switchScript(3)">Template C: Schedule Slot Update</button>
+          </div>
+
+          <div class="template-viewer-card">
+            <div class="template-text-content" id="scriptContentDisplay">
+              "Hi [Customer Name]! Naalala ko po yung napag-usapan nating [Specific Service] sa [Location]. Kakasimula lang po namin ng katulad na project sa katabing subdivision kaninang umaga. Ibinahagi ko lang po itong 3 photos kung paano namin inayos ang parehong issue para may reference po kayo. Let me know po kung may questions pa kayo sa estimate!"
+            </div>
+
+            <button class="btn-primary-cyan" onclick="copyActiveScript()">
+              <span>📋</span> <span id="copyBtnText">Copy Script to Clipboard</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 8: ROADMAP
+         ========================================================================== -->
+    <section class="section-wrap" id="roadmap">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker green" data-i18n="road_kicker">Implementation Plan</span>
+          <h2 class="section-title" data-i18n="road_title">30-60-90 Day Action &amp; Rollout Roadmap</h2>
+          <p class="section-subtitle" data-i18n="road_sub">
+            Kongkretong sunod-sunod na hakbang mula Foundation Setup hanggang sa pagpapagana ng Proof-Based Ad campaigns at Flywheel Scaling.
+          </p>
+        </div>
+
+        <div class="roadmap-timeline-grid">
+          <!-- Phase 1 -->
+          <div class="roadmap-phase-card">
+            <div>
+              <div class="phase-badge-top">PHASE 1 · DAYS 1 - 15</div>
+              <h3 class="phase-title-main">Foundation &amp; Technical Setup</h3>
+              <ul class="phase-tasks-list">
+                <li><span class="task-dot"></span> Ayusin at i-launch ang Conversion Landing Page.</li>
+                <li><span class="task-dot"></span> I-optimize at i-verify ang Google Business Profile.</li>
+                <li><span class="task-dot"></span> I-update ang Facebook branding &amp; call buttons.</li>
+                <li><span class="task-dot"></span> I-organisa ang initial batch ng past project proof.</li>
+              </ul>
+            </div>
+            <div class="phase-deliverable-box">
+              <strong><span>🎯</span> Deliverable:</strong>
+              <span>100% complete online readiness bago maglabas ng kahit pisong ad budget.</span>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="roadmap-phase-card p2">
+            <div>
+              <div class="phase-badge-top">PHASE 2 · DAYS 16 - 30</div>
+              <h3 class="phase-title-main">Reach &amp; Proof Ad Launch</h3>
+              <ul class="phase-tasks-list">
+                <li><span class="task-dot"></span> I-launch ang Proof-Based Facebook Ad campaigns.</li>
+                <li><span class="task-dot"></span> Hyper-local geotargeting sa exact service radius.</li>
+                <li><span class="task-dot"></span> Seamless routing sa WhatsApp, Viber, at Phone.</li>
+                <li><span class="task-dot"></span> Daily tracking ng leads at cost-per-estimate.</li>
+              </ul>
+            </div>
+            <div class="phase-deliverable-box">
+              <strong><span>🎯</span> Deliverable:</strong>
+              <span>First batch of warm, high-intent local inquiries entering the funnel.</span>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="roadmap-phase-card p3">
+            <div>
+              <div class="phase-badge-top">PHASE 3 · DAYS 31 - 90+</div>
+              <h3 class="phase-title-main">Flywheel &amp; Predictable Scale</h3>
+              <ul class="phase-tasks-list">
+                <li><span class="task-dot"></span> 5-Asset capture sa bawat bagong natapos na project.</li>
+                <li><span class="task-dot"></span> Value-driven follow-ups sa previous inquiries.</li>
+                <li><span class="task-dot"></span> I-scale ang budget sa highest-ROI ad campaigns.</li>
+                <li><span class="task-dot"></span> Tuluy-tuloy na Google reviews collection.</li>
+              </ul>
+            </div>
+            <div class="phase-deliverable-box">
+              <strong><span>🎯</span> Deliverable:</strong>
+              <span>Self-sustaining acquisition system generating compounding monthly deals.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 9: INDUSTRY COMPATIBILITY MATRIX
+         ========================================================================== -->
+    <section class="section-wrap" id="industries">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" data-i18n="ind_kicker">Universal Compatibility</span>
+          <h2 class="section-title" data-i18n="ind_title">Paano Ito Gumagana sa Inyong Industriya?</h2>
+          <p class="section-subtitle" data-i18n="ind_sub">
+            Subok na ang framework na ito sa iba't ibang high-ticket service businesses. Piliin ang inyong industriya para makita ang tailored strategic playbook:
+          </p>
+        </div>
+
+        <div class="industry-tabs-deck">
+          <div class="ind-side-nav">
+            <button class="ind-nav-btn active" onclick="switchIndustryTab('contractor')">
+              <span>🏗️</span> <span>Contractors &amp; Trades</span>
+            </button>
+            <button class="ind-nav-btn" onclick="switchIndustryTab('clinic')">
+              <span>🏥</span> <span>Clinics &amp; Aesthetics</span>
+            </button>
+            <button class="ind-nav-btn" onclick="switchIndustryTab('b2b')">
+              <span>⚖️</span> <span>Professional &amp; B2B</span>
+            </button>
+            <button class="ind-nav-btn" onclick="switchIndustryTab('specialty')">
+              <span>🚗</span> <span>Specialty Services</span>
+            </button>
+          </div>
+
+          <div class="ind-content-panel" id="industryContentPanel">
+            <div class="ind-hero-row">
+              <div class="ind-title-block">
+                <h3 id="indHeroTitle">Contractors, Builders &amp; Home Renovation</h3>
+                <span id="indHeroSub">Construction, Roofing, Solar, Interior Design &amp; Remodeling</span>
+              </div>
+              <span class="pillar-badge orange">High-Ticket</span>
+            </div>
+
+            <div class="ind-metrics-strip">
+              <div class="ind-metric-card">
+                <small>Average Deal Size</small>
+                <strong id="indDealSize">₱50,000 - ₱1,500,000+</strong>
+              </div>
+              <div class="ind-metric-card">
+                <small>Primary Conversion Step</small>
+                <strong id="indStep">Free Site Ocular Visit</strong>
+              </div>
+              <div class="ind-metric-card">
+                <small>Winning Ad Format</small>
+                <strong id="indAdFormat">Before/After Transformations</strong>
+              </div>
+            </div>
+
+            <div class="ind-deep-details">
+              <div class="ind-box-block">
+                <h5>🎯 Targeted Ad Hooks</h5>
+                <p id="indHooks">"Naghahanap ka ba ng subok na contractor sa QC? Tingnan ang natapos naming 3-bedroom renovation sa Tierra Pura na natapos on-time at within budget."</p>
+              </div>
+              <div class="ind-box-block">
+                <h5>🛡️ Main Customer Hesitation</h5>
+                <p id="indHesitation">Takot sa atrasadong turnover, low-quality materials, at biglang nagbabagong presyo. Sinusugpo ito ng video proof at transparent ocular estimate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 10: STRATEGY CONSULTATION BUILDER
+         ========================================================================== -->
+    <section class="section-wrap" id="consultation">
+      <div class="container">
+        <div class="cta-banner-master">
+          <div class="cta-master-grid">
+            <div class="cta-left-copy">
+              <span style="font-size: 0.84rem; font-weight: 800; color: var(--orange-400); text-transform: uppercase; letter-spacing: 1.6px;">Handa Ka Na Bang Simulan ang Sistema Mo?</span>
+              <h2>Buuin Natin ang Inyong Client Acquisition Engine</h2>
+              <p>
+                Huwag nang ubusin ang oras at pondo sa trial-and-error. Buuin natin ang inyong automated website, Google Business setup, at proof-first advertising system — para maging mas madali para sa TAMANG customer na makita, i-check, at pagkatiwalaan kayo.
+              </p>
+
+              <div class="cta-contact-box">
+                <div class="contact-line-item">
+                  <div class="contact-icon-frame">📞</div>
+                  <div>
+                    <div style="font-size: 0.76rem; color: #94A3B8; text-transform: uppercase;">Direct Line / WhatsApp / Viber</div>
+                    <strong style="font-size: 1.2rem; color: var(--cyan-400);">+63 991 917 3652</strong>
+                  </div>
+                </div>
+                <div class="contact-line-item">
+                  <div class="contact-icon-frame">✉️</div>
+                  <div>
+                    <div style="font-size: 0.76rem; color: #94A3B8; text-transform: uppercase;">Official Email</div>
+                    <strong style="font-size: 1rem;">hello@weforgeweb.com</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategy Brief Form -->
+            <div class="builder-form-card">
+              <h4>📋 Request Custom Growth Brief</h4>
+              <p style="font-size: 0.84rem; color: #94A3B8; margin-bottom: 8px;">Sagutan ang maikling detalye para ma-customize namin ang inyong strategy plan:</p>
+
+              <input type="text" id="briefName" class="form-input" placeholder="Your Name / Business Name">
+              
+              <select id="briefIndustry" class="form-select">
+                <option value="Contractor / Construction">Industry: Contractor / Construction</option>
+                <option value="Clinic / Aesthetic / Health">Industry: Clinic / Aesthetic / Health</option>
+                <option value="Professional Services / B2B">Industry: Professional Services / B2B</option>
+                <option value="Specialty Home / Auto Services">Industry: Specialty Home / Auto Services</option>
+              </select>
+
+              <select id="briefBottleneck" class="form-select">
+                <option value="Walang maayos na website / Landing Page">Main Issue: Walang maayos na website / LP</option>
+                <option value="Mababa ang inquiries mula sa Facebook Ads">Main Issue: Mababa ang inquiries sa Ads</option>
+                <option value="Walang Google Business Profile &amp; Reviews">Main Issue: Walang GBP &amp; Reviews</option>
+                <option value="Gusto i-scale ang kasalukuyang lead engine">Main Issue: Gusto i-scale ang lead engine</option>
+              </select>
+
+              <button class="btn-primary-orange" onclick="sendWhatsAppBrief()" style="width: 100%; justify-content: center; margin-top: 6px;">
+                <span>💬</span> <span>Send via WhatsApp (+63 991 917 3652)</span>
+              </button>
+
+              <button class="btn-control-glass" onclick="sendEmailBrief()" style="width: 100%; justify-content: center; background: rgba(255,255,255,0.08);">
+                <span>✉️</span> <span>Send via Official Email</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <strong>WE FORGE WEB</strong> · Client Growth Kit Master Strategic Playbook.<br>
+        Built to Automate — Forged to Last. © 2026 We Forge Web.
+      </div>
+      <div class="footer-motto">
+        "Build the foundation. Palakasin ang reach. Ipakita ang proof. Generate inquiries. Track what works. Then scale."
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       FLOATING ACTION DOCK
+       ========================================================================== -->
+  <div class="floating-action-dock">
+    <a href="https://wa.me/639919173652?text=Hi%20We%20Forge%20Web!%20I%20would%20like%20to%20discuss%20the%20Client%20Growth%20Kit." target="_blank" class="dock-btn whatsapp-dock" title="Chat on WhatsApp">
+      <span>💬</span>
+    </a>
+    <button class="dock-btn" onclick="scrollToSection('hero')" title="Scroll to Top">
+      <span>↑</span>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       PRESENTATION MODE PITCH DECK BAR
+       ========================================================================== -->
+  <div class="pitch-deck-bar" id="pitchDeckBar">
+    <button class="btn-control-glass" onclick="navigateSlide(-1)">◀ Prev Slide</button>
+    <span id="deckSlideNum" style="font-weight: 800; font-size: 0.9rem; color: var(--cyan-400);">Slide 1 of 10</span>
+    <button class="btn-control-glass" onclick="navigateSlide(1)">Next Slide ▶</button>
+    <button class="btn-control-glass" onclick="togglePitchMode()" style="background: var(--red-500); color: #fff; border: none;">Exit Pitch</button>
+  </div>
+
+  <!-- ==========================================================================
+       TOAST NOTIFICATION
+       ========================================================================== -->
+  <div class="toast-popup" id="toast">
+    <span>✅</span> <span id="toastMsg">Notification message</span>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: DIRECT STRATEGY CONSULTATION
+       ========================================================================== -->
+  <div class="modal-backdrop" id="consultModal">
+    <div class="modal-window">
+      <button class="modal-close-btn" onclick="closeConsultModal()">✕</button>
+      <h3 style="font-size: 1.5rem; margin-bottom: 6px;">🚀 Start Your Connected Growth Engine</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 26px;">
+        Makipag-ugnayan nang direkta kay Jhapher Malabanan at sa We Forge Web strategy team:
+      </p>
+
+      <div class="engine-pillars-stack" style="margin-bottom: 26px;">
+        <a href="https://wa.me/639919173652?text=Hi%20We%20Forge%20Web!%20I%20reviewed%20the%20Client%20Growth%20Kit%20and%20I'd%20like%20to%20request%20a%20Strategy%20Consultation." target="_blank" class="pillar-row" style="border-left: 5px solid var(--green-500);">
+          <div class="pillar-row-left">
+            <div class="pillar-icon-box green">💬</div>
+            <div class="pillar-info">
+              <h4>Chat Directly on WhatsApp</h4>
+              <span>+63 991 917 3652 · Instant response</span>
+            </div>
+          </div>
+          <span class="pillar-badge green">Fastest</span>
+        </a>
+
+        <a href="tel:+639919173652" class="pillar-row" style="border-left: 5px solid var(--cyan-500);">
+          <div class="pillar-row-left">
+            <div class="pillar-icon-box blue">📞</div>
+            <div class="pillar-info">
+              <h4>Direct Phone Call</h4>
+              <span>+63 991 917 3652 · Same-day consultation</span>
+            </div>
+          </div>
+          <span class="pillar-badge blue">Direct</span>
+        </a>
+
+        <a href="mailto:hello@weforgeweb.com?subject=Client%20Growth%20Kit%20Consultation%20Request" class="pillar-row" style="border-left: 5px solid var(--purple-500);">
+          <div class="pillar-row-left">
+            <div class="pillar-icon-box purple">✉️</div>
+            <div class="pillar-info">
+              <h4>Send Strategy Email</h4>
+              <span>hello@weforgeweb.com · Send project brief</span>
+            </div>
+          </div>
+          <span class="pillar-badge purple">Official</span>
+        </a>
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--text-dim); text-align: center;">
+        We Forge Web · Manila, Philippines · weforgeweb.com
+      </p>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT ENGINE
+       ========================================================================== -->
+  <script>
+    /* ============================
+       BILINGUAL DICTIONARY
+       ============================ */
+    const i18nData = {
+      taglish: {
+        brand_tagline: "Client Growth Kit",
+        nav_overview: "Overview",
+        nav_blueprint: "Blueprint",
+        nav_flywheel: "Flywheel",
+        nav_simulator: "ROI Funnel",
+        nav_audit: "10-Point Audit",
+        nav_webtest: "30s Test",
+        nav_scripts: "Scripts",
+        nav_roadmap: "Roadmap",
+        nav_industries: "Industries",
+        pitch_mode: "Pitch Mode",
+        btn_consult: "Request Growth Plan",
+        hero_badge: "Connected Client Acquisition System",
+        hero_title_1: "From Seen to Chosen.",
+        hero_title_2: "Isang Buo at Napatunayang Lead Engine.",
+        hero_desc: "Isang komprehensibong SHARED CLIENT ACQUISITION SYSTEM na binuo ng We Forge Web para sa inyong negosyo. Kami ang nagtatayo ng matibay na infrastructure — High-Converting Landing Page, Facebook Proof Ads, at Google Business Profile. Kayo naman ang sumasagot, nag-e-estimate, nagfo-follow up, at nagde-deliver ng serbisyo.",
+        hero_cta_blueprint: "Explore 9-Stage Blueprint",
+        hero_cta_simulator: "Simulate Your ROI",
+        hero_cta_audit: "Take 10-Point Audit",
+        kpi_pillars: "Connected Pillars",
+        kpi_stages: "Shared Stages",
+        kpi_assets: "Proof Flywheel",
+        kpi_decision: "Decision Engine",
+        card_pillars_title: "Ang 4 na Haligi ng Connected System",
+        card_pillars_sub: "Hindi sapat ang isang channel. Lahat ay nagtutulungan para mabilis ang tiwala ng customer:",
+        pillar_1_title: "Online Readiness",
+        pillar_1_desc: "Buo at kagalang-galang na FB, GBP, at Website",
+        pillar_2_title: "Proof-Based Ads",
+        pillar_2_desc: "Mabilis na reach gamit ang totoong resulta",
+        pillar_3_title: "Conversion Landing Page",
+        pillar_3_desc: "Nasasagot ang 6 na customer questions sa 30s",
+        pillar_4_title: "Asset Machine Flywheel",
+        pillar_4_desc: "Bawat natapos na project = panggatong sa bago",
+        resp_kicker: "Partnership Philosophy",
+        resp_title: "Para Gumana ang System, May Part Din Kayo.",
+        resp_sub: "Hindi kayang gawin ng We Forge Web ang lahat. Kami ang gagawa ng system at propesyonal na online foundation ninyo — pero may trabaho rin kayo para mapakinabangan ito. Partnership ito, hindi labas-kamay.",
+        bp_kicker: "Execution Architecture",
+        bp_title: "Ang Client Acquisition Blueprint",
+        bp_sub: "I-click ang bawat stage para makita ang eksaktong trabaho, deliverables, checklists, at kung sino ang may hawak nito.",
+        filter_all: "All 9 Stages",
+        filter_kami: "KAMI (We Forge Web)",
+        filter_kayo: "KAYO (Client Work)",
+        filter_shared: "SHARED (Kayo + Kami)",
+        fly_kicker: "Compounding Growth",
+        fly_title: "Bawat Project = Gasolina sa Susunod na Kliyente",
+        fly_sub: "Huwag hayaang matapos ang isang proyekto nang walang nakukuhang patunay. Ang Proof Flywheel ang dahilan kung bakit bumababa ang ad spend at tumataas ang tiwala habang tumatagal.",
+        asset_protocol_title: "Ang 5-Asset Capture Protocol",
+        asset_protocol_sub: "Bawat natapos na trabaho ay dapat may ganitong kumpletong marketing deliverables:",
+        sim_kicker: "Interactive Projections",
+        sim_title: "Revenue & Funnel ROI Calculator",
+        sim_sub: "Subukan ang inyong mga numero. I-adjust ang monthly ad spend, average project value, at closing rate para makita ang projected stage-by-stage pipeline at return on investment (ROAS).",
+        audit_kicker: "Diagnostic Assessment",
+        audit_title: "10-Point Client Readiness Audit",
+        audit_sub: "Suriin ang inyong kasalukuyang online foundation. I-click ang mga items na meron kayo ngayon para makita ang inyong live Readiness Score at personalized gap analysis.",
+        web_kicker: "Conversion Engine",
+        web_title: "Ang 6 na Tanong na Dapat Masagot ng Website sa 30 Segundo",
+        web_sub: "Bago tumawag ang customer pagkatapos makita ang inyong ad, magche-check muna sila. Kung hindi ito masasagot agad, aalis sila at lilipat sa kakumpitensya.",
+        script_kicker: "Sales Nurturing",
+        script_title: "Maling Paraan vs. Tamang Value-First na Mensahe",
+        script_sub: "Hindi lahat magbo-book agad. May nagko-compare, nag-iipon ng budget, o naghihintay ng schedule. Huwag mangulit nang walang dahilan — magbigay ng halaga gamit ang mga templates na ito.",
+        road_kicker: "Implementation Plan",
+        road_title: "30-60-90 Day Action & Rollout Roadmap",
+        road_sub: "Kongkretong sunod-sunod na hakbang mula Foundation Setup hanggang sa pagpapagana ng Proof-Based Ad campaigns at Flywheel Scaling.",
+        ind_kicker: "Universal Compatibility",
+        ind_title: "Paano Ito Gumagana sa Inyong Industriya?",
+        ind_sub: "Subok na ang framework na ito sa iba't ibang high-ticket service businesses. Piliin ang inyong industriya para makita ang tailored strategic playbook:"
+      },
+      english: {
+        brand_tagline: "Client Growth Kit",
+        nav_overview: "Overview",
+        nav_blueprint: "Blueprint",
+        nav_flywheel: "Flywheel",
+        nav_simulator: "ROI Funnel",
+        nav_audit: "10-Point Audit",
+        nav_webtest: "30s Test",
+        nav_scripts: "Scripts",
+        nav_roadmap: "Roadmap",
+        nav_industries: "Industries",
+        pitch_mode: "Pitch Deck",
+        btn_consult: "Request Growth Plan",
+        hero_badge: "Connected Client Acquisition System",
+        hero_title_1: "From Seen to Chosen.",
+        hero_title_2: "The Complete & Proven Lead Engine.",
+        hero_desc: "A comprehensive SHARED CLIENT ACQUISITION SYSTEM engineered by We Forge Web. WE build and strengthen the high-converting infrastructure — Landing Page, Proof Ads, and Google Business Profile so prospects easily find, vet, and trust you. YOU respond rapidly, provide estimates, follow up, and deliver quality work.",
+        hero_cta_blueprint: "Explore 9-Stage Blueprint",
+        hero_cta_simulator: "Simulate Your ROI",
+        hero_cta_audit: "Take 10-Point Audit",
+        kpi_pillars: "Connected Pillars",
+        kpi_stages: "Shared Stages",
+        kpi_assets: "Proof Flywheel",
+        kpi_decision: "Decision Engine",
+        card_pillars_title: "The 4 Core Lead Engine Pillars",
+        card_pillars_sub: "Single-channel marketing fails. All 4 pillars connect to compound trust & bookings:",
+        pillar_1_title: "Online Readiness",
+        pillar_1_desc: "Credible & complete profiles across FB, Google & Web",
+        pillar_2_title: "Proof-Based Ads",
+        pillar_2_desc: "Rapid local reach using real client transformation proof",
+        pillar_3_title: "Conversion Landing Page",
+        pillar_3_desc: "Answers all 6 customer decision questions in 30s",
+        pillar_4_title: "Asset Machine Flywheel",
+        pillar_4_desc: "Every finished project powers future client acquisition",
+        resp_kicker: "Partnership Philosophy",
+        resp_title: "A Shared Partnership for High-Velocity Growth",
+        resp_sub: "We Forge Web builds the automated acquisition engine and online trust foundation. You handle prompt inquiry response, estimates, and quality delivery. It is a shared growth system.",
+        bp_kicker: "Execution Architecture",
+        bp_title: "The 9-Stage Client Acquisition Blueprint",
+        bp_sub: "Click any stage to inspect detailed actions, deliverables, checklists, and ownership allocation.",
+        filter_all: "All 9 Stages",
+        filter_kami: "WE (We Forge Web)",
+        filter_kayo: "YOU (Client Work)",
+        filter_shared: "SHARED (Joint Effort)",
+        fly_kicker: "Compounding Growth",
+        fly_title: "Every Project = Fuel for the Next High-Value Client",
+        fly_sub: "Never finish a project without capturing authentic proof. The Proof Flywheel systematically lowers customer acquisition costs while multiplying conversion rates.",
+        asset_protocol_title: "The 5-Asset Capture Protocol",
+        asset_protocol_sub: "Every completed job must produce these 5 foundational marketing assets:",
+        sim_kicker: "Interactive Projections",
+        sim_title: "Revenue & Funnel ROI Calculator",
+        sim_sub: "Test your numbers. Adjust monthly ad budget, deal value, and close rates to project your stage-by-stage pipeline and return on ad spend (ROAS).",
+        audit_kicker: "Diagnostic Assessment",
+        audit_title: "10-Point Client Readiness Audit",
+        audit_sub: "Audit your existing online foundation. Select the checkpoints you currently have active to reveal your live Readiness Score and leakage analysis.",
+        web_kicker: "Conversion Engine",
+        web_title: "The 6 Critical Questions Your Website Must Answer in 30 Seconds",
+        web_sub: "Before calling, prospective customers will inspect your site. If these 6 questions are not answered immediately, they bounce to a competitor.",
+        script_kicker: "Sales Nurturing",
+        script_title: "Desperate Follow-up vs. High-Value Proof Nurturing",
+        script_sub: "Not every prospect books immediately. Use these value-first, proof-driven templates to recover deals without sounding pushy.",
+        road_kicker: "Implementation Plan",
+        road_title: "30-60-90 Day Action & Rollout Roadmap",
+        road_sub: "A concrete milestone plan moving from Foundation Setup to Proof-Based Ad scaling and predictable lead compounding.",
+        ind_kicker: "Universal Compatibility",
+        ind_title: "How This System Operates in Your Industry",
+        ind_sub: "Battle-tested across high-ticket service niches. Select your industry to view tailored metrics and proven ad angles:"
+      }
+    };
+
+    let currentLang = 'taglish';
+    let currentTheme = 'dark';
+    let currentPitchSlide = 0;
+    const pitchSections = ['hero', 'overview', 'blueprint', 'flywheel', 'simulator', 'audit', 'webtest', 'scripts', 'roadmap', 'industries', 'consultation'];
+
+    /* Scroll Progress Engine */
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+
+      // Update active nav link
+      const scrollPos = window.scrollY + 100;
+      document.querySelectorAll('.section-wrap').forEach(sec => {
+        if (sec.offsetTop <= scrollPos && (sec.offsetTop + sec.offsetHeight) > scrollPos) {
+          const id = sec.getAttribute('id');
+          document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+          });
+        }
+      });
+    });
+
+    /* Language Switcher */
+    document.getElementById('langToggleBtn').addEventListener('click', () => {
+      currentLang = currentLang === 'taglish' ? 'english' : 'taglish';
+      document.documentElement.setAttribute('data-lang', currentLang);
+      document.getElementById('langFlag').innerText = currentLang === 'taglish' ? '🇵🇭' : '🌐';
+      document.getElementById('langText').innerText = currentLang === 'taglish' ? 'Taglish' : 'English';
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nData[currentLang] && i18nData[currentLang][key]) {
+          el.innerText = i18nData[currentLang][key];
+        }
+      });
+      showToast(`Language switched to ${currentLang === 'taglish' ? 'Taglish' : 'English'}`);
+    });
+
+    /* Theme Switcher */
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      document.getElementById('themeIcon').innerText = currentTheme === 'dark' ? '☀️' : '🌙';
+      showToast(`Theme switched to ${currentTheme} mode`);
+    });
+
+    /* Mobile Drawer Toggle */
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('active');
+    }
+    document.getElementById('mobileMenuToggleBtn').addEventListener('click', toggleMobileMenu);
+
+    /* Scroll Helper */
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Toast Notification */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3200);
+    }
+
+    /* 9-Stage Accordion */
+    function toggleStage(headerEl) {
+      const card = headerEl.closest('.stage-card');
+      card.classList.toggle('expanded');
+    }
+
+    function filterStages(ownerType) {
+      document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const cards = document.querySelectorAll('.stage-card');
+      cards.forEach(card => {
+        const owner = card.getAttribute('data-owner');
+        if (ownerType === 'all' || owner === ownerType) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Flywheel Simulator */
+    let flywheelCount = 15;
+    document.getElementById('addProjectFlywheelBtn').addEventListener('click', () => {
+      flywheelCount += 5;
+      const mult = (1 + (flywheelCount * 0.04)).toFixed(1);
+      document.getElementById('flywheelAssetCount').innerText = flywheelCount;
+      document.getElementById('flywheelMultiplier').innerText = `${mult}x`;
+      showToast(`🎉 1 Project Added! Generated +5 New Proof Assets! Trust Multiplier: ${mult}x`);
+    });
+
+    /* Revenue & ROI Calculator */
+    const industryPresets = {
+      contractor: { spend: 25000, deal: 75000, qual: 40, close: 35, cpl: 300 },
+      clinic: { spend: 30000, deal: 35000, qual: 50, close: 45, cpl: 250 },
+      b2b: { spend: 40000, deal: 150000, qual: 35, close: 25, cpl: 600 }
+    };
+
+    function setIndustryPreset(ind) {
+      document.querySelectorAll('.ind-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const p = industryPresets[ind];
+      if (p) {
+        document.getElementById('inputAdSpend').value = p.spend;
+        document.getElementById('inputDealValue').value = p.deal;
+        document.getElementById('inputQualRate').value = p.qual;
+        document.getElementById('inputCloseRate').value = p.close;
+        calculateROI(p.cpl);
+      }
+    }
+
+    function calculateROI(customCpl = null) {
+      const spend = parseFloat(document.getElementById('inputAdSpend').value);
+      const dealVal = parseFloat(document.getElementById('inputDealValue').value);
+      const qualRate = parseFloat(document.getElementById('inputQualRate').value) / 100;
+      const closeRate = parseFloat(document.getElementById('inputCloseRate').value) / 100;
+
+      document.getElementById('dispAdSpend').innerText = `₱${spend.toLocaleString()}`;
+      document.getElementById('dispDealValue').innerText = `₱${dealVal.toLocaleString()}`;
+      document.getElementById('dispQualRate').innerText = `${Math.round(qualRate * 100)}%`;
+      document.getElementById('dispCloseRate').innerText = `${Math.round(closeRate * 100)}%`;
+
+      const cpl = customCpl || (spend > 50000 ? 320 : 300);
+      const inquiries = Math.max(10, Math.round(spend / cpl));
+      const qualified = Math.max(4, Math.round(inquiries * qualRate));
+      const estimates = Math.max(2, Math.round(qualified * 0.5));
+      const closed = Math.max(1, Math.round(estimates * closeRate));
+      const grossRev = closed * dealVal;
+      const roas = (grossRev / spend).toFixed(1);
+
+      document.getElementById('resInquiries').innerText = inquiries;
+      document.getElementById('resQualified').innerText = qualified;
+      document.getElementById('resEstimates').innerText = estimates;
+      document.getElementById('resClosed').innerText = closed;
+      document.getElementById('resRevenue').innerText = `₱${grossRev.toLocaleString()}`;
+      document.getElementById('resDealsCount').innerText = `${closed} Deals`;
+      document.getElementById('resGrossRev').innerText = grossRev >= 1000000 ? `₱${(grossRev / 1000000).toFixed(1)}M` : `₱${Math.round(grossRev / 1000)}K`;
+      document.getElementById('resRoas').innerText = `${roas}x`;
+    }
+
+    /* 10-Point Audit Engine */
+    function updateAuditScore() {
+      const labels = document.querySelectorAll('.audit-checkbox-label');
+      let checkedCount = 0;
+      labels.forEach(l => {
+        const cb = l.querySelector('input[type="checkbox"]');
+        if (cb.checked) {
+          l.classList.add('checked');
+          checkedCount++;
+        } else {
+          l.classList.remove('checked');
+        }
+      });
+
+      const score = checkedCount * 10;
+      document.getElementById('auditScoreText').innerText = `${score}%`;
+
+      const offset = 440 - (440 * (score / 100));
+      const gaugeFill = document.getElementById('auditGaugeFill');
+      gaugeFill.style.strokeDashoffset = offset;
+
+      const badge = document.getElementById('auditVerdictBadge');
+      const feedback = document.getElementById('auditFeedbackText');
+
+      if (score <= 30) {
+        badge.className = 'verdict-tier-badge red';
+        badge.innerText = 'High Leakage Risk';
+        gaugeFill.style.stroke = '#EF4444';
+        feedback.innerHTML = 'Karamihan sa inyong marketing attention ay <strong>nawawala bago mag-inquire</strong> dahil sa kakulangan sa website trust at verified reviews. Huwag munang mag-scale ng ads bago ito maayos.';
+      } else if (score <= 70) {
+        badge.className = 'verdict-tier-badge yellow';
+        badge.innerText = 'Moderate Leakage Risk';
+        gaugeFill.style.stroke = '#FF6B35';
+        feedback.innerHTML = 'Maganda ang inyong response time at actual works, ngunit <strong>nagtatapon kayo ng pondo</strong> kapag nag-a-advertise nang walang sub-3s landing page at structured follow-up process.';
+      } else {
+        badge.className = 'verdict-tier-badge green';
+        badge.innerText = 'Elite Growth Ready';
+        gaugeFill.style.stroke = '#10B981';
+        feedback.innerHTML = 'Napakaganda ng inyong online foundation! Handa na ang inyong negosyo para sa <strong>high-budget proof-first advertising scale</strong> para mag-domina sa inyong service radius.';
+      }
+    }
+
+    /* 30-Second Web Test */
+    function highlightWireframe(sectionKey) {
+      document.querySelectorAll('.wf-block, .wf-sticky-cta').forEach(b => b.classList.remove('highlight'));
+      if (sectionKey === 'hero') document.getElementById('wfHero').classList.add('highlight');
+      if (sectionKey === 'proof') document.getElementById('wfProof').classList.add('highlight');
+      if (sectionKey === 'trust') document.getElementById('wfTrust').classList.add('highlight');
+      if (sectionKey === 'reviews') document.getElementById('wfReviews').classList.add('highlight');
+      if (sectionKey === 'cta') document.getElementById('wfCta').classList.add('highlight');
+
+      document.querySelectorAll('.q-card').forEach(qc => qc.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    function selectQuestion(qNum) {
+      document.querySelectorAll('.q-card').forEach((qc, idx) => {
+        if (idx + 1 === qNum) qc.classList.add('active');
+        else qc.classList.remove('active');
+      });
+      showToast(`Inspecting Question #${qNum}`);
+    }
+
+    /* Follow-up Scripts */
+    const scriptTemplates = {
+      1: `"Hi [Customer Name]! Naalala ko po yung napag-usapan nating [Specific Service] sa [Location]. Kakasimula lang po namin ng katulad na project sa katabing subdivision kaninang umaga. Ibinahagi ko lang po itong 3 photos kung paano namin inayos ang parehong issue para may reference po kayo. Let me know po kung may questions pa kayo sa estimate!"`,
+      2: `"Hi [Customer Name]! May natanggap po kaming review mula kay [Client Name] kanina ukol sa kanilang [Service Type] project. Pareho po kayo ng initial concern noon ukol sa timeline, at natutuwa po kami na natapos namin ito 2 days ahead of schedule. Send ko po sa inyo ang review link para makita ninyo!"`,
+      3: `"Hi [Customer Name]! Magalang na update lang po ukol sa ating site ocular schedule. Mayroon na lang po kaming 2 available installation slots para sa susunod na linggo sa inyong area bago mag-fully book. Nais ko lang po i-check kung tuloy po natin ang inyong project para ma-reserve namin ang schedule ninyo?"`
+    };
+
+    let activeScriptId = 1;
+    function switchScript(id) {
+      activeScriptId = id;
+      document.querySelectorAll('.template-tab-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('scriptContentDisplay').innerText = scriptTemplates[id];
+    }
+
+    function copyActiveScript() {
+      const text = scriptTemplates[activeScriptId];
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('copyBtnText');
+        btnText.innerText = 'Copied!';
+        showToast('✅ Script copied to clipboard!');
+        setTimeout(() => { btnText.innerText = 'Copy Script to Clipboard'; }, 2000);
+      });
+    }
+
+    /* Industry Matrix */
+    const indData = {
+      contractor: {
+        title: "Contractors, Builders & Home Renovation",
+        sub: "Construction, Roofing, Solar, Interior Design & Remodeling",
+        deal: "₱50,000 - ₱1,500,000+",
+        step: "Free Site Ocular Visit",
+        format: "Before/After Transformations",
+        hooks: '"Naghahanap ka ba ng subok na contractor sa QC? Tingnan ang natapos naming 3-bedroom renovation sa Tierra Pura na natapos on-time at within budget."',
+        hesitation: "Takot sa atrasadong turnover, low-quality materials, at biglang nagbabagong presyo. Sinusugpo ito ng video proof at transparent ocular estimate."
+      },
+      clinic: {
+        title: "Medical Clinics, Aesthetic & Dental Practices",
+        sub: "Cosmetic Surgery, Dental Implants, Skin Centers & Wellness",
+        deal: "₱15,000 - ₱250,000+",
+        step: "Doctor Consultation Booking",
+        format: "Doctor Credentials & Patient Stories",
+        hooks: '"Gusto mo ba ng natural at pantay na smile? Tingnan ang actual veneer transformation ni Doc. Mag-book ng direct assessment ngayong linggo."',
+        hesitation: "Takot sa masakit na procedure, pekeng gamot, o walang lisensyang staff. Sinusugpo ito ng verified Google reviews at doctor credential highlights."
+      },
+      b2b: {
+        title: "Professional Services, Legal & B2B Consultants",
+        sub: "Corporate Law, Accounting, Engineering & Tech Advisory",
+        deal: "₱40,000 - ₱500,000+ / mo",
+        step: "1-on-1 Strategic Discovery Call",
+        format: "In-Depth Case Study & ROI Proof",
+        hooks: '"Paano nakatipid ng ₱1.2M sa tax penalties ang isang manufacturing client sa Pasig gamit ang aming compliance audit system."',
+        hesitation: "Takot sa walang kwentang payo at generic templates. Sinusugpo ito ng concrete case studies na may malinaw na financial numbers."
+      },
+      specialty: {
+        title: "Specialty Services & Automotive Care",
+        sub: "Car Detailing, Pest Control, HVAC & Water Proofing",
+        deal: "₱10,000 - ₱100,000+",
+        step: "Direct Same-Day Booking",
+        format: "Process Video & Immediate Solution",
+        hooks: '"May tagas ba ang bubong tuwing umuulan? Tingnan kung paano namin pinatibay ang 400sqm warehouse roof nang walang abala sa operasyon."',
+        hesitation: "Takot sa panandaliang tapal lang at babalik ang problema. Sinusugpo ito ng warranty badge at before/after waterproofing water tests."
+      }
+    };
+
+    function switchIndustryTab(indKey) {
+      document.querySelectorAll('.ind-nav-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const data = indData[indKey];
+      if (data) {
+        document.getElementById('indHeroTitle').innerText = data.title;
+        document.getElementById('indHeroSub').innerText = data.sub;
+        document.getElementById('indDealSize').innerText = data.deal;
+        document.getElementById('indStep').innerText = data.step;
+        document.getElementById('indAdFormat').innerText = data.format;
+        document.getElementById('indHooks').innerText = data.hooks;
+        document.getElementById('indHesitation').innerText = data.hesitation;
+      }
+    }
+
+    /* Modal & Brief WhatsApp Dispatch */
+    function openConsultModal() {
+      document.getElementById('consultModal').classList.add('active');
+    }
+
+    function closeConsultModal() {
+      document.getElementById('consultModal').classList.remove('active');
+    }
+
+    document.getElementById('openConsultModalBtn').addEventListener('click', openConsultModal);
+
+    function openConsultModalWithAudit() {
+      const score = document.getElementById('auditScoreText').innerText;
+      document.getElementById('briefBottleneck').value = `Readiness Score is ${score} - Needs Foundation Upgrade`;
+      openConsultModal();
+    }
+
+    function sendWhatsAppBrief() {
+      const name = document.getElementById('briefName').value || 'Business Owner';
+      const ind = document.getElementById('briefIndustry').value;
+      const issue = document.getElementById('briefBottleneck').value;
+
+      const text = `Hi We Forge Web! My name is ${name}. Industry: ${ind}. Our primary goal / bottleneck: ${issue}. I would like to request a customized Client Growth Strategy Brief.`;
+      const url = `https://wa.me/639919173652?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    function sendEmailBrief() {
+      const name = document.getElementById('briefName').value || 'Business Owner';
+      const ind = document.getElementById('briefIndustry').value;
+      const issue = document.getElementById('briefBottleneck').value;
+
+      const subject = `Client Growth Brief Request - ${name}`;
+      const body = `Hi We Forge Web Team,\n\nName: ${name}\nIndustry: ${ind}\nGoal/Bottleneck: ${issue}\n\nPlease prepare our customized Client Growth Strategy Brief.\n\nThank you!`;
+      const url = `mailto:hello@weforgeweb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    }
+
+    /* Pitch Deck Mode */
+    function togglePitchMode() {
+      document.body.classList.toggle('pitch-deck-mode');
+      const isPitch = document.body.classList.contains('pitch-deck-mode');
+      if (isPitch) {
+        currentPitchSlide = 0;
+        scrollToSection(pitchSections[0]);
+        updatePitchDeckBar();
+        showToast('🖥️ Pitch Deck Mode Activated. Use Prev/Next or Arrow Keys.');
+      } else {
+        showToast('Exited Pitch Deck Mode.');
+      }
+    }
+
+    document.getElementById('pitchModeBtn').addEventListener('click', togglePitchMode);
+
+    function navigateSlide(dir) {
+      currentPitchSlide += dir;
+      if (currentPitchSlide < 0) currentPitchSlide = 0;
+      if (currentPitchSlide >= pitchSections.length) currentPitchSlide = pitchSections.length - 1;
+      scrollToSection(pitchSections[currentPitchSlide]);
+      updatePitchDeckBar();
+    }
+
+    function updatePitchDeckBar() {
+      document.getElementById('deckSlideNum').innerText = `Slide ${currentPitchSlide + 1} of ${pitchSections.length}`;
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (document.body.classList.contains('pitch-deck-mode')) {
+        if (e.key === 'ArrowRight' || e.key === 'Space') navigateSlide(1);
+        if (e.key === 'ArrowLeft') navigateSlide(-1);
+        if (e.key === 'Escape') togglePitchMode();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateROI();
+      updateAuditScore();
+    });
+  </script>
+</body>
+</html>

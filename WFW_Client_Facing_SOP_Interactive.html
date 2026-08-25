@@ -210,19 +210,19 @@
             <img src="image.png" alt="We Forge Web" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:white;\'>WE FORGE WEB</h2>';">
         </div>
         
-        <button class="nav-btn active" onclick="switchTab('tab-overview')">
+        <button class="nav-btn active" onclick="switchTab('tab-overview', this)">
             <span>1</span> System Overview
         </button>
-        <button class="nav-btn" onclick="switchTab('tab-roles')">
+        <button class="nav-btn" onclick="switchTab('tab-roles', this)">
             <span>2</span> Sino Gagawa? (Roles)
         </button>
-        <button class="nav-btn" onclick="switchTab('tab-ops')">
+        <button class="nav-btn" onclick="switchTab('tab-ops', this)">
             <span>3</span> Operations Tips
         </button>
-        <button class="nav-btn" onclick="switchTab('tab-flywheel')">
+        <button class="nav-btn" onclick="switchTab('tab-flywheel', this)">
             <span>4</span> Proof Flywheel
         </button>
-        <button class="nav-btn" onclick="switchTab('tab-scripts')">
+        <button class="nav-btn" onclick="switchTab('tab-scripts', this)">
             <span>5</span> Follow-Up Scripts
         </button>
     </div>
@@ -361,20 +361,25 @@
 
     <!-- SIMPLE JS FOR INTERACTIVITY -->
     <script>
-        function switchTab(tabId) {
+        function switchTab(tabId, btn) {
             // Hide all tabs
             document.querySelectorAll('.tab-pane').forEach(el => {
                 el.classList.remove('active');
             });
             // Show selected tab
-            document.getElementById(tabId).classList.add('active');
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
             
             // Update sidebar buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
             });
             // Find the clicked button and make it active
-            event.currentTarget.classList.add('active');
+            if (btn) {
+                btn.classList.add('active');
+            } else if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('active');
+            }
         }
     </script>
 </body>

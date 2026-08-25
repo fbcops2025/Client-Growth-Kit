@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>We Forge Web Premium Interactive Growth System</title>
+  <style>
+    :root {
+      --black: #050505;
+      --obsidian: #090b10;
+      --graphite: #11141b;
+      --panel: rgba(255,255,255,.075);
+      --panel-strong: rgba(255,255,255,.12);
+      --line: rgba(255,255,255,.14);
+      --line-soft: rgba(255,255,255,.08);
+      --white: #ffffff;
+      --milk: #f5f5f7;
+      --silver: #b8c0cc;
+      --muted: #7d8795;
+      --blue: #0071e3;
+      --zillow: #006aff;
+      --green: #1ed760;
+      --orange: #ff7a1a;
+      --gold: #f5c469;
+      --danger: #ff5b5b;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-glass: 0 40px 120px rgba(0,0,0,.45);
+      --shadow-float: 0 28px 80px rgba(0,0,0,.35);
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      color: var(--white);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0,113,227,.34), transparent 34rem),
+        radial-gradient(circle at 90% 15%, rgba(30,215,96,.18), transparent 30rem),
+        radial-gradient(circle at 60% 86%, rgba(255,122,26,.14), transparent 32rem),
+        linear-gradient(180deg, #050505 0%, #080a0f 38%, #f5f5f7 38.1%, #eef2f7 100%);
+      overflow-x: hidden;
+    }
+
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .shell { max-width: 1380px; margin: 0 auto; padding: 18px; }
+
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+      max-width: 1120px;
+      margin: 0 auto 18px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(5,5,5,.62);
+      backdrop-filter: saturate(180%) blur(24px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.26);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #001327;
+      background: linear-gradient(135deg, #fff, #dff2ff 48%, #9de8ff);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      box-shadow: inset 0 -10px 18px rgba(0,106,255,.16), 0 8px 24px rgba(0,113,227,.28);
+    }
+    .brand-text { line-height: 1; min-width: 0; }
+    .brand-name { font-size: 13px; font-weight: 800; letter-spacing: .03em; white-space: nowrap; }
+    .brand-name span { color: #5ec7ff; }
+    .brand-sub { margin-top: 4px; font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--silver); white-space: nowrap; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-link, .nav-cta {
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      color: rgba(255,255,255,.84);
+      background: transparent;
+      padding: 10px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .22s ease;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .nav-cta { background: var(--blue); color: #fff; box-shadow: 0 12px 30px rgba(0,113,227,.32); }
+    .nav-cta:hover { transform: translateY(-1px); background: #1687ff; }
+
+    .hero {
+      position: relative;
+      min-height: 730px;
+      overflow: hidden;
+      border-radius: 44px;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.07), transparent 36%),
+        linear-gradient(135deg, rgba(0,0,0,.86), rgba(7,18,36,.96) 46%, rgba(4,5,6,.92));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow-glass);
+      isolation: isolate;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      border-radius: 50%;
+      right: -210px;
+      top: -210px;
+      background:
+        radial-gradient(circle, rgba(0,106,255,.58), rgba(0,106,255,.16) 35%, transparent 64%);
+      filter: blur(6px);
+      z-index: -2;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.2) 70%, transparent);
+      opacity: .35;
+      z-index: -1;
+    }
+    .hero-inner {
+      position: relative;
+      min-height: inherit;
+      padding: clamp(36px, 5vw, 72px);
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(440px, .72fr);
+      gap: 42px;
+      align-items: center;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: #dce9ff;
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 6px rgba(30,215,96,.12); }
+    h1 {
+      margin: 24px 0 0;
+      max-width: 760px;
+      font-size: clamp(58px, 8vw, 118px);
+      line-height: .88;
+      letter-spacing: -.075em;
+      font-weight: 800;
+    }
+    .hero-word {
+      display: block;
+      background: linear-gradient(180deg, #fff 0%, #f7fbff 48%, #9db3ca 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-gradient {
+      background: linear-gradient(90deg, #4fb1ff, #fff 44%, #1ed760 88%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lede {
+      margin: 26px 0 0;
+      max-width: 680px;
+      color: rgba(236,245,255,.82);
+      font-size: clamp(17px, 1.45vw, 21px);
+      line-height: 1.55;
+      letter-spacing: -.025em;
+    }
+    .hero-actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 48px;
+      padding: 0 22px;
+      color: #fff;
+      font-weight: 760;
+      font-size: 15px;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .button.primary { background: var(--blue); box-shadow: 0 22px 55px rgba(0,113,227,.32); }
+    .button.spotify { background: var(--green); color: #041006; box-shadow: 0 22px 55px rgba(30,215,96,.24); }
+    .button.ghost { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+    .button:hover { transform: translateY(-2px); }
+
+    .hero-device {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      border-radius: 34px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 34px 90px rgba(0,0,0,.38);
+      backdrop-filter: blur(24px);
+      transform: perspective(1100px) rotateY(-8deg) rotateX(3deg);
+    }
+    .device-top { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+    .traffic { display: flex; gap: 7px; }
+    .traffic span { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+    .traffic span:nth-child(2) { background: #ffbd2e; }
+    .traffic span:nth-child(3) { background: #28c840; }
+    .device-label { color: rgba(255,255,255,.62); font-size: 11px; font-family: var(--mono); }
+    .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 132px;
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(0,0,0,.38);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+    .metric-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(255,255,255,.13), transparent 46%); pointer-events: none; }
+    .metric-label { color: rgba(255,255,255,.58); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .13em; }
+    .metric-value { margin-top: 12px; font-size: clamp(28px, 4vw, 48px); line-height: .9; font-weight: 800; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+    .metric-note { margin-top: 12px; color: rgba(255,255,255,.64); font-size: 12px; line-height: 1.35; }
+    .meter { margin-top: 15px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; }
+    .meter span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), #8ad8ff); }
+    .system-preview {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      border-radius: 24px;
+      padding: 12px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .mini-node {
+      min-height: 82px;
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.86);
+    }
+    .mini-node b { display: block; font-size: 20px; letter-spacing: -.04em; }
+    .mini-node small { display: block; margin-top: 7px; font-size: 10px; line-height: 1.25; color: rgba(255,255,255,.56); }
+    .mini-node:nth-child(1) { background: linear-gradient(145deg, rgba(0,106,255,.9), rgba(0,113,227,.32)); }
+    .mini-node:nth-child(5) { background: linear-gradient(145deg, rgba(30,215,96,.84), rgba(30,215,96,.22)); color: #06120a; }
+    .mini-node:nth-child(5) small { color: rgba(6,18,10,.66); }
+
+    .premium-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin: 18px 0 0;
+      overflow: hidden;
+      border-radius: 30px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 24px 70px rgba(0,0,0,.2);
+    }
+    .strip-item {
+      padding: 22px;
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(20px);
+    }
+    .strip-item strong { display: block; font-size: 14px; letter-spacing: -.02em; }
+    .strip-item span { display: block; margin-top: 7px; color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.45; }
+
+    .canvas {
+      margin-top: 28px;
+      padding: 52px 20px 28px;
+      color: #111827;
+      display: grid;
+      gap: 24px;
+      border-radius: 42px;
+      background: linear-gradient(180deg, #f5f5f7 0%, #eef2f7 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.86), 0 30px 90px rgba(0,0,0,.18);
+    }
+    .section-head {
+      padding: 20px 6px 0;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .section-head h2 { margin: 0; max-width: 720px; font-size: clamp(36px, 5vw, 64px); line-height: .96; letter-spacing: -.06em; color: #06080c; }
+    .section-head p { margin: 0; max-width: 430px; color: #5b6472; font-size: 15px; line-height: 1.55; }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .sidebar, .stage-panel, .calculator, .lens-card {
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(7,18,36,.08);
+      box-shadow: 0 22px 80px rgba(9,20,40,.10);
+      backdrop-filter: blur(24px);
+    }
+    .sidebar {
+      position: sticky;
+      top: 88px;
+      padding: 18px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--zillow);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .sidebar h3, .stage-panel h3, .calculator h3, .lens-card h3 { margin: 10px 0 0; color: #06080c; font-size: 27px; line-height: 1; letter-spacing: -.05em; }
+    .step-list { margin-top: 18px; display: grid; gap: 8px; }
+    .step-btn {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      text-align: left;
+      border: 1px solid rgba(8,19,38,.08);
+      border-radius: 19px;
+      padding: 10px;
+      background: rgba(255,255,255,.78);
+      color: #0a1020;
+      cursor: pointer;
+      transition: .22s ease;
+    }
+    .step-btn:hover { transform: translateX(3px); border-color: rgba(0,106,255,.24); box-shadow: 0 12px 30px rgba(0,106,255,.08); }
+    .step-btn.active { background: #05070b; color: #fff; border-color: #05070b; box-shadow: 0 18px 50px rgba(5,7,11,.28); }
+    .step-num {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: grid; place-items: center;
+      color: #001327;
+      background: #e9f3ff;
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+    .step-btn.active .step-num { background: var(--green); }
+    .step-name { display: block; color: inherit; font-size: 13px; font-weight: 850; letter-spacing: -.02em; line-height: 1.2; }
+    .step-meta { display: block; margin-top: 3px; color: #6b7482; font-size: 11px; line-height: 1.3; }
+    .step-btn.active .step-meta { color: rgba(255,255,255,.58); }
+    .chev { color: #a8b1bc; font-size: 18px; }
+    .step-btn.active .chev { color: rgba(255,255,255,.74); }
+
+    .main-stack { display: grid; gap: 20px; }
+    .stage-panel { overflow: hidden; }
+    .stage-hero {
+      position: relative;
+      min-height: 390px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, .98fr) minmax(360px, .72fr);
+      gap: 28px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(0,106,255,.38), transparent 24rem),
+        radial-gradient(circle at 10% 92%, rgba(30,215,96,.18), transparent 22rem),
+        linear-gradient(135deg, #070a10, #101827);
+    }
+    .stage-panel .stage-title { margin: 12px 0 0; color: #fff; font-size: clamp(42px, 5vw, 76px); line-height: .9; letter-spacing: -.07em; font-weight: 790; }
+    .stage-copy { margin: 22px 0 0; color: rgba(255,255,255,.72); max-width: 620px; font-size: 17px; line-height: 1.55; letter-spacing: -.02em; }
+    .owner-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 30px;
+      border-radius: 999px;
+      padding: 0 12px;
+      color: #03131f;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+    .tag.orange::before { background: var(--orange); }
+    .tag.green::before { background: var(--green); }
+    .detail-board {
+      align-self: stretch;
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.13);
+      backdrop-filter: blur(24px);
+    }
+    .board-title { color: rgba(255,255,255,.66); font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 850; }
+    .check {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.075);
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .checkmark {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center;
+      flex: 0 0 auto;
+      color: #041006;
+      background: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .journey-map {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      background: #fff;
+    }
+    .node {
+      position: relative;
+      overflow: hidden;
+      min-height: 150px;
+      border: 0;
+      border-radius: 26px;
+      padding: 18px;
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      background: #111827;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 18px 45px rgba(9,20,40,.10);
+      transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+    }
+    .node::after {
+      content: '';
+      position: absolute;
+      inset: auto -30px -42px auto;
+      width: 110px; height: 110px; border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      filter: blur(6px);
+    }
+    .node:hover { transform: translateY(-5px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), 0 24px 60px rgba(9,20,40,.18); }
+    .node.dim { filter: grayscale(.94) opacity(.42); }
+    .node.active { transform: translateY(-6px); outline: 4px solid rgba(0,106,255,.14); }
+    .node small { display: block; font-size: 10px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; opacity: .66; }
+    .node strong { display: block; margin-top: 12px; font-size: 23px; line-height: .95; letter-spacing: -.055em; }
+    .node span { display: block; margin-top: 12px; color: rgba(255,255,255,.76); font-size: 12px; line-height: 1.42; }
+    .node:nth-child(1) { background: linear-gradient(145deg, #006aff, #003f98); }
+    .node:nth-child(2) { background: linear-gradient(145deg, #071a35, #0071e3); }
+    .node:nth-child(3) { background: linear-gradient(145deg, #111827, #344152); }
+    .node:nth-child(4) { background: linear-gradient(145deg, #ff7a1a, #b64700); }
+    .node:nth-child(5) { background: linear-gradient(145deg, #1ed760, #0a7a32); color: #031308; }
+    .node:nth-child(5) span { color: rgba(3,19,8,.68); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .calculator, .lens-card { padding: 26px; overflow: hidden; }
+    .calculator { position: relative; background: #070a10; color: #fff; border-color: rgba(255,255,255,.12); }
+    .calculator::before { content: ''; position: absolute; width: 420px; height: 420px; right: -180px; top: -180px; border-radius: 50%; background: rgba(30,215,96,.18); filter: blur(3px); }
+    .calculator > * { position: relative; }
+    .calculator h3 { color: #fff; }
+    .slider-group { display: grid; gap: 18px; margin-top: 24px; }
+    .slider-line { display: grid; gap: 9px; }
+    .slider-head { display: flex; justify-content: space-between; gap: 12px; color: rgba(255,255,255,.88); font-size: 13px; font-weight: 760; }
+    .slider-head output { color: var(--green); font-variant-numeric: tabular-nums; }
+    input[type='range'] {
+      width: 100%;
+      height: 7px;
+      appearance: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      outline: none;
+      accent-color: var(--green);
+    }
+    input[type='range']::-webkit-slider-thumb {
+      appearance: none;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 4px solid #061008;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.18), 0 10px 24px rgba(30,215,96,.24);
+      cursor: pointer;
+    }
+    .funnel { display: grid; gap: 8px; margin-top: 22px; }
+    .funnel-stage {
+      margin-inline: auto;
+      min-height: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 14px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .funnel-label { font-size: 13px; font-weight: 820; color: rgba(255,255,255,.94); }
+    .funnel-sub { margin-top: 2px; color: rgba(255,255,255,.5); font-size: 11px; line-height: 1.2; }
+    .funnel-value { color: #fff; font-size: 22px; font-weight: 850; font-variant-numeric: tabular-nums; }
+    .roi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .roi-card { border-radius: 20px; padding: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.09); }
+    .roi-card small { display: block; color: rgba(255,255,255,.5); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; font-weight: 850; }
+    .roi-card strong { display: block; margin-top: 8px; color: var(--green); font-size: 34px; line-height: .9; font-weight: 850; letter-spacing: -.06em; }
+
+    .lens-card { background: #fff; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .tab {
+      border: 1px solid rgba(7,18,36,.1);
+      border-radius: 999px;
+      background: #f5f7fb;
+      color: #111827;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+    .tab:hover { transform: translateY(-1px); border-color: rgba(0,106,255,.26); }
+    .tab.active { background: #05070b; color: #fff; border-color: #05070b; }
+    .journey-content {
+      margin-top: 18px;
+      min-height: 300px;
+      padding: 24px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(0,106,255,.10), transparent 16rem),
+        #f5f7fb;
+      border: 1px solid rgba(7,18,36,.08);
+    }
+    .journey-content h4 { margin: 0; color: #06080c; font-size: 40px; line-height: .95; letter-spacing: -.06em; }
+    .journey-content p { margin: 18px 0 0; color: #4b5563; font-size: 15px; line-height: 1.6; }
+    .script-box {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 20px;
+      background: #06080c;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      line-height: 1.55;
+      border-left: 6px solid var(--green);
+    }
+
+    .closing {
+      margin: 4px 0 18px;
+      min-height: 360px;
+      display: grid;
+      grid-template-columns: 1fr .75fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .closing-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 38px;
+      padding: 36px;
+      color: #fff;
+      background: linear-gradient(135deg, #06080c, #10213f);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow-float);
+    }
+    .closing-panel h2 { margin: 14px 0 0; max-width: 740px; font-size: clamp(38px, 5vw, 74px); line-height: .92; letter-spacing: -.07em; }
+    .closing-panel p { margin: 22px 0 0; max-width: 630px; color: rgba(255,255,255,.68); font-size: 17px; line-height: 1.55; }
+    .closing-card {
+      padding: 28px;
+      border-radius: 38px;
+      background: #fff;
+      box-shadow: 0 22px 80px rgba(9,20,40,.10);
+    }
+    .closing-card h3 { margin: 0; color: #06080c; font-size: 30px; letter-spacing: -.05em; }
+    .closing-list { margin-top: 20px; display: grid; gap: 12px; }
+    .closing-item { display: flex; align-items: start; gap: 12px; color: #4b5563; font-size: 14px; line-height: 1.5; }
+    .closing-item span { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #eafff1; color: #098437; font-weight: 900; }
+
+    .footer-note { color: #7b8491; text-align: center; font-size: 12px; padding: 16px 0 4px; }
+
+    @media (max-width: 1120px) {
+      .hero-inner, .stage-hero, .workbench, .two-col, .closing { grid-template-columns: 1fr; }
+      .hero-device { transform: none; }
+      .sidebar { position: static; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 740px) {
+      .shell { padding: 10px; }
+      .topbar { top: 8px; border-radius: 24px; align-items: flex-start; }
+      .nav-actions .nav-link { display: none; }
+      .hero { border-radius: 30px; min-height: auto; }
+      .hero-inner { padding: 34px 20px; }
+      .hero-device, .stage-panel, .sidebar, .calculator, .lens-card, .closing-panel, .closing-card { border-radius: 26px; }
+      .signal-grid, .system-preview, .premium-strip, .journey-map, .roi { grid-template-columns: 1fr; }
+      .stage-hero { padding: 24px; }
+      .node { min-height: 124px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="Prototype navigation">
+      <div class="brand">
+        <div class="mark">W</div>
+        <div class="brand-text">
+          <div class="brand-name">WE FORGE <span>WEB</span></div>
+          <div class="brand-sub">Growth System</div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-link" onclick="document.querySelector('#system').scrollIntoView()">System</button>
+        <button class="nav-link" onclick="document.querySelector('#roi').scrollIntoView()">Funnel</button>
+        <button class="nav-cta" onclick="document.querySelector('#decision').scrollIntoView()">View Journey</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="kicker"><span class="pulse"></span> Premium interactive client visual</div>
+          <h1><span class="hero-word">From seen</span><span class="hero-word">to <span class="hero-gradient">chosen.</span></span></h1>
+          <p class="lede">A cinematic, agency-grade map of how We Forge Web turns local visibility into trust, inquiries, closed work, and reusable proof. Built to feel less like a slide deck and more like a premium product experience.</p>
+          <div class="hero-actions">
+            <button class="button primary" onclick="document.querySelector('#system').scrollIntoView()">Explore the system</button>
+            <button class="button spotify" onclick="document.querySelector('#roi').scrollIntoView()">Play with the funnel</button>
+            <button class="button ghost" onclick="document.querySelector('#decision').scrollIntoView()">See decision moments</button>
+          </div>
+        </div>
+
+        <aside class="hero-device" aria-label="Interactive system preview">
+          <div class="device-top">
+            <div class="traffic"><span></span><span></span><span></span></div>
+            <div class="device-label">client-growth-system.live</div>
+          </div>
+          <div class="signal-grid">
+            <div class="metric-card">
+              <div class="metric-label">Visibility</div>
+              <div class="metric-value">100</div>
+              <div class="metric-note">Potential customers entering from ads, search, and referrals.</div>
+              <div class="meter"><span style="width:100%"></span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Trust path</div>
+              <div class="metric-value">40</div>
+              <div class="metric-note">Qualified prospects who can check proof before calling.</div>
+              <div class="meter"><span style="width:64%; background:linear-gradient(90deg,#1ed760,#b8ffce)"></span></div>
+            </div>
+          </div>
+          <div class="system-preview">
+            <div class="mini-node"><b>01</b><small>Seen through local demand</small></div>
+            <div class="mini-node"><b>02</b><small>Check website and Google</small></div>
+            <div class="mini-node"><b>03</b><small>Trust the proof</small></div>
+            <div class="mini-node"><b>04</b><small>Request estimate</small></div>
+            <div class="mini-node"><b>05</b><small>New proof loop</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="premium-strip" aria-label="Premium design principles">
+      <div class="strip-item"><strong>Apple-grade focus</strong><span>Less noise, larger moments, stronger hierarchy.</span></div>
+      <div class="strip-item"><strong>Zillow-style trust path</strong><span>Clear local decision signals and confidence cues.</span></div>
+      <div class="strip-item"><strong>Spotify-like interactivity</strong><span>Dark immersive controls with tactile motion.</span></div>
+      <div class="strip-item"><strong>Agency polish</strong><span>Glass surfaces, cinematic depth, and refined spacing.</span></div>
+    </section>
+
+    <section class="canvas" id="system">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Connected lead engine</div>
+          <h2>The system, shown as a premium customer journey.</h2>
+        </div>
+        <p>Click each stage to see what We Forge Web handles, what the client must support, and how every step moves the prospect closer to choosing the business.</p>
+      </div>
+
+      <div class="workbench">
+        <aside class="sidebar">
+          <div class="eyebrow">Click a stage</div>
+          <h3>9-step growth system</h3>
+          <div id="stepList" class="step-list"></div>
+        </aside>
+
+        <div class="main-stack">
+          <article class="stage-panel">
+            <div class="stage-hero">
+              <div>
+                <div class="eyebrow" id="detailPhase">Phase</div>
+                <h3 class="stage-title" id="detailTitle">Foundation</h3>
+                <p class="stage-copy" id="detailText">Loading...</p>
+                <div class="owner-strip" id="ownerTags"></div>
+              </div>
+              <div class="detail-board">
+                <div class="board-title">What should happen here</div>
+                <div id="checks"></div>
+              </div>
+            </div>
+            <div class="journey-map" id="journeyNodes"></div>
+          </article>
+
+          <div class="two-col">
+            <article id="roi" class="calculator">
+              <div class="eyebrow">Interactive calculator</div>
+              <h3>Sample funnel math</h3>
+              <div class="slider-group">
+                <label class="slider-line">
+                  <span class="slider-head"><span>Monthly inquiries</span><output id="inquiryValue">100</output></span>
+                  <input id="inquiries" type="range" min="30" max="300" value="100" step="5">
+                </label>
+                <label class="slider-line">
+                  <span class="slider-head"><span>Qualified rate</span><output id="qualifiedValue">40%</output></span>
+                  <input id="qualified" type="range" min="15" max="80" value="40" step="1">
+                </label>
+                <label class="slider-line">
+                  <span class="slider-head"><span>Close rate from estimates</span><output id="closeValue">35%</output></span>
+                  <input id="closeRate" type="range" min="10" max="70" value="35" step="1">
+                </label>
+              </div>
+              <div class="funnel" id="funnel"></div>
+              <div class="roi">
+                <div class="roi-card"><small>Qualified</small><strong id="qualifiedOut">40</strong></div>
+                <div class="roi-card"><small>Estimates</small><strong id="estimateOut">20</strong></div>
+                <div class="roi-card"><small>Closed</small><strong id="closedOut">7</strong></div>
+              </div>
+            </article>
+
+            <article id="decision" class="lens-card">
+              <div class="eyebrow">Decision moments</div>
+              <h3>Switch the lens</h3>
+              <div class="tabs" id="tabs"></div>
+              <div class="journey-content">
+                <h4 id="lensTitle">Seen</h4>
+                <p id="lensText"></p>
+                <div class="script-box" id="lensScript"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-panel">
+        <div class="eyebrow">Why it feels premium</div>
+        <h2>It sells the system before explaining every detail.</h2>
+        <p>The first impression is now a strategic product experience: cinematic top section, focused interactive stages, polished trust map, and a funnel module clients can understand in seconds.</p>
+      </div>
+      <div class="closing-card">
+        <h3>Client-ready improvements</h3>
+        <div class="closing-list">
+          <div class="closing-item"><span>✓</span><div>Reduced generic card-grid feeling and replaced it with stronger visual moments.</div></div>
+          <div class="closing-item"><span>✓</span><div>Added premium dark glass, refined spacing, high-contrast CTAs, and larger typography.</div></div>
+          <div class="closing-item"><span>✓</span><div>Kept the practical We Forge Web strategy: seen, checked, trusted, inquiry, proof loop.</div></div>
+          <div class="closing-item"><span>✓</span><div>Kept all core interactions: stage clicks, journey moments, funnel sliders, and lens tabs.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Self-contained interactive prototype for We Forge Web. No fabricated client metrics. Numbers are sample funnel math only.</p>
+  </main>
+
+  <script>
+    const steps = [
+      { n: 1, phase: 'Foundation', name: 'Online foundation audit', owner: ['Kami', 'Kayo'], meta: 'FB Page, GBP, website, contact channels', text: 'Before ads spend, the business must look complete, credible, and easy to contact. This prevents paid attention from leaking into doubt.', checks: ['High-res logo and clear Facebook page CTA', 'Google Business Profile with correct area, hours, and phone', 'Fast landing page with direct call, WhatsApp, or form'] },
+      { n: 2, phase: 'Demand', name: 'Facebook boosting and ads', owner: ['Kami'], meta: 'Proof-first local reach', text: 'Use paid reach to put real proof in front of the right local audience. The goal is not views. The goal is interest that turns into profile checks and inquiries.', checks: ['Before-and-after or actual work creative', 'Specific location targeting within service radius', 'Clear CTA: message, call, or request a FREE estimate'] },
+      { n: 3, phase: 'Trust', name: 'Landing page decision engine', owner: ['Kami'], meta: 'Answers doubt in 30 seconds', text: 'After seeing an ad, the customer checks if the business is real, local, experienced, trusted, and easy to contact.', checks: ['Services and deliverables are clear', 'Proof portfolio and reviews are visible', 'Booking/contact action is always one click away'] },
+      { n: 4, phase: 'Search', name: 'Google Business Profile', owner: ['Kami', 'Kayo'], meta: 'Local search confidence', text: 'Google supports trust when customers compare. Accurate details, photos, and review activity help people feel safer before calling.', checks: ['Correct service area and business details', 'Fresh project photos and posts', 'Genuine review request process after completed jobs'] },
+      { n: 5, phase: 'Proof', name: 'Project asset capture', owner: ['Kayo'], meta: 'Photos, videos, reviews', text: 'Every completed job can become future marketing proof. Without proof capture, the system runs out of trust assets.', checks: ['Before, during, and after photos', 'Short clips or walkthroughs when possible', 'Customer feedback or genuine review request'] },
+      { n: 6, phase: 'Optimization', name: 'Boost only proven content', owner: ['Kami'], meta: '70/20/10 allocation logic', text: 'Not every post deserves budget. Spend should go to content that clearly shows value, location relevance, and a direct reason to inquire.', checks: ['70% top proof ads', '20% retargeting and case studies', '10% new creative tests'] },
+      { n: 7, phase: 'Nurture', name: 'Value-first follow-up', owner: ['Kayo'], meta: 'Helpful, not pushy', text: 'Not every inquiry books immediately. Follow-up should reduce doubt with useful proof, not pressure the customer with generic reminders.', checks: ['Send similar project proof', 'Address the original concern', 'Offer one clear next step'] },
+      { n: 8, phase: 'Tracking', name: 'Lead quality and ROI tracking', owner: ['Kami', 'Kayo'], meta: 'Measure the full path', text: 'Track where good leads actually come from: inquiry source, qualified leads, estimates sent, closed projects, and revenue.', checks: ['Separate inquiries from qualified leads', 'Track estimate and close rate', 'Move budget toward channels with better project quality'] },
+      { n: 9, phase: 'Flywheel', name: 'Feed the system with new proof', owner: ['Kami', 'Kayo'], meta: 'Completed work compounds trust', text: 'A good project creates new photos and reviews. Those assets strengthen Facebook ads, the landing page, and Google for the next customer.', checks: ['Turn finished work into proof assets', 'Publish proof across key channels', 'Use strongest proof in future ads and follow-ups'] }
+    ];
+
+    const nodes = [
+      ['Makita kayo', 'Facebook and local ads create first attention.'],
+      ['Ma-check kayo', 'Website and Google answer customer doubt fast.'],
+      ['Magtiwala', 'Reviews and proof make the business safer to contact.'],
+      ['Mag-inquire', 'Clear CTA turns attention into a real conversation.'],
+      ['New proof', 'Completed work feeds the next marketing cycle.']
+    ];
+
+    const lenses = [
+      { key: 'seen', title: 'Seen', text: 'The first job is visibility. The right people must see proof in their local context, not generic content that feels like an ad template.', script: 'Customer thought: “Nakita ko sila. Mukhang relevant sa area ko.”' },
+      { key: 'chosen', title: 'Chosen', text: 'The second job is trust. When they compare, the website, Google profile, and proof assets should make the decision easier.', script: 'Customer thought: “Mukhang legit. May proof. Madali silang kontakin.”' },
+      { key: 'closed', title: 'Closed', text: 'The third job is response and sales process. Marketing opens the door, but quick replies, estimates, follow-up, and good service close the loop.', script: 'Business action: respond fast, give clear estimate, follow up with value, then collect proof after delivery.' }
+    ];
+
+    const stepList = document.querySelector('#stepList');
+    const journeyNodes = document.querySelector('#journeyNodes');
+    const checks = document.querySelector('#checks');
+    const ownerTags = document.querySelector('#ownerTags');
+    let activeStep = 0;
+
+    function renderStepList() {
+      stepList.innerHTML = steps.map((step, i) => `
+        <button class="step-btn ${i === activeStep ? 'active' : ''}" data-step="${i}">
+          <span class="step-num">${String(step.n).padStart(2, '0')}</span>
+          <span><span class="step-name">${step.name}</span><span class="step-meta">${step.meta}</span></span>
+          <span class="chev">›</span>
+        </button>
+      `).join('');
+      document.querySelectorAll('.step-btn').forEach(btn => btn.addEventListener('click', () => setStep(Number(btn.dataset.step))));
+    }
+
+    function renderNodes() {
+      const activeNode = Math.min(4, Math.floor(activeStep / 2));
+      journeyNodes.innerHTML = nodes.map((node, i) => `
+        <button class="node ${i === activeNode ? 'active' : ''} ${Math.abs(i - activeNode) > 1 ? 'dim' : ''}" onclick="jumpNode(${i})">
+          <small>Moment ${i + 1}</small><strong>${node[0]}</strong><span>${node[1]}</span>
+        </button>
+      `).join('');
+    }
+
+    function setStep(index) {
+      activeStep = index;
+      const step = steps[index];
+      document.querySelector('#detailPhase').textContent = `Phase: ${step.phase}`;
+      document.querySelector('#detailTitle').textContent = step.name;
+      document.querySelector('#detailText').textContent = step.text;
+      ownerTags.innerHTML = step.owner.map(owner => `<span class="tag ${owner === 'Kayo' ? 'orange' : owner.includes('+') ? 'green' : ''}">${owner}</span>`).join('');
+      checks.innerHTML = step.checks.map(item => `<div class="check"><span class="checkmark">✓</span><span>${item}</span></div>`).join('');
+      renderStepList();
+      renderNodes();
+    }
+
+    function jumpNode(i) {
+      const target = Math.min(steps.length - 1, i * 2);
+      setStep(target);
+    }
+
+    function updateFunnel() {
+      const inquiries = Number(document.querySelector('#inquiries').value);
+      const qualifiedRate = Number(document.querySelector('#qualified').value) / 100;
+      const closeRate = Number(document.querySelector('#closeRate').value) / 100;
+      const qualified = Math.round(inquiries * qualifiedRate);
+      const estimates = Math.round(qualified * .5);
+      const closed = Math.max(1, Math.round(estimates * closeRate));
+      document.querySelector('#inquiryValue').textContent = inquiries;
+      document.querySelector('#qualifiedValue').textContent = Math.round(qualifiedRate * 100) + '%';
+      document.querySelector('#closeValue').textContent = Math.round(closeRate * 100) + '%';
+      document.querySelector('#qualifiedOut').textContent = qualified;
+      document.querySelector('#estimateOut').textContent = estimates;
+      document.querySelector('#closedOut').textContent = closed;
+      const rows = [
+        ['Total inquiries', inquiries, 'Facebook, Google, website forms, calls', 100],
+        ['Qualified leads', qualified, 'Right area, need, and budget', 88],
+        ['Estimates sent', estimates, 'Quote, ocular, or detailed proposal', 76],
+        ['Closed projects', closed, 'Downpayment or confirmed schedule', 64],
+        ['New proof assets', closed, 'Photos, reviews, and case studies', 52]
+      ];
+      document.querySelector('#funnel').innerHTML = rows.map(row => `
+        <div class="funnel-stage" style="width:${row[3]}%">
+          <div><div class="funnel-label">${row[0]}</div><div class="funnel-sub">${row[2]}</div></div>
+          <div class="funnel-value">${row[1]}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderTabs(active = 'seen') {
+      document.querySelector('#tabs').innerHTML = lenses.map(lens => `<button class="tab ${lens.key === active ? 'active' : ''}" data-lens="${lens.key}">${lens.title}</button>`).join('');
+      const current = lenses.find(l => l.key === active);
+      document.querySelector('#lensTitle').textContent = current.title;
+      document.querySelector('#lensText').textContent = current.text;
+      document.querySelector('#lensScript').textContent = current.script;
+      document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => renderTabs(tab.dataset.lens)));
+    }
+
+    document.querySelectorAll('input[type="range"]').forEach(input => input.addEventListener('input', updateFunnel));
+    setStep(0);
+    updateFunnel();
+    renderTabs();
+  </script>
+</body>
+</html>
